@@ -15,8 +15,11 @@ import com.example.kufsa.data.BoardGame;
 import com.example.kufsa.databinding.ItemGameInCatalogBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogAdapter.BoardGameHolder> {
+
+    private OnItemClickListener listener;
 
     public CatalogAdapter(@NonNull FirestoreRecyclerOptions<BoardGame> options) {
         super(options);
@@ -41,6 +44,13 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
         return new BoardGameHolder(v);
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
 
     class BoardGameHolder extends RecyclerView.ViewHolder {
         TextView textViewName;
@@ -49,7 +59,14 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
         public BoardGameHolder(View itemView) {
             super(itemView);
             binding = ItemGameInCatalogBinding.bind(itemView);
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && listener != null) {
+                    listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                }
+            });
         }
     }
+
 }
 

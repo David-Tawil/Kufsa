@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
 import com.example.kufsa.databinding.FragmentGameCatalogBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -39,6 +41,7 @@ public class CatalogFragment extends Fragment {
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         binding = FragmentGameCatalogBinding.inflate(inflater, container, false);
         setUpRecyclerView();
+
         return binding.getRoot();
     }
 
@@ -49,22 +52,24 @@ public class CatalogFragment extends Fragment {
         //  options instructs the adapter to convert each DocumentSnapshot to a BoardGame object
         FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                 .setQuery(query, BoardGame.class)
+                .setLifecycleOwner(this.getViewLifecycleOwner())
                 .build();
         adapter = new CatalogAdapter(options);
+
+        adapter.setOnItemClickListener((documentSnapshot, position) -> {
+            BoardGame game = documentSnapshot.toObject(BoardGame.class);
+            String id = documentSnapshot.getId();
+            if (game == null) {
+                Snackbar.make(requireView(), "error: game is null", Snackbar.LENGTH_LONG).show();
+                return;
+            }
+            game.setId(id);
+            NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionCatalogFragmentToGameDetailsFragment(game));
+        });
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(adapter);
+
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
 }

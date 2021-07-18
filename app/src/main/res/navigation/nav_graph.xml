@@ -3,19 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/catalogFragment">
+    app:startDestination="@id/marketplace_fragment">
     <fragment
-        android:id="@+id/loginFragment"
+        android:id="@+id/my_account_fragment"
         android:name="com.example.kufsa.ui.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login" />
     <fragment
-        android:id="@+id/catalogFragment"
+        android:id="@+id/marketplace_fragment"
         android:name="com.example.kufsa.ui.catalog.CatalogFragment"
-        android:label="CatalogFragment"
+        android:label="Catalog"
         tools:layout="@layout/fragment_game_catalog">
         <action
-            android:id="@+id/action_catalogFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_catalogFragment_to_gameDetailsFragment"
+            app:destination="@id/gameDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameDetailsFragment"
+        android:name="com.example.kufsa.ui.game_details.GameDetailsFragment"
+        android:label="Game details"
+        tools:layout="@layout/fragment_game_details">
+        <argument
+            android:name="Game"
+            app:argType="com.example.kufsa.data.BoardGame" />
     </fragment>
 </navigation>
