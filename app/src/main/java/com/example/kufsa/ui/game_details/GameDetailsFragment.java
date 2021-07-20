@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+
 public class GameDetailsFragment extends Fragment {
     private final CollectionReference gamesCollection = FirebaseFirestore.getInstance().collection("games");
     private FragmentGameDetailsBinding binding;
@@ -39,8 +40,25 @@ public class GameDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         BoardGame game = GameDetailsFragmentArgs.fromBundle(getArguments()).getGame();
+
+        String description = "Description";
+        String releaseYear = "Release Year: " + game.getReleaseYear();
+        String publisher = "Publisher: " + game.getPublisher();
+        String Age = "Age: " + game.getMinAge() + "+";
+        String NumOfPlayers = "Number of players: " + game.getMinNumOfPlayers() + "-" + game.getMaxNumOfPlayers();
+        String gameDetailsPlayingTime = "Playing time: " + game.getPlayingTime() + "+";
+        String difficulty = "Difficulty: " + game.getDifficulty() + "/5";
+
         binding.gameDetailsTitle.setText(game.getName());
+        binding.gameDetailsDescriptionHeadline.setText(description);
         binding.gameDetailsDescription.setText(game.getDescription());
+        binding.gameDetailsReleaseYear.setText(releaseYear);
+        binding.gameDetailsPublisher.setText(publisher);
+        binding.gameDetailsAge.setText(Age);
+        binding.gameDetailsNumOfPlayers.setText(NumOfPlayers);
+        binding.gameDetailsPlayingTime.setText(gameDetailsPlayingTime);
+        binding.gameDetailsDifficulty.setText(difficulty);
+
         Glide.with(view)
                 .load(game.getImg())
                 .transition(DrawableTransitionOptions.withCrossFade())

@@ -7,6 +7,17 @@ import android.os.Parcelable;
 public class BoardGame implements Parcelable {
     private String id;
     private String name;
+    private String description;
+    private String img; // image url
+    private String publisher;
+
+    private Float difficulty;
+    private int maxNumOfPlayers;
+    private int minNumOfPlayers;
+    private int playingTime;
+    private int releaseYear;
+    private int minAge;
+
     public static final Creator<BoardGame> CREATOR = new Creator<BoardGame>() {
         @Override
         public BoardGame createFromParcel(Parcel in) {
@@ -18,12 +29,17 @@ public class BoardGame implements Parcelable {
             return new BoardGame[size];
         }
     };
-    private String img; // image url
 
     public BoardGame() {// Needed for Firebase
     }
 
-    private String description;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getId() {
         return id;
@@ -49,10 +65,73 @@ public class BoardGame implements Parcelable {
         this.img = img;
     }
 
-    public BoardGame(String name, String img, String description) {
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public Float getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Float difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public int getMaxNumOfPlayers() {
+        return maxNumOfPlayers;
+    }
+
+    public void setMaxNumOfPlayers(int maxNumOfPlayers) {
+        this.maxNumOfPlayers = maxNumOfPlayers;
+    }
+
+    public int getMinNumOfPlayers() {
+        return minNumOfPlayers;
+    }
+
+    public void setMinNumOfPlayers(int minNumOfPlayers) {
+        this.minNumOfPlayers = minNumOfPlayers;
+    }
+
+    public int getPlayingTime() {
+        return playingTime;
+    }
+
+    public void setPlayingTime(int playingTime) {
+        this.playingTime = playingTime;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public int getMinAge() {
+        return minAge;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
+
+    public BoardGame(String name, String img, String description, String publisher, Float difficulty, int maxNumOfPlayers, int minNumOfPlayers, int playingTime, int releaseYear, int minAge) {
         this.name = name;
         this.img = img;
         this.description = description;
+        this.publisher = publisher;
+        this.difficulty = difficulty;
+        this.maxNumOfPlayers = maxNumOfPlayers;
+        this.minNumOfPlayers = minNumOfPlayers;
+        this.playingTime = playingTime;
+        this.releaseYear = releaseYear;
+        this.minAge = minAge;
     }
 
     protected BoardGame(Parcel in) {
@@ -60,15 +139,15 @@ public class BoardGame implements Parcelable {
         name = in.readString();
         img = in.readString();
         description = in.readString();
+        publisher = in.readString();
+        difficulty = in.readFloat();
+        maxNumOfPlayers = in.readInt();
+        minNumOfPlayers = in.readInt();
+        playingTime = in.readInt();
+        releaseYear = in.readInt();
+        minAge = in.readInt();
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -76,6 +155,13 @@ public class BoardGame implements Parcelable {
         dest.writeString(name);
         dest.writeString(img);
         dest.writeString(description);
+        dest.writeString(publisher);
+        dest.writeFloat(difficulty);
+        dest.writeInt(maxNumOfPlayers);
+        dest.writeInt(minNumOfPlayers);
+        dest.writeInt(playingTime);
+        dest.writeInt(releaseYear);
+        dest.writeInt(minAge);
     }
 
     @Override

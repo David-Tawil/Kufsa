@@ -15,4 +15,7 @@
     <string name="bottom_nav_marketplace_title">Marketplace</string>
     <string name="bottom_nav_my_games_title">My Games</string>
     <string name="bottom_nav_my_account_title">My Account</string>
+    <string name="todo">TODO</string>
+    <string name="description">Description</string>
+    <string name="details">Details</string>
 </resources>
