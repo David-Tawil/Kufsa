@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:contentDescription="game photo" />
+        android:contentDescription="game photo"
+        tools:src="@drawable/Catan_image" />
 
 
     <TextView
@@ -25,7 +26,7 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:textColor="#FFF"
-        tools:text="Katan" />
+        tools:text="Catan" />
 
     <View
         android:layout_width="match_parent"

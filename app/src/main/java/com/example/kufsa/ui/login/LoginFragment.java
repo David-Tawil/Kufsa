@@ -1,37 +1,40 @@
 package com.example.kufsa.ui.login;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.kufsa.R;
 import com.example.kufsa.databinding.FragmentLoginBinding;
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
-    private LoginViewModel loginViewModel;
+    // Choose an arbitrary request code value
+    private static final int RC_SIGN_IN = 123;
+    // creating an auth listener for our Firebase auth
+    FirebaseAuth auth;
+    List<AuthUI.IdpConfig> providers = Arrays.asList(
+            new AuthUI.IdpConfig.EmailBuilder().build(),
+            new AuthUI.IdpConfig.PhoneBuilder().build(),
+            new AuthUI.IdpConfig.GoogleBuilder().build());
+    private FirebaseAuth.AuthStateListener mAuthStateListner;
 
-    public LoginFragment(){
+    public LoginFragment() {
         super(R.layout.fragment_login);
     }
 
@@ -39,104 +42,113 @@ public class LoginFragment extends Fragment {
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() != null) {
+            NavHostFragment.findNavController(this).navigate(LoginFragmentDirections.actionMyAccountFragmentToSignedInAccountFragment());
+            // already signed in
+        }
+
         binding = FragmentLoginBinding.inflate(inflater, container, false);
+        auth = FirebaseAuth.getInstance();
+
+        setAuthStateListener();
+     /*   if (auth.getCurrentUser() != null) {
+            // already signed in
+        } else {
+            startActivityForResult(
+                    // Get an instance of AuthUI based on the default app
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(providers)
+                            .setLogo(R.drawable.logo)
+                            .build(),
+                    RC_SIGN_IN);
+            // not signed in
+        }*/
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
-                .get(LoginViewModel.class);
-
-        final EditText usernameEditText = binding.usernameLoginEditText;
-        final EditText passwordEditText = binding.passwordLoginEditText;
-        final Button loginButton = binding.loginButton;
-        final ProgressBar loadingProgressBar = binding.progressBarLogin;
-
-        loginViewModel.getLoginFormState().observe(this.getViewLifecycleOwner(), new Observer<LoginFormState>() {
-            @Override
-            public void onChanged(@Nullable LoginFormState loginFormState) {
-                if (loginFormState == null) {
-                    return;
-                }
-                loginButton.setEnabled(loginFormState.isDataValid());
-                if (loginFormState.getUsernameError() != null) {
-                    usernameEditText.setError(getString(loginFormState.getUsernameError()));
-                }
-                if (loginFormState.getPasswordError() != null) {
-                    passwordEditText.setError(getString(loginFormState.getPasswordError()));
-                }
-            }
+        binding.loginButton.setOnClickListener(view1 -> {
+            startActivityForResult(
+                    // Get an instance of AuthUI based on the default app
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(providers)
+                            .setLogo(R.drawable.logo)
+                            .build(),
+                    RC_SIGN_IN);
         });
+    }
 
-        loginViewModel.getLoginResult().observe(this.getViewLifecycleOwner(), new Observer<LoginResult>() {
-            @Override
-            public void onChanged(@Nullable LoginResult loginResult) {
-                if (loginResult == null) {
-                    return;
-                }
-                loadingProgressBar.setVisibility(View.GONE);
-                if (loginResult.getError() != null) {
-                    showLoginFailed(loginResult.getError());
-                }
-                if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
-                }
-                /*setResult(Activity.RESULT_OK);
+    private void setAuthStateListener() {
+        mAuthStateListner = firebaseAuth -> {
 
-                //Complete and destroy login activity once successful
-                finish();*/
-            }
-        });
 
-        TextWatcher afterTextChangedListener = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // ignore
-            }
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // if the user is already authenticated then we will
+                // redirect our user to next screen which is our home screen.
+                // we are redirecting to new screen via an intent.
+                NavHostFragment.findNavController(this).navigate(LoginFragmentDirections.actionMyAccountFragmentToSignedInAccountFragment());
+            } else {
+                /*// this method is called when our
+                // user is not authenticated previously.
+                startActivityForResult(
+                        // below line is used for getting
+                        // our authentication instance.
+                        AuthUI.getInstance()
+                                // below line is used to
+                                // create our sign in intent
+                                .createSignInIntentBuilder()
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // ignore
-            }
+                                // below line is used for adding smart
+                                // lock for our authentication.
+                                // smart lock is used to check if the user
+                                // is authentication through different devices.
+                                // currently we are disabling it.
+                                // .setIsSmartLockEnabled(false)
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                                // we are adding different login providers which
+                                // we have mentioned above in our list.
+                                // we can add more providers according to our
+                                // requirement which are available in firebase.
+                                .setAvailableProviders(providers)
+
+                                // below line is for customizing our theme for
+                                // login screen and set logo method is used for
+                                // adding logo for our login page.
+                                .setLogo(R.drawable.logo)
+
+                                // after setting our theme and logo
+                                // we are calling a build() method
+                                // to build our login screen.
+                                .build(),
+                        // and lastly we are passing our const
+                        // integer which is declared above.
+                        RC_SIGN_IN
+                );*/
             }
         };
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
-            }
-        });
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
-        });
-    }
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-        Toast.makeText( getContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
-    private void showLoginFailed(@StringRes Integer errorString) {
-        Toast.makeText(getContext(), errorString, Toast.LENGTH_SHORT).show();
+    @Override
+    public void onResume() {
+        super.onResume();
+        // we are calling our auth
+        // listener method on app resume.
+        auth.addAuthStateListener(mAuthStateListner);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // here we are calling remove auth
+        // listener method on stop.
+        auth.removeAuthStateListener(mAuthStateListner);
+    }
+
 }

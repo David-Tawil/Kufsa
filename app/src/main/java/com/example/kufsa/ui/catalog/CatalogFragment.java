@@ -26,6 +26,8 @@ public class CatalogFragment extends Fragment {
 
     private static final CollectionReference gamesCollection =
             FirebaseFirestore.getInstance().collection("games");
+
+
     private CatalogAdapter adapter;
     private FragmentGameCatalogBinding binding;
 
@@ -69,7 +71,6 @@ public class CatalogFragment extends Fragment {
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(adapter);
-
     }
 
 }

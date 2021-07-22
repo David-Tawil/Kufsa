@@ -13,6 +13,7 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
+        resConfigs "en","il" // And any other languages you support
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,6 +52,9 @@ dependencies {
     // FirebaseUI for Cloud Firestore
     implementation 'com.firebaseui:firebase-ui-firestore:7.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //firebase auth
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
 
     def nav_version = "2.3.5"
 

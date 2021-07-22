@@ -3,7 +3,6 @@ package com.example.kufsa.ui.catalog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +52,6 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
     }
 
     class BoardGameHolder extends RecyclerView.ViewHolder {
-        TextView textViewName;
         ItemGameInCatalogBinding binding;
 
         public BoardGameHolder(View itemView) {

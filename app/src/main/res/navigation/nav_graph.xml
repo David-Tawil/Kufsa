@@ -8,7 +8,13 @@
         android:id="@+id/my_account_fragment"
         android:name="com.example.kufsa.ui.login.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_my_account_fragment_to_signedInAccountFragment"
+            app:destination="@id/signedInAccountFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/marketplace_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/marketplace_fragment"
         android:name="com.example.kufsa.ui.catalog.CatalogFragment"
@@ -26,5 +32,16 @@
         <argument
             android:name="Game"
             app:argType="com.example.kufsa.data.BoardGame" />
+    </fragment>
+    <fragment
+        android:id="@+id/signedInAccountFragment"
+        android:name="com.example.kufsa.ui.login.signedInAccountFragment"
+        android:label="My Account">
+        <action
+            android:id="@+id/action_signedInAccountFragment_to_my_account_fragment"
+            app:destination="@id/my_account_fragment"
+            app:launchSingleTop="true"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/marketplace_fragment" />
     </fragment>
 </navigation>
