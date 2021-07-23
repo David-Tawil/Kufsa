@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/marketplace_fragment"
         android:name="com.example.kufsa.ui.catalog.CatalogFragment"
-        android:label="Catalog"
+        android:label="Marketplace"
         tools:layout="@layout/fragment_game_catalog">
         <action
             android:id="@+id/action_catalogFragment_to_gameDetailsFragment"
