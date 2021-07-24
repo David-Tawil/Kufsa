@@ -10,16 +10,16 @@
             android:title="@string/nav_marketplace_title" />
         <item
             android:id="@+id/my_games_fragment"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_baseline_inventory_24"
             android:title="@string/nav_my_games_title" />
         <item
             android:id="@+id/my_account_fragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_account_box_24"
             android:title="@string/nav_my_account_title" />
 
         <item
-            android:id="@+id/nav_faq"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/faq_fragment"
+            android:icon="@drawable/ic_baseline_help_center_24"
             android:title="@string/title_faq" />
     </group>
 </menu>

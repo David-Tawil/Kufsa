@@ -44,4 +44,15 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/marketplace_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/faq_fragment"
+        android:name="com.example.kufsa.ui.faq.FaqFragment"
+        android:label="FAQ"
+        tools:layout="@layout/fragment_faq">
+        <action
+            android:id="@+id/faq_fragment"
+            app:destination="@id/faq_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/faq_fragment" />
+    </fragment>
 </navigation>

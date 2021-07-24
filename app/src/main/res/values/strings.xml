@@ -25,6 +25,35 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+
+    <!-- FAQ section text -->
     <string name="title_faq">FAQ</string>
+    <!--    questions-->
+    <string name="faq_q1_question">What is this app?</string>
+    <string name="faq_q2_question">Who created this app?</string>
+    <string name="faq_q3_question">What can I do in this app?</string>
+    <string name="faq_q4_question">Can I pay for anything here?</string>
+
+    <!--    answers-->
+    <string name="faq_q1_answer">This app is an android project for managing board games.</string>
+    <string name="faq_q2_answer">Two modest computer science students, trying to get a 100 grade:)</string>
+    <string name="faq_q3_answer">You can create a personal user, browse a huge catalog of board games and post them for sale, under said user.</string>
+    <string name="faq_q4_answer">No, we can not be responsible for any financial transactions, only allow you to post games for sale/ rent.</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 </resources>
