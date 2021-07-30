@@ -1,9 +1,13 @@
 package com.example.kufsa.ui.my_games;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +32,7 @@ public class MyGamesFragment extends Fragment {
     private static final CollectionReference gamesCollection =
             FirebaseFirestore.getInstance().collection("games");
 
-
+    private static final String TAG = "FirestoreSearchActivity";
     private FavoritesAdapter adapter;
     private MyGamesLayoutBinding binding;
 
@@ -73,6 +77,42 @@ public class MyGamesFragment extends Fragment {
         binding.favoritesRecyclerView.setHasFixedSize(true);
         binding.favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
         binding.favoritesRecyclerView.setAdapter(adapter);
+
+        // Search box
+        EditText searchbox = binding.getRoot().getRootView().findViewById(R.id.my_games_searchbox);
+
+        searchbox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            // query that draws from the database and shows the results of searching in the search box
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.d(TAG, "Searchbox has changed to: " + s.toString());
+                if (s.toString().isEmpty()) {
+                    Query query = gamesCollection
+                            .orderBy("name", Query.Direction.DESCENDING);
+                    FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
+                            .setQuery(query, BoardGame.class)
+                            .build();
+                    adapter.updateOptions(options);
+                } else {
+                    Query query =
+                            gamesCollection.whereEqualTo("name", s.toString()).orderBy("name");
+                    FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
+                            .setQuery(query, BoardGame.class)
+                            .build();
+                    adapter.updateOptions(options);
+                }
+            }
+        });
     }
 
 }

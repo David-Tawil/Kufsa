@@ -1,9 +1,13 @@
 package com.example.kufsa.ui.catalog;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CatalogFragment extends Fragment {
 
+    private static final String TAG = "FirestoreSearchActivity";
     private static final CollectionReference gamesCollection =
             FirebaseFirestore.getInstance().collection("games");
 
@@ -44,7 +49,6 @@ public class CatalogFragment extends Fragment {
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         binding = FragmentGameCatalogBinding.inflate(inflater, container, false);
         setUpRecyclerView();
-
         return binding.getRoot();
     }
 
@@ -74,6 +78,43 @@ public class CatalogFragment extends Fragment {
         binding.catalogRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.catalogRecyclerView.setAdapter(adapter);
         binding.catalogRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        binding.catalogRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL));
+
+        // Search box
+        EditText searchbox = binding.getRoot().getRootView().findViewById(R.id.catalog_searchbox);
+
+        searchbox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            // query that draws from the database and shows the results of searching in the search box
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.d(TAG, "Searchbox has changed to: " + s.toString());
+                if (s.toString().isEmpty()) {
+                    Query query = gamesCollection
+                            .orderBy("name", Query.Direction.DESCENDING);
+                    FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
+                            .setQuery(query, BoardGame.class)
+                            .build();
+                    adapter.updateOptions(options);
+                } else {
+                    Query query =
+                            gamesCollection.whereEqualTo("name", s.toString()).orderBy("name");
+                    FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
+                            .setQuery(query, BoardGame.class)
+                            .build();
+                    adapter.updateOptions(options);
+                }
+            }
+        });
     }
 
 }
