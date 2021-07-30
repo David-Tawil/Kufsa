@@ -1,6 +1,6 @@
 Project for 20503 course Android based app for managing Board games
 
-Task list 23/7:
+Task list 31/7:
 
 1) Make search bar recognize low/high case and not exact match
 2) make trying to add favoites without sign in --> imediatley switch you to login fragment
