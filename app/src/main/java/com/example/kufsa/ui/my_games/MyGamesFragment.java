@@ -1,4 +1,4 @@
-package com.example.kufsa.ui.catalog;
+package com.example.kufsa.ui.my_games;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
-import com.example.kufsa.databinding.FragmentGameCatalogBinding;
+import com.example.kufsa.databinding.MyGamesLayoutBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
@@ -23,18 +23,18 @@ import com.google.firebase.firestore.Query;
 
 import org.jetbrains.annotations.NotNull;
 
-public class CatalogFragment extends Fragment {
+public class MyGamesFragment extends Fragment {
 
     private static final CollectionReference gamesCollection =
             FirebaseFirestore.getInstance().collection("games");
 
 
-    private CatalogAdapter adapter;
-    private FragmentGameCatalogBinding binding;
+    private FavoritesAdapter adapter;
+    private MyGamesLayoutBinding binding;
 
 
-    public CatalogFragment() {
-        super(R.layout.fragment_game_catalog);
+    public MyGamesFragment() {
+        super(R.layout.my_games_layout);
     }
 
 
@@ -42,7 +42,7 @@ public class CatalogFragment extends Fragment {
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        binding = FragmentGameCatalogBinding.inflate(inflater, container, false);
+        binding = MyGamesLayoutBinding.inflate(inflater, container, false);
         setUpRecyclerView();
 
         return binding.getRoot();
@@ -57,7 +57,7 @@ public class CatalogFragment extends Fragment {
                 .setQuery(query, BoardGame.class)
                 .setLifecycleOwner(this.getViewLifecycleOwner())
                 .build();
-        adapter = new CatalogAdapter(options);
+        adapter = new FavoritesAdapter(options);
 
         adapter.setOnItemClickListener((documentSnapshot, position) -> {
             BoardGame game = documentSnapshot.toObject(BoardGame.class);
@@ -67,13 +67,14 @@ public class CatalogFragment extends Fragment {
                 return;
             }
             game.setId(id);
-            NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionCatalogFragmentToGameDetailsFragment(game));
+            NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsFragment(game));
         });
 
-        binding.catalogRecyclerView.setHasFixedSize(true);
-        binding.catalogRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        binding.catalogRecyclerView.setAdapter(adapter);
-        binding.catalogRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        binding.favoritesRecyclerView.setHasFixedSize(true);
+        binding.favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
+        binding.favoritesRecyclerView.setAdapter(adapter);
     }
 
 }
+
+

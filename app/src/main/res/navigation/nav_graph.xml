@@ -55,4 +55,12 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/faq_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/my_games_fragment"
+        android:name="com.example.kufsa.ui.my_games.MyGamesFragment"
+        android:label="My Games">
+        <action
+            android:id="@+id/action_myGamesFragment_to_gameDetailsFragment"
+            app:destination="@id/gameDetailsFragment" />
+    </fragment>
 </navigation>

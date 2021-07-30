@@ -2,8 +2,14 @@ package com.example.kufsa.ui.game_details;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,15 +20,23 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
 import com.example.kufsa.databinding.FragmentGameDetailsBinding;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class GameDetailsFragment extends Fragment {
-    private final CollectionReference gamesCollection = FirebaseFirestore.getInstance().collection("games");
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
     private FragmentGameDetailsBinding binding;
+    BoardGame game;
 
 
     public GameDetailsFragment() {
@@ -33,13 +47,14 @@ public class GameDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentGameDetailsBinding.inflate(inflater, container, false);
+        setHasOptionsMenu(true);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        BoardGame game = GameDetailsFragmentArgs.fromBundle(getArguments()).getGame();
+        game = GameDetailsFragmentArgs.fromBundle(getArguments()).getGame();
 
         String description = "Description";
         String releaseYear = "Release Year: " + game.getReleaseYear();
@@ -64,5 +79,81 @@ public class GameDetailsFragment extends Fragment {
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .error(R.drawable.ic_error)
                 .into(binding.gameDetailsImageView);
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull @NotNull Menu menu, @NonNull @NotNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.game_details_menu, menu);
+        CheckBox checkBox = (CheckBox) menu.findItem(R.id.favorite_menu_item).getActionView();
+        checkBox.setButtonDrawable(R.drawable.favorite_checkbox);//set the icon
+
+        if (auth.getCurrentUser() != null) {
+            DocumentReference favoriteGame = db.collection("users").document(auth.getUid()).collection("favorites").document(game.getId());
+            favoriteGame.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) checkBox.setChecked(true);
+            });
+        }
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (!b) {
+                    removeFromFavorites();
+                } else {
+                    addToFavorites();
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull @NotNull MenuItem item) {
+        if (item.getItemId() == R.id.favorite_menu_item) {
+            //addToFavorite();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void removeFromFavorites() {
+        if (auth.getCurrentUser() != null) {
+            String userID = auth.getUid();
+            DocumentReference favoritesRef = db.collection("users").document(userID).collection("favorites").document(game.getId());
+            favoritesRef.delete()
+                    .addOnSuccessListener(unused -> {
+
+                        Toast.makeText(requireContext(), "removed from favorites", Toast.LENGTH_LONG).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show();
+                    });
+        } else {
+            Toast.makeText(requireContext(), "please sign in first", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void addToFavorites() {
+        if (auth.getCurrentUser() != null) {
+            String userID = auth.getUid();
+            DocumentReference favoritesRef = db.collection("users").document(userID).collection("favorites").document(game.getId());
+            favoritesRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (!documentSnapshot.exists()) {
+                    Map<String, Object> favoriteGame = new HashMap<>();
+                    favoriteGame.put("name", game.getName());
+                    favoriteGame.put("img", game.getImg());
+                    favoritesRef.set(favoriteGame)
+                            .addOnSuccessListener(unused -> {
+                                Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_LONG).show();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show();
+                            });
+                }
+            });
+        } else {
+            Toast.makeText(requireContext(), "please sign in first", Toast.LENGTH_LONG).show();
+        }
     }
 }

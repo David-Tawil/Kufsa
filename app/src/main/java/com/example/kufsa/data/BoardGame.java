@@ -57,6 +57,10 @@ public class BoardGame implements Parcelable {
         this.name = name;
     }
 
+
+    /**
+     * @return image url
+     */
     public String getImg() {
         return img;
     }
