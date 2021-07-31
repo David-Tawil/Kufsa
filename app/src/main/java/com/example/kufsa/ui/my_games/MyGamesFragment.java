@@ -20,7 +20,6 @@ import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
 import com.example.kufsa.databinding.MyGamesLayoutBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -64,14 +63,14 @@ public class MyGamesFragment extends Fragment {
         adapter = new FavoritesAdapter(options);
 
         adapter.setOnItemClickListener((documentSnapshot, position) -> {
-            BoardGame game = documentSnapshot.toObject(BoardGame.class);
+            // BoardGame game = documentSnapshot.toObject(BoardGame.class);
             String id = documentSnapshot.getId();
-            if (game == null) {
+           /* if (game == null) {
                 Snackbar.make(requireView(), "error: game is null", Snackbar.LENGTH_LONG).show();
                 return;
             }
-            game.setId(id);
-            NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsFragment(game));
+            game.setId(id);*/
+            NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsFragment(id));
         });
 
         binding.favoritesRecyclerView.setHasFixedSize(true);
