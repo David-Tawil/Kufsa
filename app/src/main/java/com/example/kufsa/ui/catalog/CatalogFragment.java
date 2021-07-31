@@ -102,6 +102,7 @@ public class CatalogFragment extends Fragment {
                             .orderBy("name", Query.Direction.DESCENDING);
                     FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                             .setQuery(query, BoardGame.class)
+                            .setLifecycleOwner(getViewLifecycleOwner())
                             .build();
                     adapter.updateOptions(options);
                 } else {
@@ -109,8 +110,10 @@ public class CatalogFragment extends Fragment {
                             gamesCollection.whereEqualTo("name", s.toString()).orderBy("name");
                     FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                             .setQuery(query, BoardGame.class)
+                            .setLifecycleOwner(getViewLifecycleOwner())
                             .build();
                     adapter.updateOptions(options);
+
                 }
             }
         });
