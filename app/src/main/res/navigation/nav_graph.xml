@@ -30,8 +30,8 @@
         android:label="Game details"
         tools:layout="@layout/fragment_game_details">
         <argument
-            android:name="Game"
-            app:argType="com.example.kufsa.data.BoardGame" />
+            android:name="GameID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/signedInAccountFragment"

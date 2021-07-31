@@ -21,6 +21,7 @@ import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
 import com.example.kufsa.databinding.FragmentGameDetailsBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -33,11 +34,11 @@ import java.util.Map;
 public class GameDetailsFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    CollectionReference gamesCollection = db.collection("games");
 
     private FragmentGameDetailsBinding binding;
     BoardGame game;
-
+    Menu menu;
 
     public GameDetailsFragment() {
         super(R.layout.fragment_game_details);
@@ -54,8 +55,22 @@ public class GameDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        game = GameDetailsFragmentArgs.fromBundle(getArguments()).getGame();
 
+
+        String gameID = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameID();
+
+        gamesCollection.document(gameID).get().addOnSuccessListener(documentSnapshot -> {
+            game = documentSnapshot.toObject(BoardGame.class);
+            if (game == null) {
+                Toast.makeText(requireContext(), "error: game not found", Toast.LENGTH_LONG).show();
+                return;
+            }
+            game.setId(documentSnapshot.getId());
+            setUI(view);
+        }).addOnFailureListener(e -> Toast.makeText(requireContext(), "error: game not found", Toast.LENGTH_LONG).show());
+    }
+
+    private void setUI(View view) {
         String description = "Description";
         String releaseYear = "Release Year: " + game.getReleaseYear();
         String publisher = "Publisher: " + game.getPublisher();
@@ -79,15 +94,10 @@ public class GameDetailsFragment extends Fragment {
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .error(R.drawable.ic_error)
                 .into(binding.gameDetailsImageView);
-    }
+        binding.gameDetailsProgressBar.setVisibility(View.GONE);
+        binding.detailsContainerLayout.setVisibility(View.VISIBLE);
 
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull @NotNull Menu menu, @NonNull @NotNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.game_details_menu, menu);
         CheckBox checkBox = (CheckBox) menu.findItem(R.id.favorite_menu_item).getActionView();
-        checkBox.setButtonDrawable(R.drawable.favorite_checkbox);//set the icon
 
         if (auth.getCurrentUser() != null) {
             DocumentReference favoriteGame = db.collection("users").document(auth.getUid()).collection("favorites").document(game.getId());
@@ -95,6 +105,18 @@ public class GameDetailsFragment extends Fragment {
                 if (documentSnapshot.exists()) checkBox.setChecked(true);
             });
         }
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull @NotNull Menu menu, @NonNull @NotNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        this.menu = menu;
+        inflater.inflate(R.menu.game_details_menu, menu);
+        CheckBox checkBox = (CheckBox) menu.findItem(R.id.favorite_menu_item).getActionView();
+        checkBox.setButtonDrawable(R.drawable.favorite_checkbox);//set the icon
+
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

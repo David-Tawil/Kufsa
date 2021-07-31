@@ -66,7 +66,6 @@ public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, Favori
             });
         }
     }
-
 }
 
 
