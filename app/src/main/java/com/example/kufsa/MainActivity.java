@@ -9,15 +9,21 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.kufsa.ui.catalog.CatalogAdapter;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavController;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "FirestoreSearchActivity";
+    private static final CollectionReference gamesCollection =
+            FirebaseFirestore.getInstance().collection("games");
     private AppBarConfiguration appBarConfiguration;
+    private CatalogAdapter adapter;
     private NavController navController;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
     }
 
     @Override

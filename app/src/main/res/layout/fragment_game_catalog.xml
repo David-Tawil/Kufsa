@@ -5,10 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/catalog_searchbox"
+        android:inputType="text"
+        android:autofillHints="search box"
+        android:hint="@string/hint_searchbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_200" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/catalog_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="40dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_game_in_catalog" />

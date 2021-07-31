@@ -5,11 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <EditText
+        android:id="@+id/my_games_searchbox"
+        android:hint="@string/nav_my_games_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Search box"
+        android:inputType="text"
+        android:textColor="@color/purple_200" />
+
     <TextView
         android:id="@+id/favorite_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Favorites" />
+        android:gravity="center_horizontal"
+        android:paddingTop="40dp"
+        android:text="@string/favorites_title"
+        android:textColor="@color/purple_200"
+        android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favorites_recycler_view"
@@ -17,6 +31,7 @@
         android:layout_height="250dp"
         android:layout_below="@id/favorite_title"
         android:orientation="horizontal"
+        android:paddingTop="10dp"
         android:scrollbars="horizontal"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         tools:listitem="@layout/item_game_in_favorite_list" />
