@@ -20,18 +20,18 @@ import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
 import com.example.kufsa.databinding.MyGamesLayoutBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MyGamesFragment extends Fragment {
+    private static final String TAG = "MyGamesFragment";
 
-    private static final CollectionReference gamesCollection =
-            FirebaseFirestore.getInstance().collection("games");
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private static final String TAG = "FirestoreSearchActivity";
     private FavoritesAdapter adapter;
     private MyGamesLayoutBinding binding;
 
@@ -47,35 +47,37 @@ public class MyGamesFragment extends Fragment {
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         binding = MyGamesLayoutBinding.inflate(inflater, container, false);
         setUpRecyclerView();
+        setUpSearchBar();
 
         return binding.getRoot();
     }
 
+
     private void setUpRecyclerView() {
-        Query query =
-                gamesCollection.orderBy("name");
-        // Configure recycler adapter options:
-        //  options instructs the adapter to convert each DocumentSnapshot to a BoardGame object
-        FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
-                .setQuery(query, BoardGame.class)
-                .setLifecycleOwner(this.getViewLifecycleOwner())
-                .build();
-        adapter = new FavoritesAdapter(options);
 
-        adapter.setOnItemClickListener((documentSnapshot, position) -> {
-            // BoardGame game = documentSnapshot.toObject(BoardGame.class);
-            String id = documentSnapshot.getId();
-           /* if (game == null) {
-                Snackbar.make(requireView(), "error: game is null", Snackbar.LENGTH_LONG).show();
-                return;
-            }
-            game.setId(id);*/
-            NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsFragment(id));
-        });
+        if (auth.getCurrentUser() != null) {
+            String userID = auth.getUid();
+            Query query =
+                    db.collection("users").document(userID).collection("favorites").orderBy("name");
+            FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
+                    .setQuery(query, BoardGame.class)
+                    .setLifecycleOwner(this.getViewLifecycleOwner())
+                    .build();
+            adapter = new FavoritesAdapter(options);
 
-        binding.favoritesRecyclerView.setHasFixedSize(true);
-        binding.favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
-        binding.favoritesRecyclerView.setAdapter(adapter);
+            adapter.setOnItemClickListener((documentSnapshot, position) -> {
+                // BoardGame game = documentSnapshot.toObject(BoardGame.class);
+                String id = documentSnapshot.getId();
+                NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsFragment(id));
+            });
+
+            binding.favoritesRecyclerView.setHasFixedSize(true);
+            binding.favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
+            binding.favoritesRecyclerView.setAdapter(adapter);
+        }
+    }
+
+    private void setUpSearchBar() {
 
         // Search box
         EditText searchbox = binding.getRoot().getRootView().findViewById(R.id.my_games_searchbox);
@@ -96,16 +98,19 @@ public class MyGamesFragment extends Fragment {
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "Searchbox has changed to: " + s.toString());
                 if (s.toString().isEmpty()) {
-                    Query query = gamesCollection
-                            .orderBy("name", Query.Direction.DESCENDING);
+                    String userID = auth.getUid();
+                    Query query =
+                            db.collection("users").document(userID).collection("favorites").orderBy("name");
+
                     FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                             .setQuery(query, BoardGame.class)
                             .setLifecycleOwner(getViewLifecycleOwner())
                             .build();
                     adapter.updateOptions(options);
                 } else {
+                    String userID = auth.getUid();
                     Query query =
-                            gamesCollection.whereEqualTo("name", s.toString()).orderBy("name");
+                            db.collection("users").document(userID).collection("favorites").whereEqualTo("name", s.toString()).orderBy("name");
                     FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                             .setQuery(query, BoardGame.class)
                             .setLifecycleOwner(getViewLifecycleOwner())
@@ -117,5 +122,4 @@ public class MyGamesFragment extends Fragment {
     }
 
 }
-
 

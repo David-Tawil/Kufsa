@@ -48,8 +48,10 @@ public class CatalogFragment extends Fragment {
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         binding = FragmentGameCatalogBinding.inflate(inflater, container, false);
         setUpRecyclerView();
+        setUpSearchBar();
         return binding.getRoot();
     }
+
 
     private void setUpRecyclerView() {
         Query query =
@@ -79,6 +81,10 @@ public class CatalogFragment extends Fragment {
         binding.catalogRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         binding.catalogRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL));
 
+    }
+
+    private void setUpSearchBar() {
+
         // Search box
         EditText searchbox = binding.getRoot().getRootView().findViewById(R.id.catalog_searchbox);
 
@@ -99,7 +105,7 @@ public class CatalogFragment extends Fragment {
                 Log.d(TAG, "Searchbox has changed to: " + s.toString());
                 if (s.toString().isEmpty()) {
                     Query query = gamesCollection
-                            .orderBy("name", Query.Direction.DESCENDING);
+                            .orderBy("name");
                     FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                             .setQuery(query, BoardGame.class)
                             .setLifecycleOwner(getViewLifecycleOwner())
