@@ -14,8 +14,12 @@
         android:scaleType="fitXY"
         android:contentDescription="game photo"
         tools:src="@drawable/catan_image" />
-    <!--
-        -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/game_image_view"
+        android:background="@drawable/gradient" />
 
     <TextView
         android:id="@+id/text_view_game_name"
@@ -33,10 +37,5 @@
         android:textColor="#FFF"
         tools:text="Catan" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignBottom="@id/game_image_view"
-        android:background="@drawable/gradient" />
 
 </RelativeLayout>
