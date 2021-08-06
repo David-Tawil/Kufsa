@@ -111,31 +111,29 @@ public class CatalogFragment extends Fragment {
                             .setLifecycleOwner(getViewLifecycleOwner())
                             .build();
                     adapter.updateOptions(options);
-                }
-                else {
-                    if (s.toString().equals(s.toString().toLowerCase()))
-                    {
+                } else {
+                    if (s.toString().equals(s.toString().toLowerCase())) {
                         Query query = gamesCollection.whereEqualTo("name_lowercase", s.toString()).orderBy("name_lowercase");
                         FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                                 .setQuery(query, BoardGame.class)
                                 .setLifecycleOwner(getViewLifecycleOwner())
                                 .build();
-                        adapter.updateOptions(options);}
-                    else if (s.toString().equals(s.toString().toUpperCase()))
-                    {
+                        adapter.updateOptions(options);
+                    } else if (s.toString().equals(s.toString().toUpperCase())) {
                         Query query = gamesCollection.whereEqualTo("name_uppercase", s.toString()).orderBy("name_uppercase");
                         FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                                 .setQuery(query, BoardGame.class)
                                 .setLifecycleOwner(getViewLifecycleOwner())
                                 .build();
-                        adapter.updateOptions(options);}
-                    else{
+                        adapter.updateOptions(options);
+                    } else {
                         Query query = gamesCollection.whereEqualTo("name", s.toString()).orderBy("name");
                         FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                                 .setQuery(query, BoardGame.class)
                                 .setLifecycleOwner(getViewLifecycleOwner())
                                 .build();
-                        adapter.updateOptions(options);}
+                        adapter.updateOptions(options);
+                    }
 
                 }
             }

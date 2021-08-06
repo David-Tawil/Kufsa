@@ -1,8 +1,10 @@
 package com.example.kufsa.ui.login;
 
 import android.os.Bundle;
-import com.example.kufsa.R;
+
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.example.kufsa.R;
 
 public class AccountSettingsFragment extends PreferenceFragmentCompat {
 

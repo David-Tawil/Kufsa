@@ -20,8 +20,7 @@
         android:id="@+id/account_setting_fragment"
         android:name="com.example.kufsa.ui.login.AccountSettingsFragment"
         android:label="AccountSettings"
-        tools:layout="@layout/fragment_account_settings">
-    </fragment>
+        tools:layout="@layout/fragment_account_settings"></fragment>
 
     <fragment
         android:id="@+id/marketplace_fragment"
