@@ -15,6 +15,14 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/marketplace_fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/account_setting_fragment"
+        android:name="com.example.kufsa.ui.login.AccountSettingsFragment"
+        android:label="AccountSettings"
+        tools:layout="@layout/fragment_account_settings">
+    </fragment>
+
     <fragment
         android:id="@+id/marketplace_fragment"
         android:name="com.example.kufsa.ui.catalog.CatalogFragment"
@@ -43,6 +51,11 @@
             app:launchSingleTop="true"
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/marketplace_fragment" />
+        <action
+            android:id="@+id/action_signedInAccountFragment_to_AccountSettingsFragment"
+            app:destination="@id/account_setting_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/account_setting_fragment" />
     </fragment>
     <fragment
         android:id="@+id/faq_fragment"

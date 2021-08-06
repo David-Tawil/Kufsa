@@ -17,8 +17,8 @@ import com.example.kufsa.databinding.FragmentSignedInAccountBinding;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-
 import org.jetbrains.annotations.NotNull;
+import androidx.fragment.app.Fragment;
 
 public class signedInAccountFragment extends Fragment {
     private FragmentSignedInAccountBinding binding;
@@ -49,6 +49,9 @@ public class signedInAccountFragment extends Fragment {
         } else {
             Toast.makeText(requireContext(), "error: user is not signed in", Toast.LENGTH_LONG).show();
         }
+        binding.accountSetingsButton.setOnClickListener(THIS -> NavHostFragment.findNavController(this).navigate(R.id.action_signedInAccountFragment_to_AccountSettingsFragment));
+
+
         binding.signOutButton.setOnClickListener(view1 -> AuthUI.getInstance()
                 .signOut(requireContext())
                 .addOnCompleteListener(task -> {

@@ -5,20 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        app:srcCompat="@drawable/ic_search_purple_24"
+        tools:ignore="VectorDrawableCompat" />
+
     <EditText
         android:id="@+id/catalog_searchbox"
-        android:inputType="text"
-        android:autofillHints="search box"
-        android:hint="@string/hint_searchbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple_200" />
+        android:autofillHints="search box"
+        android:hint="@string/hint_searchbox"
+        android:inputType="text"
+        android:textColor="@color/purple_200"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/catalog_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="40dp"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_game_in_catalog" />
