@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
+            android:paddingTop="5dp"
             android:paddingBottom="10dp"
             android:text="@string/faq_q1_question"
             android:textSize="20sp"
@@ -36,9 +37,10 @@
 
         <TextView
             android:id="@+id/faq_q1_answer"
+            style="?android:attr/listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
+            android:paddingBottom="20dp"
             android:text="@string/faq_q1_answer" />
 
         <TextView
@@ -46,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
+            android:paddingTop="5dp"
             android:paddingBottom="10dp"
             android:text="@string/faq_q2_question"
             android:textSize="20sp"
@@ -53,9 +56,10 @@
 
         <TextView
             android:id="@+id/faq_q2_answer"
+            style="?android:attr/listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
+            android:paddingBottom="20dp"
             android:text="@string/faq_q2_answer" />
 
         <TextView
@@ -63,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
+            android:paddingTop="5dp"
             android:paddingBottom="10dp"
             android:text="@string/faq_q3_question"
             android:textSize="20sp"
@@ -70,9 +75,10 @@
 
         <TextView
             android:id="@+id/faq_q3_answer"
+            style="?android:attr/listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
+            android:paddingBottom="20dp"
             android:text="@string/faq_q3_answer" />
 
         <TextView
@@ -80,6 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
+            android:paddingTop="5dp"
             android:paddingBottom="10dp"
             android:text="@string/faq_q4_question"
             android:textSize="20sp"
@@ -87,9 +94,10 @@
 
         <TextView
             android:id="@+id/faq_q4_answer"
+            style="?android:attr/listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
+            android:paddingBottom="20dp"
             android:text="@string/faq_q4_answer" />
     </LinearLayout>
 </ScrollView>

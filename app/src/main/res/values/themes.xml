@@ -30,4 +30,7 @@
     <style name="Theme.Kufsa.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Kufsa.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="DarkTheme" parent="Theme.AppCompat.DayNight" />
+
 </resources>

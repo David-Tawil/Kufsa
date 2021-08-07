@@ -35,30 +35,26 @@
     <string name="faq_q3_question">What can I do in this app?</string>
     <string name="faq_q4_question">Can I pay for anything here?</string>
 
-    <!--    answers-->
+    <!-- FAQ answers-->
     <string name="faq_q1_answer">This app is an android project for managing board games.</string>
     <string name="faq_q2_answer">Two modest computer science students, trying to get a 100 grade:)</string>
     <string name="faq_q3_answer">You can create a personal user, browse a huge catalog of board games and post them for sale, under said user.</string>
     <string name="faq_q4_answer">No, we can not be responsible for any financial transactions, only allow you to post games for sale/ rent.</string>
 
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="favorite_icon_title">favorite</string>
-    <string name="hint_searchbox">what you wanna play</string>
-    <string name="favorites_title">Favorites</string>
+    <!-- Account settings Titles -->
     <string name="title_activity_account_settings">Account Settings</string>
+    <string name="Credentials_header">Credentials</string>
+    <string name="password_title">Set up a new password</string>
+    <string name="dark_mode_title">Enable Dark Mode</string>
+    <string name="report_issue_title">Report an issue or bug</string>
+    <string name="password_description">Click Here to receive a password-reset email</string>
+    <string name="dark_mode_description">Click Here to toggle dark mode</string>
+    <string name="report_issue_description">Click Here to Inform us of any issue you\'ve enocuntered</string>
+
+    <!-- favorite Preferences -->
+    <string name="favorite_icon_title">favorite</string>
+    <string name="hint_searchbox">what you want to play</string>
+    <string name="favorites_title">Favorites</string>
     <string name="marketplace">Market</string>
     <string name="reviews">Reviews</string>
 
