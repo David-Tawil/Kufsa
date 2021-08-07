@@ -68,7 +68,8 @@ public class MyGamesFragment extends Fragment {
             adapter.setOnItemClickListener((documentSnapshot, position) -> {
                 // BoardGame game = documentSnapshot.toObject(BoardGame.class);
                 String id = documentSnapshot.getId();
-                NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsFragment(id));
+                String gameName = documentSnapshot.getString("name");
+                NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsTabsContainerFragment(id, gameName));
             });
 
             binding.favoritesRecyclerView.setHasFixedSize(true);

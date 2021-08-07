@@ -16,6 +16,7 @@ android {
         resConfigs "en","il" // And any other languages you support
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {

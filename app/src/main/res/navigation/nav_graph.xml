@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_catalogFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
+        <action
+            android:id="@+id/action_marketplace_fragment_to_gameDetailsTabsContainerFragment"
+            app:destination="@id/gameDetailsTabsContainerFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameDetailsFragment"
@@ -39,6 +42,18 @@
         tools:layout="@layout/fragment_game_details">
         <argument
             android:name="GameID"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameDetailsTabsContainerFragment"
+        android:name="com.example.kufsa.ui.game_details.GameDetailsTabsContainerFragment"
+        android:label="{GameTitle}"
+        tools:layout="@layout/fragment_game_details_tabs_container">
+        <argument
+            android:name="GameID"
+            app:argType="string" />
+        <argument
+            android:name="GameTitle"
             app:argType="string" />
     </fragment>
     <fragment
@@ -75,5 +90,9 @@
         <action
             android:id="@+id/action_myGamesFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
+        <action
+            android:id="@+id/action_my_games_fragment_to_gameDetailsTabsContainerFragment"
+            app:destination="@id/gameDetailsTabsContainerFragment" />
     </fragment>
+
 </navigation>

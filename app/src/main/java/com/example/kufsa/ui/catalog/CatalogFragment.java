@@ -67,12 +67,15 @@ public class CatalogFragment extends Fragment {
         adapter.setOnItemClickListener((documentSnapshot, position) -> {
             // BoardGame game = documentSnapshot.toObject(BoardGame.class);
             String id = documentSnapshot.getId();
+            String gameTitle = documentSnapshot.getString("name");
             /*if (id == null) {
                 Snackbar.make(requireView(), "error: game is null", Snackbar.LENGTH_LONG).show();
                 return;
             }*/
             // game.setId(id);
-            NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionCatalogFragmentToGameDetailsFragment(id));
+            // NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionCatalogFragmentToGameDetailsFragment(id));
+            NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionMarketplaceFragmentToGameDetailsTabsContainerFragment(id, gameTitle));
+
         });
 
         binding.catalogRecyclerView.setHasFixedSize(true);
