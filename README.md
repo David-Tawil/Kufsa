@@ -1,8 +1,7 @@
 Project for 20503 course Android based app for managing Board games
 
 Task list 07/08
-0) Add user email to navigation sidebar!
-1) Create complaint for report issues
+1) Add user email to navigation sidebar!
 2) make trying to add favoites without sign in --> imediatley switch you to login fragment
 4) Improve favorites
 5) Remove uncecssary code

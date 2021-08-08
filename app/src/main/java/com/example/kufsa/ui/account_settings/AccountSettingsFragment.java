@@ -13,17 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.kufsa.R;
 import com.example.kufsa.databinding.FragmentAccountSettingsBinding;
-import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 public class AccountSettingsFragment extends Fragment {
@@ -32,8 +29,6 @@ public class AccountSettingsFragment extends Fragment {
     String email = user.getEmail();
     // creating an auth listener for our Firebase auth
     FirebaseAuth auth;
-    List<AuthUI.IdpConfig> providers = Arrays.asList(
-            new AuthUI.IdpConfig.EmailBuilder().build());
     private FragmentAccountSettingsBinding binding;
 
     public AccountSettingsFragment() {
@@ -41,7 +36,7 @@ public class AccountSettingsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAccountSettingsBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -50,7 +45,7 @@ public class AccountSettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         // Reset password settings
         binding.passwordDescription.setOnClickListener(view1 -> FirebaseAuth.getInstance().sendPasswordResetEmail(email)
@@ -94,7 +89,7 @@ public class AccountSettingsFragment extends Fragment {
 
                 // change text of Button
                 binding.darkModeDescription.setText(
-                        "Enable Dark Mode");
+                        getString(R.string.enable_dark_mode));
             } else {
 
                 // if dark mode is off
@@ -112,15 +107,16 @@ public class AccountSettingsFragment extends Fragment {
 
                 // change text of Button
                 binding.darkModeDescription.setText(
-                        "Disable Dark Mode");
+                        getString(R.string.disable_dark_mode));
             }
         });
 
+        //report form button features
         binding.reportIssueDescription.setOnClickListener(view12 -> {
             // Contact developers
             Toast.makeText(getActivity(), "Please send your complaint to: eldar101@gmail.com", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).navigate(R.id.action_signedInAccountFragment_to_AccountSettingsFragment);
         });
 
     }
-
 }

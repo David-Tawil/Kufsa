@@ -17,12 +17,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/account_setting_fragment"
-        android:name="com.example.kufsa.ui.account_settings.AccountSettingsFragment"
-        android:label="Account Settings"
-        tools:layout="@layout/fragment_account_settings"></fragment>
-
-    <fragment
         android:id="@+id/marketplace_fragment"
         android:name="com.example.kufsa.ui.catalog.CatalogFragment"
         android:label="Marketplace"
@@ -93,5 +87,20 @@
             android:id="@+id/action_my_games_fragment_to_gameDetailsTabsContainerFragment"
             app:destination="@id/gameDetailsTabsContainerFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/account_setting_fragment"
+        android:name="com.example.kufsa.ui.account_settings.AccountSettingsFragment"
+        android:label="Account Settings"
+        tools:layout="@layout/fragment_account_settings">
+        <action
+            android:id="@+id/action_AccountSettingsFragment_to_SendReportFragment"
+            app:destination="@id/send_report_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/send_report_fragment"
+        android:name="com.example.kufsa.ui.account_settings.SendReportFragment"
+        android:label="Send Report"></fragment>
 
 </navigation>
