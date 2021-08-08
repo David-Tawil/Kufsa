@@ -32,5 +32,16 @@
     <style name="Theme.Kufsa.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="DarkTheme" parent="Theme.AppCompat.DayNight" />
+    <!-- Kufsa colors for firebaseUI -->
+    <style name="Theme.purple_firebase" parent="FirebaseUI">
+        <!-- Required for sign-in flow styling -->
+        <item name="colorPrimary">@color/purple_700</item>
+        <item name="colorAccent">@color/purple_200</item>
+
+        <item name="colorControlNormal">@color/purple_500</item>
+        <item name="colorControlActivated">@color/purple_500</item>
+        <item name="colorControlHighlight">@color/purple_500</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
 
 </resources>

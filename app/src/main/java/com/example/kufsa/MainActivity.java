@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "FirestoreSearchActivity";
     private static final CollectionReference gamesCollection =
             FirebaseFirestore.getInstance().collection("games");
-    TextView txtEmail;
+    String email;
+    private TextView navEmail;
     private AppBarConfiguration appBarConfiguration;
     private CatalogAdapter adapter;
     private NavController navController;
@@ -40,16 +41,19 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.;
-        AppBarConfiguration.Builder builder = new AppBarConfiguration.Builder(R.id.marketplace_fragment, R.id.my_games_fragment, R.id.my_account_fragment, R.id.signedInAccountFragment, R.id.faq_fragment);
+        AppBarConfiguration.Builder builder = new AppBarConfiguration.Builder(R.id.marketplace_fragment, R.id.my_games_fragment, R.id.my_account_fragment, R.id.SignedInAccountFragment, R.id.faq_fragment);
         builder.setOpenableLayout(drawer);
         appBarConfiguration = builder
                 .build();
         NavigationView navView = findViewById(R.id.nav_view);
         // Set up email in side bar
         View headerView = navView.getHeaderView(0);
-        TextView navEmail = headerView.findViewById(R.id.EmailView);
+        navEmail = headerView.findViewById(R.id.EmailView);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String email = user.getEmail();
+        if (user == null)
+            email = "";
+        else
+            email = user.getEmail();
         navEmail.setText(email);
 
 

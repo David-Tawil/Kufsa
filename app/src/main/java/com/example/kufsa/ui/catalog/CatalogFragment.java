@@ -89,9 +89,9 @@ public class CatalogFragment extends Fragment {
     private void setUpSearchBar() {
 
         // Search box
-        EditText searchbox = binding.getRoot().getRootView().findViewById(R.id.catalog_searchbox);
+        EditText searchBox = binding.getRoot().getRootView().findViewById(R.id.catalog_searchbox);
 
-        searchbox.addTextChangedListener(new TextWatcher() {
+        searchBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

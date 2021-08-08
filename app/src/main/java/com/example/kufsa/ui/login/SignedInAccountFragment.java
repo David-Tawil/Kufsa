@@ -17,13 +17,14 @@ import com.example.kufsa.databinding.FragmentSignedInAccountBinding;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import org.jetbrains.annotations.NotNull;
-import androidx.fragment.app.Fragment;
 
-public class signedInAccountFragment extends Fragment {
+import org.jetbrains.annotations.NotNull;
+
+public class SignedInAccountFragment extends Fragment {
+    FirebaseAuth auth = FirebaseAuth.getInstance();
     private FragmentSignedInAccountBinding binding;
 
-    public signedInAccountFragment() {
+    public SignedInAccountFragment() {
         super(R.layout.fragment_signed_in_account);
     }
 
@@ -39,9 +40,13 @@ public class signedInAccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        setUpLogin(view);
+    }
+
+    // Set up user account login
+    private void setUpLogin(View view) {
         if (auth.getCurrentUser() != null) {
-            binding.welcomeTextView.setText("Hi, " + auth.getCurrentUser().getDisplayName());
+            binding.welcomeTextView.setText(getString(R.string.hi) + " " + auth.getCurrentUser().getDisplayName());
             Glide.with(view)
                     .load(auth.getCurrentUser().getPhotoUrl())
                     .error(R.drawable.outline_account_circle_24)
@@ -49,14 +54,14 @@ public class signedInAccountFragment extends Fragment {
         } else {
             Toast.makeText(requireContext(), "error: user is not signed in", Toast.LENGTH_LONG).show();
         }
-        binding.accountSetingsButton.setOnClickListener(THIS -> NavHostFragment.findNavController(this).navigate(R.id.action_signedInAccountFragment_to_AccountSettingsFragment));
+        binding.accountSetingsButton.setOnClickListener(THIS -> NavHostFragment.findNavController(this).navigate(R.id.action_SignedInAccountFragment_to_AccountSettingsFragment));
 
 
         binding.signOutButton.setOnClickListener(view1 -> AuthUI.getInstance()
                 .signOut(requireContext())
                 .addOnCompleteListener(task -> {
-                    Snackbar.make(requireView(), "You sign out successfully, see you soon...", Snackbar.LENGTH_LONG).show();
-                    NavHostFragment.findNavController(this).navigate(signedInAccountFragmentDirections.actionSignedInAccountFragmentToMyAccountFragment());
+                    Snackbar.make(requireView(), "You have signed out successfully, see you next time!", Snackbar.LENGTH_LONG).show();
+                    NavHostFragment.findNavController(this).navigate(SignedInAccountFragmentDirections.actionSignedInAccountFragmentToMyAccountFragment());
                 }));
     }
 }

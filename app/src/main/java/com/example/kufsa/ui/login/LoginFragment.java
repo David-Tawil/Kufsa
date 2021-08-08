@@ -23,7 +23,6 @@ import java.util.List;
 
 public class LoginFragment extends Fragment {
 
-    private FragmentLoginBinding binding;
     // Choose an arbitrary request code value
     private static final int RC_SIGN_IN = 123;
     // creating an auth listener for our Firebase auth
@@ -32,6 +31,7 @@ public class LoginFragment extends Fragment {
             new AuthUI.IdpConfig.EmailBuilder().build(),
             new AuthUI.IdpConfig.PhoneBuilder().build(),
             new AuthUI.IdpConfig.GoogleBuilder().build());
+    private FragmentLoginBinding binding;
     private FirebaseAuth.AuthStateListener mAuthStateListner;
 
     public LoginFragment() {
@@ -72,16 +72,15 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.loginButton.setOnClickListener(view1 -> {
-            startActivityForResult(
-                    // Get an instance of AuthUI based on the default app
-                    AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setAvailableProviders(providers)
-                            .setLogo(R.drawable.logo)
-                            .build(),
-                    RC_SIGN_IN);
-        });
+        binding.loginButton.setOnClickListener(view1 -> startActivityForResult(
+                // Get an instance of AuthUI based on the default app
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .setLogo(R.drawable.logo)
+                        .setTheme(R.style.Theme_purple_firebase)
+                        .build(),
+                RC_SIGN_IN));
     }
 
     private void setAuthStateListener() {

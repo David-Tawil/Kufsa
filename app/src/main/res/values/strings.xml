@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Kufsa</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -10,7 +11,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="kufsa_logo">Kufsa logo</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Navigation related strings -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nav_marketplace_title">Marketplace</string>
     <string name="nav_my_games_title">My Games</string>
@@ -29,14 +31,15 @@
 
     <!-- FAQ section text -->
     <string name="title_faq">FAQ</string>
-    <!--    questions-->
+
+    <!-- FAQ questions-->
     <string name="faq_q1_question">What is this app?</string>
     <string name="faq_q2_question">Who created this app?</string>
     <string name="faq_q3_question">What can I do in this app?</string>
     <string name="faq_q4_question">Can I pay for anything here?</string>
 
     <!-- FAQ answers-->
-    <string name="faq_q1_answer">This app is an android project for managing board games.</string>
+    <string name="faq_q1_answer">This app is an android project, used for managing board games.</string>
     <string name="faq_q2_answer">Two modest computer science students, trying to get a 100 grade:)</string>
     <string name="faq_q3_answer">You can create a personal user, browse a huge catalog of board games and post them for sale, under said user.</string>
     <string name="faq_q4_answer">No, we can not be responsible for any financial transactions, only allow you to post games for sale/ rent.</string>
@@ -50,6 +53,15 @@
     <string name="password_description">Click Here to receive a password-reset email</string>
     <string name="dark_mode_description">Click Here to toggle dark mode</string>
     <string name="report_issue_description">Click Here to Inform us of any issue you\'ve enocuntered</string>
+    <string name="enable_dark_mode">Enable Dark Mode</string>
+    <string name="disable_dark_mode">Disable Dark Mode</string>
+
+    <!-- Report form preferences -->
+    <string name="to">To</string>
+    <string name="admin_email">eldar101@gmail.com</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send_report_btn">Send Report</string>
 
     <!-- favorite Preferences -->
     <string name="favorite_icon_title">favorite</string>
@@ -58,4 +70,12 @@
     <string name="marketplace">Market</string>
     <string name="reviews">Reviews</string>
 
+    <!-- description and misc -->
+    <string name="game_photo">game photo</string>
+
+    <!-- Sign in preferences -->
+    <string name="sign_out">Sign Out</string>
+    <string name="account_photo">Account Photo</string>
+    <string name="hi">Hi, </string>
+    <string name="hello_sign">Hello sign</string>
 </resources>

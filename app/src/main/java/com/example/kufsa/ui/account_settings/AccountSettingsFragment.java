@@ -28,7 +28,7 @@ public class AccountSettingsFragment extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String email = user.getEmail();
     // creating an auth listener for our Firebase auth
-    FirebaseAuth auth;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
     private FragmentAccountSettingsBinding binding;
 
     public AccountSettingsFragment() {
@@ -45,8 +45,12 @@ public class AccountSettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        auth = FirebaseAuth.getInstance();
+        setUpPasswordReset();
+        setUpDarkMode();
+        setUpReport();
+    }
 
+    private void setUpPasswordReset() {
         // Reset password settings
         binding.passwordDescription.setOnClickListener(view1 -> FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
@@ -56,7 +60,9 @@ public class AccountSettingsFragment extends Fragment {
                         Toast.makeText(requireContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
                     }
                 }));
+    }
 
+    private void setUpDarkMode() {
         // Dark mode settings
         // Saving state of our app
         // using SharedPreferences
@@ -110,12 +116,14 @@ public class AccountSettingsFragment extends Fragment {
                         getString(R.string.disable_dark_mode));
             }
         });
+    }
 
+    private void setUpReport() {
         //report form button features
         binding.reportIssueDescription.setOnClickListener(view12 -> {
             // Contact developers
             Toast.makeText(getActivity(), "Please send your complaint to: eldar101@gmail.com", Toast.LENGTH_SHORT).show();
-            NavHostFragment.findNavController(this).navigate(R.id.action_signedInAccountFragment_to_AccountSettingsFragment);
+            NavHostFragment.findNavController(this).navigate(R.id.action_AccountSettingsFragment_to_SendReportFragment);
         });
 
     }

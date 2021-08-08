@@ -50,6 +50,7 @@ public class SendReportFragment extends Fragment {
         btSend = binding.getRoot().findViewById(R.id.bt_Send);
 
         btSend.setOnClickListener(v -> {
+            // Insert all user content into the email about to be sent
             Intent intent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("mailto:" + etTo.getText().toString()));
             intent.putExtra(Intent.EXTRA_SUBJECT, etSubject.getText().toString());
