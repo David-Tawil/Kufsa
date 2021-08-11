@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".ui.account_settings.AccountSettingsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_account_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10sp"
+            android:text="@string/title_activity_account_settings"
+            android:textSize="40sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/password_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/password_title"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_account_settings_24" />
+
+        <TextView
+            android:id="@+id/password_description"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/password_description" />
+
+        <TextView
+            android:id="@+id/dark_mode_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:text="@string/dark_mode_title"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_account_settings_24" />
+
+        <TextView
+            android:id="@+id/dark_mode_description"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/dark_mode_description" />
+
+        <TextView
+            android:id="@+id/report_issue_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:text="@string/report_issue_title"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_account_settings_24" />
+
+        <TextView
+            android:id="@+id/report_issue_description"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/report_issue_description" />
+
+    </LinearLayout>
+</ScrollView>

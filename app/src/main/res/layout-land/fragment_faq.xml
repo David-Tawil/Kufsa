@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".ui.faq.FaqFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_faq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10sp"
+            android:text="@string/title_faq"
+            android:textSize="40sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/faq_q1_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:text="@string/faq_q1_question"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_faq_question" />
+
+        <TextView
+            android:id="@+id/faq_q1_answer"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/faq_q1_answer"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/faq_q2_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:text="@string/faq_q2_question"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_faq_question" />
+
+        <TextView
+            android:id="@+id/faq_q2_answer"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/faq_q2_answer"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/faq_q3_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:text="@string/faq_q3_question"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_faq_question" />
+
+        <TextView
+            android:id="@+id/faq_q3_answer"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/faq_q3_answer"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/faq_q4_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:text="@string/faq_q4_question"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_faq_question" />
+
+        <TextView
+            android:id="@+id/faq_q4_answer"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="@string/faq_q4_answer"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</ScrollView>
