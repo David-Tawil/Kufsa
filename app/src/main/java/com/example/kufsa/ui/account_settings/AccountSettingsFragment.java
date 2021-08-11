@@ -22,11 +22,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 
 public class AccountSettingsFragment extends Fragment {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String email = user.getEmail();
+    String email = user != null ? user.getEmail() : null;
     // creating an auth listener for our Firebase auth
     FirebaseAuth auth = FirebaseAuth.getInstance();
     private FragmentAccountSettingsBinding binding;
@@ -52,14 +54,16 @@ public class AccountSettingsFragment extends Fragment {
 
     private void setUpPasswordReset() {
         // Reset password settings
-        binding.passwordDescription.setOnClickListener(view1 -> FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getActivity(), "Password Reset Email Sent!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(requireContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }));
+        if (binding.resetPasswordButton != null) {
+            binding.resetPasswordButton.setOnClickListener(view1 -> FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getActivity(), "Password Reset Email Sent!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(requireContext(), Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }));
+        }
     }
 
     private void setUpDarkMode() {
@@ -67,7 +71,7 @@ public class AccountSettingsFragment extends Fragment {
         // Saving state of our app
         // using SharedPreferences
         SharedPreferences sharedPreferences
-                = this.getContext().getSharedPreferences(
+                = this.requireContext().getSharedPreferences(
                 "sharedPrefs", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor
                 = sharedPreferences.edit();
@@ -76,55 +80,59 @@ public class AccountSettingsFragment extends Fragment {
                 .getBoolean(
                         "isDarkModeOn", false);
 
-        binding.darkModeDescription.setOnClickListener(view12 -> {
-            // When user taps the enable/disable
-            // dark mode button
-            if (isDarkModeOn) {
+        if (binding.toggleDarkButton != null) {
+            binding.toggleDarkButton.setOnClickListener(view12 -> {
+                // When user taps the enable/disable
+                // dark mode button
+                if (isDarkModeOn) {
 
-                // if dark mode is on it
-                // will turn it off
-                AppCompatDelegate
-                        .setDefaultNightMode(
-                                AppCompatDelegate
-                                        .MODE_NIGHT_NO);
-                // it will set isDarkModeOn
-                // boolean to false
-                editor.putBoolean(
-                        "isDarkModeOn", false);
-                editor.apply();
+                    // if dark mode is on it
+                    // will turn it off
+                    AppCompatDelegate
+                            .setDefaultNightMode(
+                                    AppCompatDelegate
+                                            .MODE_NIGHT_NO);
+                    // it will set isDarkModeOn
+                    // boolean to false
+                    editor.putBoolean(
+                            "isDarkModeOn", false);
+                    editor.apply();
 
-                // change text of Button
-                binding.darkModeDescription.setText(
-                        getString(R.string.enable_dark_mode));
-            } else {
+                    // change text of Button
+                    binding.darkModeDescription.setText(
+                            getString(R.string.enable_dark_mode));
+                } else {
 
-                // if dark mode is off
-                // it will turn it on
-                AppCompatDelegate
-                        .setDefaultNightMode(
-                                AppCompatDelegate
-                                        .MODE_NIGHT_YES);
+                    // if dark mode is off
+                    // it will turn it on
+                    AppCompatDelegate
+                            .setDefaultNightMode(
+                                    AppCompatDelegate
+                                            .MODE_NIGHT_YES);
 
-                // it will set isDarkModeOn
-                // boolean to true
-                editor.putBoolean(
-                        "isDarkModeOn", true);
-                editor.apply();
+                    // it will set isDarkModeOn
+                    // boolean to true
+                    editor.putBoolean(
+                            "isDarkModeOn", true);
+                    editor.apply();
 
-                // change text of Button
-                binding.darkModeDescription.setText(
-                        getString(R.string.disable_dark_mode));
-            }
-        });
+                    // change text of Button
+                    binding.darkModeDescription.setText(
+                            getString(R.string.disable_dark_mode));
+                }
+            });
+        }
     }
 
     private void setUpReport() {
         //report form button features
-        binding.reportIssueDescription.setOnClickListener(view12 -> {
-            // Contact developers
-            Toast.makeText(getActivity(), "Please send your complaint to: eldar101@gmail.com", Toast.LENGTH_SHORT).show();
-            NavHostFragment.findNavController(this).navigate(R.id.action_AccountSettingsFragment_to_SendReportFragment);
-        });
+        if (binding.reportButton != null) {
+            binding.reportButton.setOnClickListener(view12 -> {
+                // Contact developers
+                Toast.makeText(getActivity(), "Please send your complaint to: eldar101@gmail.com", Toast.LENGTH_SHORT).show();
+                NavHostFragment.findNavController(this).navigate(R.id.action_AccountSettingsFragment_to_SendReportFragment);
+            });
+        }
 
     }
 }

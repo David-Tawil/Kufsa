@@ -83,4 +83,9 @@
     <string name="review_fragment">Review Fragment</string>
     <string name="marketplace_fragment">Marketplace Fragment</string>
     <string name="favorites_button">Favorites Button</string>
+    <string name="drawer_layout">Drawer layout</string>
+    <string name="main_activity">Main Activity</string>
+    <string name="action_button">Action button</string>
+    <string name="reset_password_button">Reset password button</string>
+    <string name="toggle_dark_mode_button_desc">Toggle dark mode description</string>
 </resources>
