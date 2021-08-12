@@ -42,7 +42,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
             android:text="@string/faq_q1_answer"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/faq_q2_question"
@@ -62,7 +63,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
             android:text="@string/faq_q2_answer"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/faq_q3_question"
@@ -82,7 +84,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
             android:text="@string/faq_q3_answer"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/faq_q4_question"
@@ -102,6 +105,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
             android:text="@string/faq_q4_answer"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="15sp" />
     </LinearLayout>
 </ScrollView>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.kufsa.R;
 import com.example.kufsa.databinding.FragmentLoginBinding;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,8 +33,10 @@ public class LoginFragment extends Fragment {
             new AuthUI.IdpConfig.EmailBuilder().build(),
             new AuthUI.IdpConfig.PhoneBuilder().build(),
             new AuthUI.IdpConfig.GoogleBuilder().build());
+    String email;
     private FragmentLoginBinding binding;
     private FirebaseAuth.AuthStateListener mAuthStateListner;
+    private TextView navEmail;
 
     public LoginFragment() {
         super(R.layout.fragment_login);
@@ -81,6 +85,19 @@ public class LoginFragment extends Fragment {
                         .setTheme(R.style.Theme_purple_firebase)
                         .build(),
                 RC_SIGN_IN));
+        setUpEmailInSidebar();
+    }
+
+    private void setUpEmailInSidebar() {
+        // Set up email in side bar
+        NavigationView navView = binding.getRoot().getRootView().findViewById(R.id.nav_view);
+        View headerView = navView.getHeaderView(0);
+        navEmail = headerView.findViewById(R.id.EmailView);
+        if (auth.getCurrentUser() == null)
+            email = "";
+        else
+            email = auth.getCurrentUser().getEmail();
+        navEmail.setText(email);
     }
 
     private void setAuthStateListener() {

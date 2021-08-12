@@ -110,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:textSize="14sp" />
+
             <Button
                 android:id="@+id/button2"
                 android:layout_width="46dp"
