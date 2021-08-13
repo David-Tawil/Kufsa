@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/password_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
             android:paddingTop="20dp"
@@ -35,51 +35,147 @@
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_account_settings_24" />
 
-        <TextView
-            android:id="@+id/password_description"
-            style="?android:attr/listSeparatorTextViewStyle"
+        <LinearLayout
+            android:id="@+id/linearLayout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:text="@string/password_description" />
+            android:orientation="horizontal"
+            android:scrollbarAlwaysDrawHorizontalTrack="true">
+
+            <TextView
+                android:id="@+id/password_description"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width='0dp'
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:text="@string/password_description"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/reset_password_button"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/reset_password_button"
+                app:srcCompat="@drawable/ic_acount_action_36" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/dark_mode_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:text="@string/dark_mode_title"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_account_settings_24" />
 
-        <TextView
-            android:id="@+id/dark_mode_description"
-            style="?android:attr/listSeparatorTextViewStyle"
+        <LinearLayout
+            android:id="@+id/linearLayout_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbarAlwaysDrawHorizontalTrack="true">
+
+            <TextView
+                android:id="@+id/dark_mode_description"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width='0dp'
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:text="@string/dark_mode_description"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/toggle_dark_Button"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/toggle_dark_mode_button_desc"
+                android:paddingBottom="5dp"
+                app:srcCompat="@drawable/ic_acount_action_36" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/delete_account_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:text="@string/dark_mode_description" />
+            android:text="@string/delete_account_title"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_account_settings_24" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbarAlwaysDrawHorizontalTrack="true">
+
+            <TextView
+                android:id="@+id/delete_account_description"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:text="@string/delete_account_description"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/delete_Button"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/report_button"
+                app:srcCompat="@drawable/ic_acount_action_36" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/report_issue_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:text="@string/report_issue_title"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_account_settings_24" />
 
-        <TextView
-            android:id="@+id/report_issue_description"
-            style="?android:attr/listSeparatorTextViewStyle"
+        <LinearLayout
+            android:id="@+id/linearLayout_report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:text="@string/report_issue_description" />
+            android:orientation="horizontal"
+            android:scrollbarAlwaysDrawHorizontalTrack="true">
 
+            <TextView
+                android:id="@+id/report_issue_description"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:text="@string/report_issue_description"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/report_Button"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/report_button"
+                app:srcCompat="@drawable/ic_acount_action_36" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -4,6 +4,7 @@ package com.example.kufsa.ui.account_settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,21 +48,27 @@ public class AccountSettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setUpPasswordReset();
         setUpDarkMode();
+        setUpDeleteAccount();
         setUpReport();
     }
 
     private void setUpPasswordReset() {
         // Reset password settings
-        if (binding.resetPasswordButton != null) {
-            binding.resetPasswordButton.setOnClickListener(view1 -> FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                    .addOnCompleteListener(task -> {
+        binding.resetPasswordButton.setOnClickListener(view1 -> FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnCompleteListener(task -> {
+                    // Updating password in case you logged in by gmail but don't have a password...then the reset will work
+                    Objects.requireNonNull(auth.getCurrentUser()).updatePassword("1234");
+                    if (auth.getCurrentUser().getPhoneNumber() != "") {
+                        Toast.makeText(getActivity(), getString(R.string.error_login_by_phone), Toast.LENGTH_SHORT).show();
+                    } else {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getActivity(), "Password Reset Email Sent!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.password_reset_email_sent), Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireContext(), Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
                         }
-                    }));
-        }
+                    }
+                }));
+
     }
 
     private void setUpDarkMode() {
@@ -70,67 +77,79 @@ public class AccountSettingsFragment extends Fragment {
         // using SharedPreferences
         SharedPreferences sharedPreferences
                 = this.requireContext().getSharedPreferences(
-                "sharedPrefs", Context.MODE_PRIVATE);
+                getString(R.string.shared_prefs), Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor
                 = sharedPreferences.edit();
         final boolean isDarkModeOn
                 = sharedPreferences
                 .getBoolean(
-                        "isDarkModeOn", false);
+                        getString(R.string.is_dark_mode_on), false);
 
-        if (binding.toggleDarkButton != null) {
-            binding.toggleDarkButton.setOnClickListener(view12 -> {
-                // When user taps the enable/disable
-                // dark mode button
-                if (isDarkModeOn) {
+        binding.toggleDarkButton.setOnClickListener(view12 -> {
+            // When user taps the enable/disable
+            // dark mode button
+            if (isDarkModeOn) {
 
-                    // if dark mode is on it
-                    // will turn it off
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_NO);
-                    // it will set isDarkModeOn
-                    // boolean to false
-                    editor.putBoolean(
-                            "isDarkModeOn", false);
-                    editor.apply();
+                // if dark mode is on it
+                // will turn it off
+                AppCompatDelegate
+                        .setDefaultNightMode(
+                                AppCompatDelegate
+                                        .MODE_NIGHT_NO);
+                // it will set isDarkModeOn
+                // boolean to false
+                editor.putBoolean(
+                        getString(R.string.is_dark_mode_on), false);
+                editor.apply();
 
-                    // change text of Button
-                    binding.darkModeDescription.setText(
-                            getString(R.string.enable_dark_mode));
-                } else {
+                // change text of Button
+                binding.darkModeDescription.setText(
+                        getString(R.string.enable_dark_mode));
+            } else {
 
-                    // if dark mode is off
-                    // it will turn it on
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_YES);
+                // if dark mode is off
+                // it will turn it on
+                AppCompatDelegate
+                        .setDefaultNightMode(
+                                AppCompatDelegate
+                                        .MODE_NIGHT_YES);
 
-                    // it will set isDarkModeOn
-                    // boolean to true
-                    editor.putBoolean(
-                            "isDarkModeOn", true);
-                    editor.apply();
+                // it will set isDarkModeOn
+                // boolean to true
+                editor.putBoolean(
+                        getString(R.string.is_dark_mode_on), true);
+                editor.apply();
 
-                    // change text of Button
-                    binding.darkModeDescription.setText(
-                            getString(R.string.disable_dark_mode));
+                // change text of Button
+                binding.darkModeDescription.setText(
+                        getString(R.string.disable_dark_mode));
+            }
+        });
+    }
+
+    private void setUpDeleteAccount() {
+        //report form button features
+        binding.deleteButton.setOnClickListener(view12 -> {
+            // Delete user and navigate back
+            Objects.requireNonNull(auth.getCurrentUser()).delete().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Log.d("Delete account", "Deletion Success");
                 }
             });
-        }
+            auth.signOut();
+            Toast.makeText(getActivity(), getString(R.string.account_deleted), Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).navigate(R.id.action_AccountSettingsFragment_to_marketplace_fragment);
+        });
+
     }
+
 
     private void setUpReport() {
         //report form button features
-        if (binding.reportButton != null) {
-            binding.reportButton.setOnClickListener(view12 -> {
-                // Contact developers
-                Toast.makeText(getActivity(), "Please send your complaint to: eldar101@gmail.com", Toast.LENGTH_SHORT).show();
-                NavHostFragment.findNavController(this).navigate(R.id.action_AccountSettingsFragment_to_SendReportFragment);
-            });
-        }
+        binding.reportButton.setOnClickListener(view12 -> {
+            // Contact developers
+            NavHostFragment.findNavController(this).navigate(R.id.action_AccountSettingsFragment_to_SendReportFragment);
+        });
 
     }
 }

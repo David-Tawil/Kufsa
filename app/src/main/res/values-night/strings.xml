@@ -56,6 +56,13 @@
     <string name="report_issue_description">Click Here to Inform us of any issue you\'ve enocuntered</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
     <string name="disable_dark_mode">Disable Dark Mode</string>
+    <string name="error_login_by_phone">You have logged in by phone! please login by email to retrieve password.</string>
+    <string name="password_reset_email_sent">Password reset email successfully sent!</string>
+    <string name="shared_prefs">sharedPrefs</string>
+    <string name="is_dark_mode_on">isDarkModeOn</string>
+    <string name="delete_account_title">Delete your account</string>
+    <string name="delete_account_description">Click here to remove your account</string>
+    <string name="account_deleted">Sadly for us, your account was successfully deleted!</string>
 
     <!-- Report form preferences -->
     <string name="to">To</string>

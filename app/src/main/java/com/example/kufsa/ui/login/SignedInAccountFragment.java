@@ -21,12 +21,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-
 public class SignedInAccountFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
-    String email;
+    String displayName;
     private FragmentSignedInAccountBinding binding;
-    private TextView navEmail;
+    private TextView navDisplayName;
 
     public SignedInAccountFragment() {
         super(R.layout.fragment_signed_in_account);
@@ -67,19 +66,19 @@ public class SignedInAccountFragment extends Fragment {
                     Snackbar.make(requireView(), "You have signed out successfully, see you next time!", Snackbar.LENGTH_LONG).show();
                     NavHostFragment.findNavController(this).navigate(SignedInAccountFragmentDirections.actionSignedInAccountFragmentToMyAccountFragment());
                 }));
-        setUpEmailInSidebar();
+        setUpDisplayNameInSidebar();
     }
 
-    private void setUpEmailInSidebar() {
-        // Set up email in side bar
+    private void setUpDisplayNameInSidebar() {
+        // set up display name in side bar
         NavigationView navView = binding.getRoot().getRootView().findViewById(R.id.nav_view);
         View headerView = navView.getHeaderView(0);
-        navEmail = headerView.findViewById(R.id.EmailView);
+        navDisplayName = headerView.findViewById(R.id.EmailView);
         if (auth.getCurrentUser() == null)
-            email = "";
+            displayName = "";
         else
-            email = auth.getCurrentUser().getEmail();
-        navEmail.setText(email);
+            displayName = auth.getCurrentUser().getDisplayName();
+        navDisplayName.setText(displayName);
     }
 }
 

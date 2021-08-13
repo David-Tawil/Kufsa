@@ -97,9 +97,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/toggle_dark_mode_button_desc"
                 android:paddingBottom="5dp"
-                app:srcCompat="@drawable/ic_acount_action_36"
-                android:contentDescription="@string/toggle_dark_mode_button_desc" />
+                app:srcCompat="@drawable/ic_acount_action_36" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/delete_account_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/delete_account_title"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/ic_account_settings_24" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbarAlwaysDrawHorizontalTrack="true">
+
+            <TextView
+                android:id="@+id/delete_account_description"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:text="@string/delete_account_description"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/delete_Button"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/report_button"
+                app:srcCompat="@drawable/ic_acount_action_36" />
         </LinearLayout>
 
         <TextView
@@ -136,8 +174,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                app:srcCompat="@drawable/ic_acount_action_36"
-                android:contentDescription="@string/report_button" />
+                android:contentDescription="@string/report_button"
+                app:srcCompat="@drawable/ic_acount_action_36" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

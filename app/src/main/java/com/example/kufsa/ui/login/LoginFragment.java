@@ -25,16 +25,16 @@ public class LoginFragment extends Fragment {
 
     // Choose an arbitrary request code value
     public static final int RC_SIGN_IN = 123;
-    // creating an auth listener for our Firebase auth
-    FirebaseAuth auth;
     public static final List<AuthUI.IdpConfig> providers = Arrays.asList(
             new AuthUI.IdpConfig.EmailBuilder().build(),
             new AuthUI.IdpConfig.PhoneBuilder().build(),
             new AuthUI.IdpConfig.GoogleBuilder().build());
-    String email;
+    // creating an auth listener for our Firebase auth
+    FirebaseAuth auth;
+    String displayName;
     private FragmentLoginBinding binding;
     private FirebaseAuth.AuthStateListener mAuthStateListner;
-    private TextView navEmail;
+    private TextView navDisplayName;
 
     public LoginFragment() {
         super(R.layout.fragment_login);
@@ -71,19 +71,19 @@ public class LoginFragment extends Fragment {
                         .setTheme(R.style.Theme_purple_firebase)
                         .build(),
                 RC_SIGN_IN));
-        setUpEmailInSidebar();
+        setUpDisplayNameInSidebar();
     }
 
-    private void setUpEmailInSidebar() {
-        // Set up email in side bar
+    private void setUpDisplayNameInSidebar() {
+        // set up display name in side bar
         NavigationView navView = binding.getRoot().getRootView().findViewById(R.id.nav_view);
         View headerView = navView.getHeaderView(0);
-        navEmail = headerView.findViewById(R.id.EmailView);
+        navDisplayName = headerView.findViewById(R.id.EmailView);
         if (auth.getCurrentUser() == null)
-            email = "";
+            displayName = "";
         else
-            email = auth.getCurrentUser().getEmail();
-        navEmail.setText(email);
+            displayName = auth.getCurrentUser().getDisplayName();
+        navDisplayName.setText(displayName);
     }
 
     private void setAuthStateListener() {

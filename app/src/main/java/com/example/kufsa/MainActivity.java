@@ -1,6 +1,8 @@
 package com.example.kufsa;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,6 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.kufsa.ui.catalog.CatalogAdapter;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "FirestoreSearchActivity";
     private static final CollectionReference gamesCollection =
             FirebaseFirestore.getInstance().collection("games");
+    String displayName;
+    FirebaseAuth auth;
     private AppBarConfiguration appBarConfiguration;
     private CatalogAdapter adapter;
     private NavController navController;
+    private TextView navDisplayName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +50,24 @@ public class MainActivity extends AppCompatActivity {
 
         setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        setUpDisplayNameInSidebar();
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
+    }
+
+    private void setUpDisplayNameInSidebar() {
+        // set up display name in side bar
+        NavigationView navView = findViewById(R.id.nav_view);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        View headerView = navView.getHeaderView(0);
+        navDisplayName = headerView.findViewById(R.id.EmailView);
+        if (auth.getCurrentUser() == null)
+            displayName = "";
+        else
+            displayName = auth.getCurrentUser().getDisplayName();
+        navDisplayName.setText(displayName);
     }
 }
