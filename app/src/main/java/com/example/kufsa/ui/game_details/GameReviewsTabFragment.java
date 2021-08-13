@@ -54,6 +54,13 @@ public class GameReviewsTabFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        binding.bigRatingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
+            if (fromUser) {
+                ratingBar.setRating((float) Math.ceil(rating));
+            }
+        });
     }
 
 
