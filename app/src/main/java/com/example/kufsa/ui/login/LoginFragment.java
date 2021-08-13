@@ -18,18 +18,16 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Arrays;
 import java.util.List;
 
 public class LoginFragment extends Fragment {
 
     // Choose an arbitrary request code value
-    private static final int RC_SIGN_IN = 123;
+    public static final int RC_SIGN_IN = 123;
     // creating an auth listener for our Firebase auth
     FirebaseAuth auth;
-    List<AuthUI.IdpConfig> providers = Arrays.asList(
+    public static final List<AuthUI.IdpConfig> providers = Arrays.asList(
             new AuthUI.IdpConfig.EmailBuilder().build(),
             new AuthUI.IdpConfig.PhoneBuilder().build(),
             new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -43,9 +41,9 @@ public class LoginFragment extends Fragment {
     }
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
+
     @Override
-    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
@@ -57,24 +55,12 @@ public class LoginFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
 
         setAuthStateListener();
-     /*   if (auth.getCurrentUser() != null) {
-            // already signed in
-        } else {
-            startActivityForResult(
-                    // Get an instance of AuthUI based on the default app
-                    AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setAvailableProviders(providers)
-                            .setLogo(R.drawable.logo)
-                            .build(),
-                    RC_SIGN_IN);
-            // not signed in
-        }*/
+
         return binding.getRoot();
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.loginButton.setOnClickListener(view1 -> startActivityForResult(
                 // Get an instance of AuthUI based on the default app

@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.example.kufsa.R;
 import com.example.kufsa.databinding.FragmentSendReportBinding;
 
-import org.jetbrains.annotations.NotNull;
 
 
 public class SendReportFragment extends Fragment {
@@ -43,7 +42,7 @@ public class SendReportFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         etTo = binding.getRoot().findViewById(R.id.et_to);
         etSubject = binding.getRoot().findViewById(R.id.et_subject);
         etMessage = binding.getRoot().findViewById(R.id.et_message);

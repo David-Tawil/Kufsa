@@ -24,7 +24,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import org.jetbrains.annotations.NotNull;
 
 public class CatalogFragment extends Fragment {
 
@@ -43,9 +42,8 @@ public class CatalogFragment extends Fragment {
 
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
     @Override
-    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentGameCatalogBinding.inflate(inflater, container, false);
         setUpRecyclerView();
         setUpSearchBar();
@@ -68,12 +66,6 @@ public class CatalogFragment extends Fragment {
             // BoardGame game = documentSnapshot.toObject(BoardGame.class);
             String id = documentSnapshot.getId();
             String gameTitle = documentSnapshot.getString("name");
-            /*if (id == null) {
-                Snackbar.make(requireView(), "error: game is null", Snackbar.LENGTH_LONG).show();
-                return;
-            }*/
-            // game.setId(id);
-            // NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionCatalogFragmentToGameDetailsFragment(id));
             NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionMarketplaceFragmentToGameDetailsTabsContainerFragment(id, gameTitle));
 
         });

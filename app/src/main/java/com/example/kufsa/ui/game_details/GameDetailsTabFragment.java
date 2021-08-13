@@ -17,12 +17,12 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
 import com.example.kufsa.databinding.FragmentGameDetailsTabBinding;
+import com.example.kufsa.ui.login.LoginFragment;
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +50,7 @@ public class GameDetailsTabFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         gamesCollection.document(gameID).get().addOnSuccessListener(documentSnapshot -> {
@@ -62,6 +62,8 @@ public class GameDetailsTabFragment extends Fragment {
             game.setId(documentSnapshot.getId());
             setUI(view);
         }).addOnFailureListener(e -> Toast.makeText(requireContext(), "error: game not found", Toast.LENGTH_LONG).show());
+
+
         setFavoriteButton();
         binding.favoriteFabButton.setOnClickListener(view1 -> {
             if (isFavorite) {
@@ -162,7 +164,15 @@ public class GameDetailsTabFragment extends Fragment {
                 }
             });
         } else {
-            Toast.makeText(requireContext(), "please sign in first", Toast.LENGTH_LONG).show();
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(LoginFragment.providers)
+                            .setLogo(R.drawable.logo)
+                            .setTheme(R.style.Theme_purple_firebase)
+                            .build(),
+                    LoginFragment.RC_SIGN_IN);
+            //  Toast.makeText(requireContext(), "please sign in first", Toast.LENGTH_LONG).show();
         }
     }
 }

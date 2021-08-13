@@ -1,11 +1,11 @@
 Project for 20503 course Android based app for managing Board games
 
-Task list 11/08
+Task list 08/08
 1) make trying to add favoites without sign in --> imediatley switch you to login fragment
-2) Improve favorites and marketplace
-3) Remove uncecssary code
-4) Add comments to everything
-5) create API ??
+2) Improve favorites
+3) re-factor UI and check how it works in vertical mode.
+4) Remove uncecssary code
+5) Add comments to everything
 
 
 

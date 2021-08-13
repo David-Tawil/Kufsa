@@ -16,7 +16,6 @@ import com.example.kufsa.databinding.FragmentGameDetailsTabsContainerBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import org.jetbrains.annotations.NotNull;
 
 public class GameDetailsTabsContainerFragment extends Fragment {
     //FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -36,9 +35,9 @@ public class GameDetailsTabsContainerFragment extends Fragment {
 
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
+
     @Override
-    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         biding = FragmentGameDetailsTabsContainerBinding.inflate(inflater, container, false);
         gameID = GameDetailsTabsContainerFragmentArgs.fromBundle(getArguments()).getGameID();
         //  gameName = GameDetailsTabsContainerFragmentArgs.fromBundle(getArguments()).getGameTitle();
@@ -47,13 +46,13 @@ public class GameDetailsTabsContainerFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewPager = biding.pager;
         TabLayout tabLayout = biding.tabLayout;
         viewPager.setAdapter(new FragmentStateAdapter(this) {
             @NonNull
-            @NotNull
+
             @Override
             public Fragment createFragment(int position) {
                 Bundle bundle = new Bundle();

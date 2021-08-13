@@ -18,13 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
-import com.example.kufsa.databinding.MyGamesLayoutBinding;
+import com.example.kufsa.databinding.FragmentMyGamesBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import org.jetbrains.annotations.NotNull;
+
 
 public class MyGamesFragment extends Fragment {
     private static final String TAG = "MyGamesFragment";
@@ -33,19 +33,19 @@ public class MyGamesFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FavoritesAdapter adapter;
-    private MyGamesLayoutBinding binding;
+    private FragmentMyGamesBinding binding;
 
 
     public MyGamesFragment() {
-        super(R.layout.my_games_layout);
+        super(R.layout.fragment_my_games);
     }
 
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
+
     @Override
-    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        binding = MyGamesLayoutBinding.inflate(inflater, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = FragmentMyGamesBinding.inflate(inflater, container, false);
         setUpRecyclerView();
         setUpSearchBar();
 
@@ -70,6 +70,7 @@ public class MyGamesFragment extends Fragment {
                 String id = documentSnapshot.getId();
                 String gameName = documentSnapshot.getString("name");
                 NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsTabsContainerFragment(id, gameName));
+
             });
 
             binding.favoritesRecyclerView.setHasFixedSize(true);
