@@ -25,7 +25,6 @@ public class SignedInAccountFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String displayName;
     private FragmentSignedInAccountBinding binding;
-    private TextView navDisplayName;
 
     public SignedInAccountFragment() {
         super(R.layout.fragment_signed_in_account);
@@ -49,7 +48,8 @@ public class SignedInAccountFragment extends Fragment {
     // Set up user account login
     private void setUpLogin(View view) {
         if (auth.getCurrentUser() != null) {
-            binding.welcomeTextView.setText(getString(R.string.hi) + " " + auth.getCurrentUser().getDisplayName());
+            String helloText = getString(R.string.hi) + auth.getCurrentUser().getDisplayName();
+            binding.welcomeTextView.setText(helloText);
             Glide.with(view)
                     .load(auth.getCurrentUser().getPhotoUrl())
                     .error(R.drawable.outline_account_circle_24)
@@ -57,7 +57,7 @@ public class SignedInAccountFragment extends Fragment {
         } else {
             Toast.makeText(requireContext(), "error: user is not signed in", Toast.LENGTH_LONG).show();
         }
-        binding.accountSetingsButton.setOnClickListener(THIS -> NavHostFragment.findNavController(this).navigate(R.id.action_SignedInAccountFragment_to_AccountSettingsFragment));
+        binding.accountSettingsButton.setOnClickListener(THIS -> NavHostFragment.findNavController(this).navigate(R.id.action_SignedInAccountFragment_to_AccountSettingsFragment));
 
 
         binding.signOutButton.setOnClickListener(view1 -> AuthUI.getInstance()
@@ -73,7 +73,7 @@ public class SignedInAccountFragment extends Fragment {
         // set up display name in side bar
         NavigationView navView = binding.getRoot().getRootView().findViewById(R.id.nav_view);
         View headerView = navView.getHeaderView(0);
-        navDisplayName = headerView.findViewById(R.id.EmailView);
+        TextView navDisplayName = headerView.findViewById(R.id.EmailView);
         if (auth.getCurrentUser() == null)
             displayName = "";
         else

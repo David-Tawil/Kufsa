@@ -66,7 +66,9 @@ public class CatalogFragment extends Fragment {
             // BoardGame game = documentSnapshot.toObject(BoardGame.class);
             String id = documentSnapshot.getId();
             String gameTitle = documentSnapshot.getString("name");
-            NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionMarketplaceFragmentToGameDetailsTabsContainerFragment(id, gameTitle));
+            if (gameTitle != null) {
+                NavHostFragment.findNavController(this).navigate(CatalogFragmentDirections.actionMarketplaceFragmentToGameDetailsTabsContainerFragment(id, gameTitle));
+            }
 
         });
 
@@ -81,7 +83,7 @@ public class CatalogFragment extends Fragment {
     private void setUpSearchBar() {
 
         // Search box
-        EditText searchBox = binding.getRoot().getRootView().findViewById(R.id.catalog_searchbox);
+        EditText searchBox = binding.getRoot().getRootView().findViewById(R.id.catalog_searchBox);
 
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
@@ -97,7 +99,7 @@ public class CatalogFragment extends Fragment {
             // query that draws from the database and shows the results of searching in the search box
             @Override
             public void afterTextChanged(Editable s) {
-                Log.d(TAG, "Searchbox has changed to: " + s.toString());
+                Log.d(TAG, "SearchBox has changed to: " + s.toString());
                 if (s.toString().isEmpty()) {
                     Query query = gamesCollection
                             .orderBy("name");

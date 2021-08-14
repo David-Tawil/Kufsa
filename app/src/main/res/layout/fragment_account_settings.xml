@@ -59,7 +59,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/reset_password_button"
-                app:srcCompat="@drawable/ic_acount_action_36" />
+                app:srcCompat="@drawable/ic_account_action_36" />
         </LinearLayout>
 
 
@@ -99,7 +99,7 @@
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/toggle_dark_mode_button_desc"
                 android:paddingBottom="5dp"
-                app:srcCompat="@drawable/ic_acount_action_36" />
+                app:srcCompat="@drawable/ic_account_action_36" />
         </LinearLayout>
 
         <TextView
@@ -137,7 +137,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/report_button"
-                app:srcCompat="@drawable/ic_acount_action_36" />
+                app:srcCompat="@drawable/ic_account_action_36" />
         </LinearLayout>
 
         <TextView
@@ -175,7 +175,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/report_button"
-                app:srcCompat="@drawable/ic_acount_action_36" />
+                app:srcCompat="@drawable/ic_account_action_36" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

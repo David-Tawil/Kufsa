@@ -5,25 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:contentDescription="@string/image_button"
-        android:background="@color/white"
-        android:paddingTop="10dp"
-        android:paddingBottom="3dp"
-        app:srcCompat="@drawable/ic_search_purple_24"
-        tools:ignore="VectorDrawableCompat" />
-
     <EditText
-        android:id="@+id/catalog_searchbox"
+        android:id="@+id/catalog_searchBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="search box"
-        android:hint="@string/hint_searchbox"
+        android:hint="@string/hint_searchBox"
         android:inputType="text"
+        android:drawableEnd="@drawable/ic_search_purple_24"
         android:textColor="@color/purple_200"
         tools:visibility="visible" />
 

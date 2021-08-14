@@ -51,13 +51,14 @@ public class AccountSettingsFragment extends Fragment {
         setUpDeleteAccount();
         setUpReport();
     }
+        //Objects.requireNonNull(auth.getCurrentUser()).updatePassword("1234");
 
     private void setUpPasswordReset() {
         // Reset password settings
+        Objects.requireNonNull(auth.getCurrentUser()).updatePassword("1234");
         binding.resetPasswordButton.setOnClickListener(view1 -> FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
                     // Updating password in case you logged in by gmail but don't have a password...then the reset will work
-                    Objects.requireNonNull(auth.getCurrentUser()).updatePassword("1234");
                     if (auth.getCurrentUser().getPhoneNumber() != "") {
                         Toast.makeText(getActivity(), getString(R.string.error_login_by_phone), Toast.LENGTH_SHORT).show();
                     } else {
@@ -85,7 +86,21 @@ public class AccountSettingsFragment extends Fragment {
                 .getBoolean(
                         getString(R.string.is_dark_mode_on), false);
 
-        binding.toggleDarkButton.setOnClickListener(view12 -> {
+        // When user reopens the app
+        // after applying dark/light mode
+        if (isDarkModeOn) {
+            AppCompatDelegate
+                    .setDefaultNightMode(
+                            AppCompatDelegate
+                                    .MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate
+                    .setDefaultNightMode(
+                            AppCompatDelegate
+                                    .MODE_NIGHT_NO);
+        }
+
+        binding.toggleDarkButton.setOnClickListener(view1 -> {
             // When user taps the enable/disable
             // dark mode button
             if (isDarkModeOn) {
@@ -101,10 +116,6 @@ public class AccountSettingsFragment extends Fragment {
                 editor.putBoolean(
                         getString(R.string.is_dark_mode_on), false);
                 editor.apply();
-
-                // change text of Button
-                binding.darkModeDescription.setText(
-                        getString(R.string.enable_dark_mode));
             } else {
 
                 // if dark mode is off
@@ -119,10 +130,6 @@ public class AccountSettingsFragment extends Fragment {
                 editor.putBoolean(
                         getString(R.string.is_dark_mode_on), true);
                 editor.apply();
-
-                // change text of Button
-                binding.darkModeDescription.setText(
-                        getString(R.string.disable_dark_mode));
             }
         });
     }

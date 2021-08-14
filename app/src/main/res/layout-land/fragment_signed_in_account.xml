@@ -22,10 +22,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome_text_view" />
 
-    <!--this cardview is needed in order to create circular image view-->
+    <!--this cardView is needed in order to create circular image view-->
 
     <Button
-        android:id="@+id/account_setings_button"
+        android:id="@+id/account_settings_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"

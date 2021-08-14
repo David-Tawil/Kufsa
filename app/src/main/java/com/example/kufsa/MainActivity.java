@@ -1,10 +1,13 @@
 package com.example.kufsa;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -21,7 +24,6 @@ import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavControlle
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "FirestoreSearchActivity";
     private static final CollectionReference gamesCollection =
             FirebaseFirestore.getInstance().collection("games");
     String displayName;
@@ -29,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private CatalogAdapter adapter;
     private NavController navController;
-    private TextView navDisplayName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
         setUpDisplayNameInSidebar();
+        setUpDarkModeAtStart();
+        NavigationUI.setupWithNavController(navView, navController);
     }
 
     @Override
@@ -63,11 +65,35 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navView = findViewById(R.id.nav_view);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         View headerView = navView.getHeaderView(0);
-        navDisplayName = headerView.findViewById(R.id.EmailView);
+        TextView navDisplayName = headerView.findViewById(R.id.EmailView);
         if (auth.getCurrentUser() == null)
             displayName = "";
         else
             displayName = auth.getCurrentUser().getDisplayName();
         navDisplayName.setText(displayName);
+    }
+
+    private void setUpDarkModeAtStart() {
+        // Dark mode settings
+        // Saving state of our app
+        // using SharedPreferences
+        SharedPreferences sharedPreferences
+                = this.getSharedPreferences(
+                getString(R.string.shared_prefs), Context.MODE_PRIVATE);
+        final boolean isDarkModeOn
+                = sharedPreferences
+                .getBoolean(
+                        getString(R.string.is_dark_mode_on), false);
+        if (isDarkModeOn) {
+            AppCompatDelegate
+                    .setDefaultNightMode(
+                            AppCompatDelegate
+                                    .MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate
+                    .setDefaultNightMode(
+                            AppCompatDelegate
+                                    .MODE_NIGHT_NO);
+        }
     }
 }

@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.Objects;
 
 
 public class MyGamesFragment extends Fragment {
@@ -58,7 +59,7 @@ public class MyGamesFragment extends Fragment {
         if (auth.getCurrentUser() != null) {
             String userID = auth.getUid();
             Query query =
-                    db.collection("users").document(userID).collection("favorites").orderBy("name");
+                    db.collection("users").document(Objects.requireNonNull(userID)).collection("favorites").orderBy("name");
             FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                     .setQuery(query, BoardGame.class)
                     .setLifecycleOwner(this.getViewLifecycleOwner())
@@ -69,7 +70,7 @@ public class MyGamesFragment extends Fragment {
                 // BoardGame game = documentSnapshot.toObject(BoardGame.class);
                 String id = documentSnapshot.getId();
                 String gameName = documentSnapshot.getString("name");
-                NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsTabsContainerFragment(id, gameName));
+                NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsTabsContainerFragment(id, Objects.requireNonNull(gameName)));
 
             });
 
@@ -82,7 +83,7 @@ public class MyGamesFragment extends Fragment {
     private void setUpSearchBar() {
 
         // Search box
-        EditText searchBox = binding.getRoot().getRootView().findViewById(R.id.my_games_searchbox);
+        EditText searchBox = binding.getRoot().getRootView().findViewById(R.id.my_games_searchBox);
 
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
@@ -98,11 +99,11 @@ public class MyGamesFragment extends Fragment {
             // query that draws from the database and shows the results of searching in the search box
             @Override
             public void afterTextChanged(Editable s) {
-                Log.d(TAG, "Searchbox has changed to: " + s.toString());
+                Log.d(TAG, "Search Box has changed to: " + s.toString());
                 if (s.toString().isEmpty()) {
                     String userID = auth.getUid();
                     Query query =
-                            db.collection("users").document(userID).collection("favorites").orderBy("name");
+                            db.collection("users").document(Objects.requireNonNull(userID)).collection("favorites").orderBy("name");
 
                     FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                             .setQuery(query, BoardGame.class)
@@ -112,7 +113,7 @@ public class MyGamesFragment extends Fragment {
                 } else {
                     String userID = auth.getUid();
                     Query query =
-                            db.collection("users").document(userID).collection("favorites").whereEqualTo("name", s.toString()).orderBy("name");
+                            db.collection("users").document(Objects.requireNonNull(userID)).collection("favorites").whereEqualTo("name", s.toString()).orderBy("name");
                     FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                             .setQuery(query, BoardGame.class)
                             .setLifecycleOwner(getViewLifecycleOwner())

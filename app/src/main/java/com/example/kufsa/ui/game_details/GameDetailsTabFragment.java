@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class GameDetailsTabFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -42,9 +43,9 @@ public class GameDetailsTabFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        gameID = getArguments().getString("gameID");
+        gameID = getArguments() != null ? getArguments().getString("gameID") : null;
         binding = FragmentGameDetailsTabBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -76,7 +77,7 @@ public class GameDetailsTabFragment extends Fragment {
 
     private void setFavoriteButton() {
         if (auth.getCurrentUser() != null) {
-            DocumentReference favoriteGame = db.collection("users").document(auth.getUid()).collection("favorites").document(gameID);
+            DocumentReference favoriteGame = db.collection("users").document(Objects.requireNonNull(auth.getUid())).collection("favorites").document(gameID);
             favoriteGame.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
                     isFavorite = true;
@@ -120,7 +121,7 @@ public class GameDetailsTabFragment extends Fragment {
     private void removeFromFavorites() {
         if (auth.getCurrentUser() != null) {
             String userID = auth.getUid();
-            DocumentReference favoritesRef = db.collection("users").document(userID).collection("favorites").document(gameID);
+            DocumentReference favoritesRef = db.collection("users").document(Objects.requireNonNull(userID)).collection("favorites").document(gameID);
             favoritesRef.delete()
                     .addOnSuccessListener(unused -> {
                         isFavorite = false;
@@ -132,18 +133,16 @@ public class GameDetailsTabFragment extends Fragment {
 
                         Toast.makeText(requireContext(), "removed from favorites", Toast.LENGTH_LONG).show();
                     })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show();
-                    });
+                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show());
         } else {
-            Toast.makeText(requireContext(), "error: you are not sign in", Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), "error: you are not signed in", Toast.LENGTH_LONG).show();
         }
     }
 
     private void addToFavorites() {
         if (auth.getCurrentUser() != null) {
             String userID = auth.getUid();
-            DocumentReference favoritesRef = db.collection("users").document(userID).collection("favorites").document(game.getId());
+            DocumentReference favoritesRef = db.collection("users").document(Objects.requireNonNull(userID)).collection("favorites").document(game.getId());
             favoritesRef.get().addOnSuccessListener(documentSnapshot -> {
                 if (!documentSnapshot.exists()) {
                     Map<String, Object> favoriteGame = new HashMap<>();
@@ -158,9 +157,7 @@ public class GameDetailsTabFragment extends Fragment {
                                 }
                                 Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_LONG).show();
                             })
-                            .addOnFailureListener(e -> {
-                                Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show();
-                            });
+                            .addOnFailureListener(e -> Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show());
                 }
             });
         } else {

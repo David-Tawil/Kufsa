@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kufsa</string>
 
@@ -49,13 +48,17 @@
     <string name="title_activity_account_settings">Account Settings</string>
     <string name="Credentials_header">Credentials</string>
     <string name="password_title">Set up a new password</string>
-    <string name="dark_mode_title">Enable Dark Mode</string>
+    <string name="dark_mode_title">Toggle Dark Mode</string>
     <string name="report_issue_title">Report an issue or bug</string>
     <string name="password_description">Click Here to receive a password-reset email</string>
-    <string name="dark_mode_description">Click Here to toggle dark mode</string>
-    <string name="report_issue_description">Click Here to Inform us of any issue you\'ve enocuntered</string>
-    <string name="enable_dark_mode">Enable Dark Mode</string>
-    <string name="disable_dark_mode">Disable Dark Mode</string>
+    <string name="dark_mode_description">Click Here to switch between dark mode and light mode</string>
+    <string name="report_issue_description">Click Here to Inform us of any issue you\'ve encountered</string>
+    <string name="enable_dark_mode">Dark mode enabled</string>
+    <string name="disable_dark_mode">Dark mode disabled</string>
+    <string name="action_button">Action button</string>
+    <string name="reset_password_button">Reset password button</string>
+    <string name="toggle_dark_mode_button_desc">Toggle dark mode description</string>
+    <string name="report_button">Report Button</string>
     <string name="error_login_by_phone">You have logged in by phone! please login by email to retrieve password.</string>
     <string name="password_reset_email_sent">Password reset email successfully sent!</string>
     <string name="shared_prefs">sharedPrefs</string>
@@ -73,10 +76,17 @@
 
     <!-- favorite Preferences -->
     <string name="favorite_icon_title">favorite</string>
-    <string name="hint_searchbox">what you want to play</string>
+    <string name="hint_searchBox">Type the name of a game you want to play</string>
     <string name="favorites_title">Favorites</string>
     <string name="marketplace">Market</string>
     <string name="reviews">Reviews</string>
+    <string name="ratings_reviews"><![CDATA[Ratings &amp; Reviews]]></string>
+    <string name="score">4.7</string>
+    <string name="total_reviews_number">756,800</string>
+    <string name="rate_this_game">Rate this game</string>
+    <string name="tell_others_what_you_think">Tell others what you think</string>
+    <string name="write_a_review">Write a review</string>
+    <string name="add_to_favorites_button">add to favorites</string>
 
     <!-- description and misc -->
     <string name="game_photo">game photo</string>
@@ -84,15 +94,14 @@
     <!-- Sign in preferences -->
     <string name="sign_out">Sign Out</string>
     <string name="account_photo">Account Photo</string>
-    <string name="hi">Hi, </string>
+    <string name="hi">Hi, &#160;</string>
     <string name="hello_sign">Hello sign</string>
     <string name="image_button">Image Button</string>
     <string name="review_fragment">Review Fragment</string>
     <string name="marketplace_fragment">Marketplace Fragment</string>
     <string name="favorites_button">Favorites Button</string>
+    <string name="nav_host_fragment">Navigation host fragment</string>
+    <string name="nav_view">Navigation view</string>
     <string name="drawer_layout">Drawer layout</string>
     <string name="main_activity">Main Activity</string>
-    <string name="action_button">Action button</string>
-    <string name="reset_password_button">Reset password button</string>
-    <string name="toggle_dark_mode_button_desc">Toggle dark mode description</string>
 </resources>

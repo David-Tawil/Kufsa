@@ -33,8 +33,7 @@ public class LoginFragment extends Fragment {
     FirebaseAuth auth;
     String displayName;
     private FragmentLoginBinding binding;
-    private FirebaseAuth.AuthStateListener mAuthStateListner;
-    private TextView navDisplayName;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     public LoginFragment() {
         super(R.layout.fragment_login);
@@ -78,7 +77,7 @@ public class LoginFragment extends Fragment {
         // set up display name in side bar
         NavigationView navView = binding.getRoot().getRootView().findViewById(R.id.nav_view);
         View headerView = navView.getHeaderView(0);
-        navDisplayName = headerView.findViewById(R.id.EmailView);
+        TextView navDisplayName = headerView.findViewById(R.id.EmailView);
         if (auth.getCurrentUser() == null)
             displayName = "";
         else
@@ -87,7 +86,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void setAuthStateListener() {
-        mAuthStateListner = firebaseAuth -> {
+        mAuthStateListener = firebaseAuth -> {
 
 
             FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -142,7 +141,7 @@ public class LoginFragment extends Fragment {
         super.onResume();
         // we are calling our auth
         // listener method on app resume.
-        auth.addAuthStateListener(mAuthStateListner);
+        auth.addAuthStateListener(mAuthStateListener);
     }
 
     @Override
@@ -150,7 +149,7 @@ public class LoginFragment extends Fragment {
         super.onPause();
         // here we are calling remove auth
         // listener method on stop.
-        auth.removeAuthStateListener(mAuthStateListner);
+        auth.removeAuthStateListener(mAuthStateListener);
     }
 
 }

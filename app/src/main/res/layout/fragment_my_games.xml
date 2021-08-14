@@ -7,7 +7,7 @@
 
 
     <EditText
-        android:id="@+id/my_games_searchbox"
+        android:id="@+id/my_games_searchBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="Search box"
