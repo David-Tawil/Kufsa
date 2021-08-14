@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RatingBar
+        android:id="@+id/small_ratingBar_info"
+        style="@android:style/Widget.Material.Light.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#0f9d58"
+        android:numStars="5"
+        android:progressTint="#0f9d58"
+        android:rating="4"
+        android:stepSize="1"
+        app:layout_constraintStart_toStartOf="@+id/image_card_view_container"
+        app:layout_constraintTop_toBottomOf="@+id/image_card_view_container" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_card_view_container"
+        app:layout_constraintStart_toEndOf="@+id/image_card_view_container"
+        app:layout_constraintTop_toTopOf="@+id/image_card_view_container"
+        tools:text="Israel Israeli" />
+
+    <TextView
+        android:id="@+id/date_review_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/small_ratingBar_info"
+        app:layout_constraintStart_toEndOf="@+id/small_ratingBar_info"
+        app:layout_constraintTop_toTopOf="@+id/small_ratingBar_info"
+        tools:text="8/7/21" />
+
+    <TextView
+        android:id="@+id/review_content_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintStart_toStartOf="@+id/small_ratingBar_info"
+        app:layout_constraintTop_toBottomOf="@+id/small_ratingBar_info"
+        tools:text="this game is so fun and great to play with friends and family, i recomend it to everyone" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/review_content_text_view" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image_card_view_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profile_img_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/account_photo"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/outline_account_circle_24" />
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,4 +44,8 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="Yellow.AppCompatRatingBar" parent="Base.Widget.AppCompat.RatingBar.Indicator">
+        <item name="colorControlActivated">@color/yellow_600</item>
+    </style>
+
 </resources>

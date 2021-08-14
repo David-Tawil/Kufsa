@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_large">
+        <!--
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:layout_width="@dimen/spacing_xmlarge"
+                    android:layout_height="@dimen/spacing_xmlarge"
+                    app:srcCompat="@drawable/outline_account_circle_24"/>
+             &lt;!&ndash;   app:civ_shadow="true"
+                app:civ_shadow_radius="0dp"
+                app:civ_border="false" &ndash;&gt;-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="David Park"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/spacing_large"
+            android:layout_height="0dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/image_card_view_container"
+            android:layout_width="@dimen/spacing_xmlarge"
+            android:layout_height="@dimen/spacing_xmlarge"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintDimensionRatio="1:1">
+
+            <ImageView
+                android:id="@+id/profile_img_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/account_photo"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/outline_account_circle_24" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large">
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/rating_bar"
+            style="@style/Yellow.AppCompatRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="1"
+            android:theme="@style/Yellow.AppCompatRatingBar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/spacing_large">
+
+        <EditText
+            android:id="@+id/et_post"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_round"
+            android:gravity="top"
+            android:hint="Write review ..."
+            android:lines="4"
+            android:padding="@dimen/spacing_middle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_cancel"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="CANCEL" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_submit"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="SUBMIT" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:background="?android:attr/listDivider" />
+
+</LinearLayout>

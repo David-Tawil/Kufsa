@@ -85,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@id/rate_this_game_textView" />
 
     <TextView
-        android:id="@+id/write_review_text_button"
+        android:id="@+id/write_review_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -127,7 +127,7 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/write_review_text_button" />
+        app:layout_constraintTop_toBottomOf="@+id/write_review_button" />
 
 
     <com.taufiqrahman.reviewratings.RatingReviews
@@ -162,7 +162,7 @@
         android:progressTint="#FFD73B"
         android:rating="3"
         android:stepSize="0.01"
-        app:layout_constraintBottom_toTopOf="@+id/write_review_text_button"
+        app:layout_constraintBottom_toTopOf="@+id/write_review_button"
         app:layout_constraintEnd_toEndOf="@id/divider1"
         app:layout_constraintStart_toStartOf="@id/tell_others_textView"
         app:layout_constraintTop_toBottomOf="@id/tell_others_textView" />

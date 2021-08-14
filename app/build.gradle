@@ -73,6 +73,8 @@ dependencies {
     //rating system
     implementation 'com.github.Inconnu08:android-ratingreviews:1.2.0'
     implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
+    // circular image
+    implementation 'com.mikhaellopez:circularimageview:4.3.0'
 
 
     //  testImplementation 'junit:junit:4.+'

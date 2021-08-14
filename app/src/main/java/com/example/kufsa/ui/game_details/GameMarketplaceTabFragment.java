@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.kufsa.R;
+import com.example.kufsa.databinding.FragmentGameMarketplaceTabBinding;
 
 public class GameMarketplaceTabFragment extends Fragment {
 
+    FragmentGameMarketplaceTabBinding binding;
     public GameMarketplaceTabFragment() {
         super(R.layout.fragment_game_marketplace_tab);
     }
@@ -18,6 +20,7 @@ public class GameMarketplaceTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_game_marketplace_tab, container, false);
+        binding = FragmentGameMarketplaceTabBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 }
