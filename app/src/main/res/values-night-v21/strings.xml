@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="min_age_desc">Minimal Age Desc.</string>
+    <string name="min_age_asc">Minimal Age Asc.</string>
+    <string name="release_year_desc">Release Year Desc.</string>
+    <string name="releas_year_asc">Release Year Asc.</string>
+    <string name="play_time_desc">Playing Time Desc.</string>
+    <string name="play_time_asc">Playing Time Asc.</string>
+    <string name="diff_desc">Difficulty Desc.</string>
+    <string name="diff_asc">Difficulty Asc.</string>
+    <string name="nameZtoA"><![CDATA[Name Z->A]]></string>
+    <string name="nameAtoZ"><![CDATA[Name A->Z]]></string>
+</resources>

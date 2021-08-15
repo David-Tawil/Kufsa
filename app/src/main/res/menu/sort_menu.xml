@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_aToZ"
+        android:title="@string/nameAtoZ" />
+    <item
+        android:id="@+id/menu_ZtoA"
+        android:title="@string/nameZtoA" />
+    <item
+        android:id="@+id/menu_diff_asc"
+        android:title="@string/diff_asc" />
+    <item
+        android:id="@+id/menu_diff_desc"
+        android:title="@string/diff_desc" />
+    <item
+        android:id="@+id/menu_play_time_asc"
+        android:title="@string/play_time_asc" />
+    <item
+        android:id="@+id/menu_play_time_desc"
+        android:title="@string/play_time_desc" />
+    <item
+        android:id="@+id/menu_year_asc"
+        android:title="@string/releas_year_asc" />
+    <item
+        android:id="@+id/menu_year_desc"
+        android:title="@string/release_year_desc" />
+    <item
+        android:id="@+id/menu_min_age_asc"
+        android:title="@string/min_age_asc" />
+    <item
+        android:id="@+id/menu_min_age_desc"
+        android:title="@string/min_age_desc" />
+</menu>

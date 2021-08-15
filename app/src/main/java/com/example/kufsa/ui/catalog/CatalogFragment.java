@@ -5,6 +5,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -30,14 +33,18 @@ public class CatalogFragment extends Fragment {
     private static final String TAG = "FirestoreSearchActivity";
     private static final CollectionReference gamesCollection =
             FirebaseFirestore.getInstance().collection("games");
-
-
+    Menu menu;
     private CatalogAdapter adapter;
     private FragmentGameCatalogBinding binding;
 
-
     public CatalogFragment() {
         super(R.layout.fragment_game_catalog);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
 
@@ -103,38 +110,67 @@ public class CatalogFragment extends Fragment {
                 if (s.toString().isEmpty()) {
                     Query query = gamesCollection
                             .orderBy("name");
-                    FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
-                            .setQuery(query, BoardGame.class)
-                            .setLifecycleOwner(getViewLifecycleOwner())
-                            .build();
-                    adapter.updateOptions(options);
+                    boardGameQueryFilterCall(query);
                 } else {
                     if (s.toString().equals(s.toString().toLowerCase())) {
                         Query query = gamesCollection.whereEqualTo("name_lowercase", s.toString()).orderBy("name_lowercase");
-                        FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
-                                .setQuery(query, BoardGame.class)
-                                .setLifecycleOwner(getViewLifecycleOwner())
-                                .build();
-                        adapter.updateOptions(options);
+                        boardGameQueryFilterCall(query);
                     } else if (s.toString().equals(s.toString().toUpperCase())) {
                         Query query = gamesCollection.whereEqualTo("name_uppercase", s.toString()).orderBy("name_uppercase");
-                        FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
-                                .setQuery(query, BoardGame.class)
-                                .setLifecycleOwner(getViewLifecycleOwner())
-                                .build();
-                        adapter.updateOptions(options);
+                        boardGameQueryFilterCall(query);
                     } else {
                         Query query = gamesCollection.whereEqualTo("name", s.toString()).orderBy("name");
-                        FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
-                                .setQuery(query, BoardGame.class)
-                                .setLifecycleOwner(getViewLifecycleOwner())
-                                .build();
-                        adapter.updateOptions(options);
+                        boardGameQueryFilterCall(query);
                     }
 
                 }
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.sort_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_aToZ) {// Sort from A to Z
+            boardGameQueryCall("name", Query.Direction.ASCENDING);
+        } else if (itemId == R.id.menu_ZtoA) {// Sort from Z to A
+            boardGameQueryCall("name", Query.Direction.DESCENDING);
+        } else if (itemId == R.id.menu_diff_asc) {// Sort the game's difficulty ascending
+            boardGameQueryCall("difficulty", Query.Direction.ASCENDING);
+        } else if (itemId == R.id.menu_diff_desc) {// Sort the game's difficulty descending
+            boardGameQueryCall("difficulty", Query.Direction.DESCENDING);
+        } else if (itemId == R.id.menu_play_time_asc) {// Sort the game's playing time ascending
+            boardGameQueryCall("playingTime", Query.Direction.ASCENDING);
+        } else if (itemId == R.id.menu_play_time_desc) {// Sort the game's playing time descending
+            boardGameQueryCall("playingTime", Query.Direction.DESCENDING);
+        } else if (itemId == R.id.menu_year_asc) {// Sort the game's release year ascending
+            boardGameQueryCall("releaseYear", Query.Direction.ASCENDING);
+        } else if (itemId == R.id.menu_year_desc) {// Sort the game's release year descending
+            boardGameQueryCall("releaseYear", Query.Direction.DESCENDING);
+        } else if (itemId == R.id.menu_min_age_asc) {// Sort the game's age requirement asecnding
+            boardGameQueryCall("minAge", Query.Direction.ASCENDING);
+        } else if (itemId == R.id.menu_min_age_desc) {/// Sort the game's age requirement descending
+            boardGameQueryCall("minAge", Query.Direction.DESCENDING);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void boardGameQueryCall(String field, Query.Direction direction) {
+        Query query = gamesCollection.orderBy(field, direction);
+        boardGameQueryFilterCall(query);
+    }
+
+    private void boardGameQueryFilterCall(Query query) {
+        FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
+                .setQuery(query, BoardGame.class)
+                .setLifecycleOwner(getViewLifecycleOwner())
+                .build();
+        adapter.updateOptions(options);
     }
 
 }
