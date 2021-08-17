@@ -66,6 +66,7 @@
     <string name="delete_account_title">Delete your account</string>
     <string name="delete_account_description">Click here to remove your account</string>
     <string name="account_deleted">Sadly for us, your account was successfully deleted!</string>
+    <string name="you_have_signed_in">You have signed out successfully, see you next time!</string>
 
     <!-- Report form preferences -->
     <string name="to">To</string>
@@ -73,6 +74,7 @@
     <string name="subject">Subject</string>
     <string name="message">Message</string>
     <string name="send_report_btn">Send Report</string>
+    <string name="mailto">\"mailto:\"</string>
 
     <!-- favorite Preferences -->
     <string name="favorite_icon_title">favorite</string>
@@ -87,11 +89,21 @@
     <string name="tell_others_what_you_think">Tell others what you think</string>
     <string name="write_a_review">Write a review</string>
     <string name="add_to_favorites_button">add to favorites</string>
+    <string name="users">users</string>
+    <string name="favorites">favorites</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="error_not_signed_in">Error: you are not signed in</string>
+    <string name="name">name</string>
+    <string name="img">img</string>
+    <string name="added_to_favorites">Added to favorites</string>
+    <string name="error_user_not_signed_in">Error: user is not signed in</string>
+
 
     <!-- description and misc -->
     <string name="game_photo">game photo</string>
 
-    <!-- Sign in preferences -->
+    <!-- Misc GUI strings -->
     <string name="sign_out">Sign Out</string>
     <string name="account_photo">Account Photo</string>
     <string name="hi">Hi, &#160;</string>
@@ -104,6 +116,8 @@
     <string name="nav_view">Navigation view</string>
     <string name="drawer_layout">Drawer layout</string>
     <string name="main_activity">Main Activity</string>
+
+    <!-- Sort menu Preferences -->
     <string name="min_age_desc">Minimal Age Desc.</string>
     <string name="min_age_asc">Minimal Age Asc.</string>
     <string name="release_year_desc">Release Year Desc.</string>
@@ -114,4 +128,5 @@
     <string name="diff_asc">Difficulty Asc.</string>
     <string name="nameZtoA"><![CDATA[Name Z->A]]></string>
     <string name="nameAtoZ"><![CDATA[Name A->Z]]></string>
+
 </resources>

@@ -16,7 +16,9 @@ import com.example.kufsa.databinding.FragmentGameDetailsTabsContainerBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-
+/**
+ * This fragment instantiates game details container
+ */
 public class GameDetailsTabsContainerFragment extends Fragment {
     //FirebaseAuth auth = FirebaseAuth.getInstance();
     //  FirebaseFirestore db = FirebaseFirestore.getInstance();

@@ -20,17 +20,28 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-
+/**
+ * This fragment instantiates the signed in fragment used in the app
+ */
 public class SignedInAccountFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String displayName;
     private FragmentSignedInAccountBinding binding;
 
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public SignedInAccountFragment() {
         super(R.layout.fragment_signed_in_account);
     }
 
 
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     * @return outermost view.
+     */
     @Nullable
 
     @Override
@@ -45,7 +56,11 @@ public class SignedInAccountFragment extends Fragment {
         setUpLogin(view);
     }
 
-    // Set up user account login
+    /**
+     * This method sets up the funcionality of all the buttons shown in the signed in page
+     *
+     * @param view the view used for entering login
+     */
     private void setUpLogin(View view) {
         if (auth.getCurrentUser() != null) {
             String helloText = getString(R.string.hi) + auth.getCurrentUser().getDisplayName();
@@ -55,7 +70,7 @@ public class SignedInAccountFragment extends Fragment {
                     .error(R.drawable.outline_account_circle_24)
                     .into(binding.profileImgView);
         } else {
-            Toast.makeText(requireContext(), "error: user is not signed in", Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), getString(R.string.error_user_not_signed_in), Toast.LENGTH_LONG).show();
         }
         binding.accountSettingsButton.setOnClickListener(THIS -> NavHostFragment.findNavController(this).navigate(R.id.action_SignedInAccountFragment_to_AccountSettingsFragment));
 
@@ -63,12 +78,15 @@ public class SignedInAccountFragment extends Fragment {
         binding.signOutButton.setOnClickListener(view1 -> AuthUI.getInstance()
                 .signOut(requireContext())
                 .addOnCompleteListener(task -> {
-                    Snackbar.make(requireView(), "You have signed out successfully, see you next time!", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(requireView(), getString(R.string.you_have_signed_in), Snackbar.LENGTH_LONG).show();
                     NavHostFragment.findNavController(this).navigate(SignedInAccountFragmentDirections.actionSignedInAccountFragmentToMyAccountFragment());
                 }));
         setUpDisplayNameInSidebar();
     }
 
+    /**
+     * This method makes sure the user's name will be display in the nav bar after logging in
+     */
     private void setUpDisplayNameInSidebar() {
         // set up display name in side bar
         NavigationView navView = binding.getRoot().getRootView().findViewById(R.id.nav_view);

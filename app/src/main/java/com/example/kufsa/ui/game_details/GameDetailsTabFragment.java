@@ -28,6 +28,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * This fragment instantiates the game details tab in the app.
+ */
 public class GameDetailsTabFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -38,6 +41,9 @@ public class GameDetailsTabFragment extends Fragment {
     private FragmentGameDetailsTabBinding binding;
     //Menu menu;
 
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public GameDetailsTabFragment() {
         super(R.layout.fragment_game_details_tab);
     }
@@ -50,6 +56,10 @@ public class GameDetailsTabFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * @param view               the view used.
+     * @param savedInstanceState the savedinstance used in this case.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -75,6 +85,9 @@ public class GameDetailsTabFragment extends Fragment {
         });
     }
 
+    /**
+     * This method sets up a favorite button that adds a game to a user's favorites list
+     */
     private void setFavoriteButton() {
         if (auth.getCurrentUser() != null) {
             DocumentReference favoriteGame = db.collection("users").document(Objects.requireNonNull(auth.getUid())).collection("favorites").document(gameID);
@@ -90,6 +103,9 @@ public class GameDetailsTabFragment extends Fragment {
         }
     }
 
+    /**
+     * This method sets The UI for the game's details, from the boardgame object.
+     */
     private void setUI(View view) {
         String description = "Description";
         String releaseYear = "Release Year: " + game.getReleaseYear();
@@ -99,6 +115,7 @@ public class GameDetailsTabFragment extends Fragment {
         String gameDetailsPlayingTime = "Playing time: " + game.getPlayingTime() + "+";
         String difficulty = "Difficulty: " + game.getDifficulty() + "/5";
 
+        // the info from our binding is used here and displayed
         binding.gameDetailsTitle.setText(game.getName());
         binding.gameDetailsDescriptionHeadline.setText(description);
         binding.gameDetailsDescription.setText(game.getDescription());
@@ -118,10 +135,13 @@ public class GameDetailsTabFragment extends Fragment {
         binding.detailsContainerLayout.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * This method sets up a favorite button 's option that to remove a game from a user's favorites list.
+     */
     private void removeFromFavorites() {
         if (auth.getCurrentUser() != null) {
             String userID = auth.getUid();
-            DocumentReference favoritesRef = db.collection("users").document(Objects.requireNonNull(userID)).collection("favorites").document(gameID);
+            DocumentReference favoritesRef = db.collection(getString(R.string.users)).document(Objects.requireNonNull(userID)).collection(getString(R.string.favorites)).document(gameID);
             favoritesRef.delete()
                     .addOnSuccessListener(unused -> {
                         isFavorite = false;
@@ -131,23 +151,26 @@ public class GameDetailsTabFragment extends Fragment {
                             binding.favoriteFabButton.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.grey)));
                         }
 
-                        Toast.makeText(requireContext(), "removed from favorites", Toast.LENGTH_LONG).show();
+                        Toast.makeText(requireContext(), getString(R.string.removed_from_favorites), Toast.LENGTH_LONG).show();
                     })
-                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show());
+                    .addOnFailureListener(e -> Toast.makeText(requireContext(), getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show());
         } else {
-            Toast.makeText(requireContext(), "error: you are not signed in", Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), getString(R.string.error_not_signed_in), Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * This method sets up a favorite button 's option that to remove a game from a user's favorites list.
+     */
     private void addToFavorites() {
         if (auth.getCurrentUser() != null) {
             String userID = auth.getUid();
-            DocumentReference favoritesRef = db.collection("users").document(Objects.requireNonNull(userID)).collection("favorites").document(game.getId());
+            DocumentReference favoritesRef = db.collection(getString(R.string.users)).document(Objects.requireNonNull(userID)).collection(getString(R.string.favorites)).document(game.getId());
             favoritesRef.get().addOnSuccessListener(documentSnapshot -> {
                 if (!documentSnapshot.exists()) {
                     Map<String, Object> favoriteGame = new HashMap<>();
-                    favoriteGame.put("name", game.getName());
-                    favoriteGame.put("img", game.getImg());
+                    favoriteGame.put(getString(R.string.name), game.getName());
+                    favoriteGame.put(getString(R.string.img), game.getImg());
                     favoritesRef.set(favoriteGame)
                             .addOnSuccessListener(unused -> {
                                 isFavorite = true;
@@ -155,9 +178,9 @@ public class GameDetailsTabFragment extends Fragment {
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                     binding.favoriteFabButton.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
                                 }
-                                Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_LONG).show();
+                                Toast.makeText(requireContext(), getString(R.string.added_to_favorites), Toast.LENGTH_LONG).show();
                             })
-                            .addOnFailureListener(e -> Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show());
+                            .addOnFailureListener(e -> Toast.makeText(requireContext(), getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show());
                 }
             });
         } else {

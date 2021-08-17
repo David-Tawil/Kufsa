@@ -16,23 +16,36 @@ import androidx.fragment.app.Fragment;
 import com.example.kufsa.R;
 import com.example.kufsa.databinding.FragmentSendReportBinding;
 
-
-
+/**
+ * Fragment that initializes the Send report page in the app.
+ */
 public class SendReportFragment extends Fragment {
 
     EditText etTo, etSubject, etMessage;
     Button btSend;
     private FragmentSendReportBinding binding;
 
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public SendReportFragment() {
         super(R.layout.fragment_send_report);
     }
 
+    /**
+     * This method creates the view.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     * @return outermost view.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +54,13 @@ public class SendReportFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * This method binds all buttons and fields so that they will create an email activity from the app user
+     * to an admin (in this case my email).
+     *
+     * @param view               the view we use for this fragment.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         etTo = binding.getRoot().findViewById(R.id.et_to);
@@ -49,9 +69,8 @@ public class SendReportFragment extends Fragment {
         btSend = binding.getRoot().findViewById(R.id.bt_Send);
 
         btSend.setOnClickListener(v -> {
-            // Insert all user content into the email about to be sent
             Intent intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("mailto:" + etTo.getText().toString()));
+                    Uri.parse(getString(R.string.mailto) + etTo.getText().toString()));
             intent.putExtra(Intent.EXTRA_SUBJECT, etSubject.getText().toString());
             intent.putExtra(Intent.EXTRA_TEXT, etMessage.getText().toString());
             startActivity(intent);

@@ -28,6 +28,9 @@ import java.util.Random;
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
+/**
+ * This fragment instantiates the game reviews tab in the app.
+ */
 public class GameReviewsTabFragment extends Fragment {
 
     RatingReviews ratingReviews;
@@ -47,14 +50,22 @@ public class GameReviewsTabFragment extends Fragment {
             minValue + new Random().nextInt(100 - minValue + 1),
             minValue + new Random().nextInt(100 - minValue + 1)
     };
-    private FragmentGameReviewsTabBinding binding;
     FirebaseAuth auth = FirebaseAuth.getInstance();
+    private FragmentGameReviewsTabBinding binding;
 
-
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public GameReviewsTabFragment() {
         super(R.layout.fragment_game_reviews_tab);
     }
 
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,6 +75,10 @@ public class GameReviewsTabFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * @param view               The view used, in this case account settings.
+     * @param savedInstanceState mapping for parcel values.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -78,13 +93,18 @@ public class GameReviewsTabFragment extends Fragment {
         binding.writeReviewButton.setOnClickListener(view1 -> showCustomDialog(view, 0));
     }
 
-
+    /**
+     * This method starts the ratings tab.
+     */
     @Override
     public void onStart() {
         super.onStart();
 
     }
 
+    /**
+     * This method instantiates the rating bars.
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -92,13 +112,22 @@ public class GameReviewsTabFragment extends Fragment {
 
     }
 
+    /**
+     * This method clears the reviews.
+     */
     @Override
     public void onPause() {
         super.onPause();
         ratingReviews.clearAll();
     }
 
-
+    /**
+     * /**
+     * This method Allows custom dialog for a user's review.
+     *
+     * @param view   the view used.
+     * @param rating the rating given by the user to the game
+     */
     private void showCustomDialog(View view, float rating) {
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before

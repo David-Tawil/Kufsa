@@ -22,6 +22,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavController;
 
+/**
+ * This fragment instantiates the main page of the app, including the navigation controller
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final CollectionReference gamesCollection =
@@ -55,11 +58,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    /**
+     * This method allows navigation with the app bar
+     */
     @Override
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 
+    /**
+     * This method makes sure the user's name will be display in the nav bar after logging in
+     */
     private void setUpDisplayNameInSidebar() {
         // set up display name in side bar
         NavigationView navView = findViewById(R.id.nav_view);
@@ -73,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
         navDisplayName.setText(displayName);
     }
 
+    /**
+     * This method remembers the user's preferences for dark mode from the last time he used the app.
+     */
     private void setUpDarkModeAtStart() {
         // Dark mode settings
         // Saving state of our app
