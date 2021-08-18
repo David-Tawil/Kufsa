@@ -16,17 +16,19 @@
         android:progressTint="#0f9d58"
         android:rating="4"
         android:stepSize="1"
-        app:layout_constraintStart_toStartOf="@+id/image_card_view_container"
-        app:layout_constraintTop_toBottomOf="@+id/image_card_view_container" />
+        app:layout_constraintStart_toStartOf="@+id/profile_img_view"
+        app:layout_constraintTop_toBottomOf="@+id/profile_img_view"
+        tools:targetApi="lollipop" />
 
 
     <TextView
+        android:id="@+id/user_name_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/image_card_view_container"
-        app:layout_constraintStart_toEndOf="@+id/image_card_view_container"
-        app:layout_constraintTop_toTopOf="@+id/image_card_view_container"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_img_view"
+        app:layout_constraintStart_toEndOf="@+id/profile_img_view"
+        app:layout_constraintTop_toTopOf="@+id/profile_img_view"
         tools:text="Israel Israeli" />
 
     <TextView
@@ -62,7 +64,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/review_content_text_view" />
 
-    <androidx.cardview.widget.CardView
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/profile_img_view"
+        android:layout_width="@dimen/spacing_xmlarge"
+        android:layout_height="@dimen/spacing_xmlarge"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:civ_border="false"
+        app:civ_shadow="true"
+        app:civ_shadow_radius="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/outline_account_circle_24" />
+
+
+    <!--<androidx.cardview.widget.CardView
         android:id="@+id/image_card_view_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,7 +98,7 @@
             android:contentDescription="@string/account_photo"
             android:scaleType="centerCrop"
             tools:src="@drawable/outline_account_circle_24" />
-    </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

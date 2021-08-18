@@ -114,4 +114,5 @@
     <string name="diff_asc">Difficulty Asc.</string>
     <string name="nameZtoA"><![CDATA[Name Z->A]]></string>
     <string name="nameAtoZ"><![CDATA[Name A->Z]]></string>
+    <string name="no_reviews_label">No reviews yet, be the first to review!</string>
 </resources>

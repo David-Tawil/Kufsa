@@ -67,7 +67,9 @@ public class GameDetailsTabsContainerFragment extends Fragment {
                         return new GameMarketplaceTabFragment();
                     }
                     case 2:
-                        return new GameReviewsTabFragment();
+                        Fragment reviewTabFragment = new GameReviewsTabFragment();
+                        reviewTabFragment.setArguments(bundle);
+                        return reviewTabFragment;
                 }
                 return new GameReviewsTabFragment();
             }
@@ -79,79 +81,5 @@ public class GameDetailsTabsContainerFragment extends Fragment {
         });
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> tab.setText(tabsText[position])).attach();
     }
-
-
-   /* @Override
-    public void onCreateOptionsMenu(@NonNull @NotNull Menu menu, @NonNull @NotNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        this.menu = menu;
-        inflater.inflate(R.menu.game_details_menu, menu);
-        CheckBox checkBox = (CheckBox) menu.findItem(R.id.favorite_menu_item).getActionView();
-        checkBox.setButtonDrawable(R.drawable.favorite_checkbox);//set the icon
-
-
-        checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
-            if (!b) {
-                removeFromFavorites();
-            } else {
-                addToFavorites();
-            }
-        });
-
-        if (auth.getCurrentUser() != null) {
-            DocumentReference favoriteGame = db.collection("users").document(auth.getUid()).collection("favorites").document(gameID);
-            favoriteGame.get().addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) checkBox.setChecked(true);
-            });
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull @NotNull MenuItem item) {
-        if (item.getItemId() == R.id.favorite_menu_item) {
-            //addToFavorite();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void removeFromFavorites() {
-        if (auth.getCurrentUser() != null) {
-            String userID = auth.getUid();
-            DocumentReference favoritesRef = db.collection("users").document(userID).collection("favorites").document(gameID);
-            favoritesRef.delete()
-                    .addOnSuccessListener(unused -> {
-
-                        Toast.makeText(requireContext(), "removed from favorites", Toast.LENGTH_LONG).show();
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show();
-                    });
-        } else {
-            Toast.makeText(requireContext(), "please sign in first", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void addToFavorites() {
-        if (auth.getCurrentUser() != null) {
-            String userID = auth.getUid();
-            DocumentReference favoritesRef = db.collection("users").document(userID).collection("favorites").document(gameID);
-            favoritesRef.get().addOnSuccessListener(documentSnapshot -> {
-                if (!documentSnapshot.exists()) {
-                    Map<String, Object> favoriteGame = new HashMap<>();
-                    favoriteGame.put("name", gameName);
-                    favoriteGame.put("img", gameID);
-                    favoritesRef.set(favoriteGame)
-                            .addOnSuccessListener(unused -> {
-                                Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_LONG).show();
-                            })
-                            .addOnFailureListener(e -> {
-                                Toast.makeText(requireContext(), "something went wrong", Toast.LENGTH_LONG).show();
-                            });
-                }
-            });
-        } else {
-            Toast.makeText(requireContext(), "please sign in first", Toast.LENGTH_LONG).show();
-        }*/
 }
 

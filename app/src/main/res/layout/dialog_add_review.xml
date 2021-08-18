@@ -20,6 +20,23 @@
              &lt;!&ndash;   app:civ_shadow="true"
                 app:civ_shadow_radius="0dp"
                 app:civ_border="false" &ndash;&gt;-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/image_card_view_container"
+            android:layout_width="@dimen/spacing_xmlarge"
+            android:layout_height="@dimen/spacing_xmlarge"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintDimensionRatio="1:1">
+
+            <ImageView
+                android:id="@+id/profile_img_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/account_photo"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/outline_account_circle_24" />
+        </androidx.cardview.widget.CardView>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -41,21 +58,7 @@
             android:layout_width="@dimen/spacing_large"
             android:layout_height="0dp" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/image_card_view_container"
-            android:layout_width="@dimen/spacing_xmlarge"
-            android:layout_height="@dimen/spacing_xmlarge"
-            app:cardCornerRadius="100dp"
-            app:layout_constraintDimensionRatio="1:1">
 
-            <ImageView
-                android:id="@+id/profile_img_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/account_photo"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/outline_account_circle_24" />
-        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
@@ -75,7 +78,7 @@
             android:isIndicator="false"
             android:numStars="5"
             android:rating="3"
-            android:stepSize="1"
+            android:stepSize="0.01"
             android:theme="@style/Yellow.AppCompatRatingBar" />
 
     </LinearLayout>
