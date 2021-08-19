@@ -17,6 +17,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+/**
+ * This fragment implements a favorites adapter. Similar to catalog adapter, buy only favorites games
+ */
 public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, FavoritesAdapter.BoardGameHolder> {
 
     private OnItemClickListener listener;
@@ -25,6 +28,11 @@ public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, Favori
         super(options);
     }
 
+    /**
+     * @param holder   holder of the recycler view.
+     * @param position view's position.
+     * @param model    board game object.
+     */
     @Override
     protected void onBindViewHolder(@NonNull BoardGameHolder holder, int position, @NonNull BoardGame model) {
         holder.binding.textViewGameName.setText(model.getName());
@@ -44,14 +52,25 @@ public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, Favori
         return new BoardGameHolder(v);
     }
 
+    /**
+     * Set up a listener for clicking any item in the view
+     *
+     * @param listener the listener we use for cliking on item
+     */
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Activate the listener when item in the view is clicked
+     */
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
+    /**
+     * Define the boardgame holder for a favorites recyclerview
+     */
     class BoardGameHolder extends RecyclerView.ViewHolder {
         ItemGameInFavoriteListBinding binding;
 

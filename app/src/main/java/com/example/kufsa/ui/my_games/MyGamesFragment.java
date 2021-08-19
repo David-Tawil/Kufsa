@@ -26,7 +26,9 @@ import com.google.firebase.firestore.Query;
 
 import java.util.Objects;
 
-
+/**
+ * This fragment instantiates the my games details page in the app.
+ */
 public class MyGamesFragment extends Fragment {
     private static final String TAG = "MyGamesFragment";
 
@@ -36,7 +38,9 @@ public class MyGamesFragment extends Fragment {
     private FavoritesAdapter adapter;
     private FragmentMyGamesBinding binding;
 
-
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public MyGamesFragment() {
         super(R.layout.fragment_my_games);
     }
@@ -53,7 +57,9 @@ public class MyGamesFragment extends Fragment {
         return binding.getRoot();
     }
 
-
+    /**
+     * Set up the recyclerview for favorite games
+     */
     private void setUpRecyclerView() {
 
         if (auth.getCurrentUser() != null) {
@@ -73,13 +79,18 @@ public class MyGamesFragment extends Fragment {
                 NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsTabsContainerFragment(id, Objects.requireNonNull(gameName)));
 
             });
-
+            // Recycler view preferences
             binding.favoritesRecyclerView.setHasFixedSize(true);
             binding.favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
             binding.favoritesRecyclerView.setAdapter(adapter);
         }
     }
 
+    /**
+     * This method sets up a working search bar to find a game by typing it's name and returning a match
+     * We use firebase API to query the DB, build a list of games that match said query, then build a recycler view from it
+     * as the search's results.
+     */
     private void setUpSearchBar() {
 
         // Search box

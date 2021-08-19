@@ -10,4 +10,9 @@
     <string name="diff_asc">Difficulty Asc.</string>
     <string name="nameZtoA"><![CDATA[Name Z->A]]></string>
     <string name="nameAtoZ"><![CDATA[Name A->Z]]></string>
+    <string name="mailto">\"mailto:\"</string>
+    <string name="users">users</string>
+    <string name="name">name</string>
+    <string name="img">img</string>
+    <string name="added_to_favorites">Added to favorites</string>
 </resources>

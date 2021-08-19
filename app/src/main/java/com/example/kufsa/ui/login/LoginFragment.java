@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This fragment instantiates the login fragment used in the app
+ */
 public class LoginFragment extends Fragment {
 
     // Choose an arbitrary request code value
@@ -35,12 +38,20 @@ public class LoginFragment extends Fragment {
     private FragmentLoginBinding binding;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public LoginFragment() {
         super(R.layout.fragment_login);
     }
 
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Nullable
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         auth = FirebaseAuth.getInstance();
@@ -58,6 +69,12 @@ public class LoginFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * /**
+     *
+     * @param view               The view used.
+     * @param savedInstanceState mapping for parcel values.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -73,6 +90,9 @@ public class LoginFragment extends Fragment {
         setUpDisplayNameInSidebar();
     }
 
+    /**
+     * This method makes sure the user's name will be display in the nav bar after logging in
+     */
     private void setUpDisplayNameInSidebar() {
         // set up display name in side bar
         NavigationView navView = binding.getRoot().getRootView().findViewById(R.id.nav_view);

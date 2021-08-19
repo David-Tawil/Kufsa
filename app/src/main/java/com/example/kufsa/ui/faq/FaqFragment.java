@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.kufsa.R;
 
-
+/**
+ * This Fragment creates the app's page of Frequently asked questions by instantiating the created XML layout.
+ */
 public class FaqFragment extends Fragment {
     @Nullable
     @Override

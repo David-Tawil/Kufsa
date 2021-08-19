@@ -37,6 +37,9 @@ public class CatalogFragment extends Fragment {
     private CatalogAdapter adapter;
     private FragmentGameCatalogBinding binding;
 
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public CatalogFragment() {
         super(R.layout.fragment_game_catalog);
     }
@@ -47,17 +50,25 @@ public class CatalogFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     * @return outermost view.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentGameCatalogBinding.inflate(inflater, container, false);
+        // Set up the page' functionality
         setUpRecyclerView();
         setUpSearchBar();
         return binding.getRoot();
     }
 
-
+    /**
+     * This method creates the full recyclerview - the catalog of games.
+     */
     private void setUpRecyclerView() {
         Query query =
                 gamesCollection.orderBy("name");
@@ -79,6 +90,7 @@ public class CatalogFragment extends Fragment {
 
         });
 
+        // various settings for the recycler view's layout
         binding.catalogRecyclerView.setHasFixedSize(true);
         binding.catalogRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.catalogRecyclerView.setAdapter(adapter);
@@ -87,6 +99,11 @@ public class CatalogFragment extends Fragment {
 
     }
 
+    /**
+     * This method sets up a working search bar to find a game by typing it's name and returning a match
+     * We use firebase API to query the DB, build a list of games that match said query, then build a recycler view from it
+     * as the search's results.
+     */
     private void setUpSearchBar() {
 
         // Search box
@@ -103,7 +120,7 @@ public class CatalogFragment extends Fragment {
 
             }
 
-            // query that draws from the database and shows the results of searching in the search box
+            // Query that draws from the database and shows the results of searching in the search box
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "SearchBox has changed to: " + s.toString());
@@ -112,6 +129,7 @@ public class CatalogFragment extends Fragment {
                             .orderBy("name");
                     boardGameQueryFilterCall(query);
                 } else {
+                    // Handling case sensitivity queries
                     if (s.toString().equals(s.toString().toLowerCase())) {
                         Query query = gamesCollection.whereEqualTo("name_lowercase", s.toString()).orderBy("name_lowercase");
                         boardGameQueryFilterCall(query);
@@ -128,11 +146,22 @@ public class CatalogFragment extends Fragment {
         });
     }
 
+    /**
+     * @param menu     Object that initializes the sort menu
+     * @param inflater instantiates menu items as a menu.
+     */
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.sort_menu, menu);
     }
 
+    /**
+     * This method creates the sort menu and it's conditions
+     * We call a query to the DB that sorts the catalog, then creates a sorted view
+     *
+     * @param item category item to sort the catalog by
+     * @return the item's results
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -160,11 +189,20 @@ public class CatalogFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * @param field     category to sort the catalog as
+     * @param direction ascending or descending - which way to sort.
+     */
     private void boardGameQueryCall(String field, Query.Direction direction) {
         Query query = gamesCollection.orderBy(field, direction);
         boardGameQueryFilterCall(query);
     }
 
+    /**
+     * This method recieves a query, then build the recyclerview with the query's results.
+     *
+     * @param query conditional query to sort the DB by
+     */
     private void boardGameQueryFilterCall(Query query) {
         FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                 .setQuery(query, BoardGame.class)

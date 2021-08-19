@@ -23,19 +23,31 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-
+/**
+ * Fragment that initializes an account settings page in the app.
+ */
 public class AccountSettingsFragment extends Fragment {
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String email = user != null ? user.getEmail() : null;
-    // creating an auth listener for our Firebase auth
+    // Creating an auth listener for our Firebase auth
     FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user = auth.getCurrentUser();
+    // A user's email is retreived from firebase, otherwise empty
+    String email = user != null ? user.getEmail() : null;
     private FragmentAccountSettingsBinding binding;
 
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public AccountSettingsFragment() {
         super(R.layout.fragment_account_settings);
     }
 
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState mapping for parcel values.
+     * @return outermost view.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,35 +55,47 @@ public class AccountSettingsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * @param view               The view used, in this case account settings.
+     * @param savedInstanceState mapping for parcel values.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // Setting up all the page's functionality
         setUpPasswordReset();
         setUpDarkMode();
         setUpDeleteAccount();
         setUpReport();
     }
-        //Objects.requireNonNull(auth.getCurrentUser()).updatePassword("1234");
 
+    /**
+     * This method sets up a password reset button.
+     * The button will use firebase API to send a password reset mail
+     */
     private void setUpPasswordReset() {
         // Reset password settings
-        Objects.requireNonNull(auth.getCurrentUser()).updatePassword("1234");
-        binding.resetPasswordButton.setOnClickListener(view1 -> FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+        Objects.requireNonNull(user).updatePassword("1234");
+        binding.resetPasswordButton.setOnClickListener(view1 -> auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
                     // Updating password in case you logged in by gmail but don't have a password...then the reset will work
-                    if (auth.getCurrentUser().getPhoneNumber() != "") {
+
+                    if (!(task.isSuccessful()) && (auth.getCurrentUser().getPhoneNumber() != "")) {
                         Toast.makeText(getActivity(), getString(R.string.error_login_by_phone), Toast.LENGTH_SHORT).show();
+                    }
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getActivity(), getString(R.string.password_reset_email_sent), Toast.LENGTH_SHORT).show();
                     } else {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getActivity(), getString(R.string.password_reset_email_sent), Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(requireContext(), Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                        }
+                        Toast.makeText(requireContext(), Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_LONG).show();
                     }
                 }));
 
     }
 
+    /**
+     * This method sets up a button that toggles light and dark mode for the app's design.
+     * We use shared preferences and appcompat API to switch between set colors and preferences.
+     */
     private void setUpDarkMode() {
         // Dark mode settings
         // Saving state of our app
@@ -134,6 +158,10 @@ public class AccountSettingsFragment extends Fragment {
         });
     }
 
+    /**
+     * This method sets up a button that deletes a user's account from the app and firebase DB.
+     * We use Firebase API To simply delete the user from the DB.
+     */
     private void setUpDeleteAccount() {
         //report form button features
         binding.deleteButton.setOnClickListener(view12 -> {
@@ -150,7 +178,10 @@ public class AccountSettingsFragment extends Fragment {
 
     }
 
-
+    /**
+     * This method sets up button that switches to a complaint report.
+     * The button will simply switch to the SendReportFragment.
+     */
     private void setUpReport() {
         //report form button features
         binding.reportButton.setOnClickListener(view12 -> {
