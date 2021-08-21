@@ -37,6 +37,7 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
      * @param position view's position.
      * @param model    board game object.
      */
+
     @Override
     protected void onBindViewHolder(@NonNull BoardGameHolder holder, int position, @NonNull BoardGame model) {
         holder.binding.textViewGameName.setText(model.getName());

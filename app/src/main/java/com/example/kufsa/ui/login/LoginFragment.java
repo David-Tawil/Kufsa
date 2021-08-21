@@ -156,6 +156,9 @@ public class LoginFragment extends Fragment {
         };
     }
 
+    /**
+     * This method calls the listener method on app resume
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -164,6 +167,9 @@ public class LoginFragment extends Fragment {
         auth.addAuthStateListener(mAuthStateListener);
     }
 
+    /**
+     * This method removes the listener method on app resume
+     */
     @Override
     public void onPause() {
         super.onPause();

@@ -30,12 +30,20 @@ public class GameDetailsTabsContainerFragment extends Fragment {
     FragmentGameDetailsTabsContainerBinding biding;
     ViewPager2 viewPager;
 
-
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public GameDetailsTabsContainerFragment() {
         super(R.layout.fragment_game_details_tabs_container);
     }
 
 
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Nullable
 
     @Override
@@ -47,6 +55,10 @@ public class GameDetailsTabsContainerFragment extends Fragment {
         return biding.getRoot();
     }
 
+    /**
+     * @param view               the view used.
+     * @param savedInstanceState the savedinstance used in this case.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
