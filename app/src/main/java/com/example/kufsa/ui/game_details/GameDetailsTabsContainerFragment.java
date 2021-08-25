@@ -66,7 +66,9 @@ public class GameDetailsTabsContainerFragment extends Fragment {
                         detailsTabFragment.setArguments(bundle);
                         return detailsTabFragment;
                     case 1: {
-                        return new GameMarketplaceTabFragment();
+                        Fragment marketTabFragment = new GameMarketplaceTabFragment();
+                        marketTabFragment.setArguments(bundle);
+                        return marketTabFragment;
                     }
                     case 2:
                         Fragment reviewTabFragment = new GameReviewsTabFragment();

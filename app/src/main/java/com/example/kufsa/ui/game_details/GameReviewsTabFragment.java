@@ -25,6 +25,8 @@ import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
 import com.example.kufsa.data.Review;
 import com.example.kufsa.databinding.FragmentGameReviewsTabBinding;
+import com.example.kufsa.ui.login.LoginFragment;
+import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -77,6 +79,7 @@ public class GameReviewsTabFragment extends Fragment {
         ratingReviews = binding.ratingReviews;
         materialRatingBar = binding.bigRatingBar;
         setUpRecyclerView();
+
         return binding.getRoot();
     }
 
@@ -90,8 +93,6 @@ public class GameReviewsTabFragment extends Fragment {
                 .setLifecycleOwner(this.getViewLifecycleOwner())
                 .build();
         adapter = new ReviewsAdapter(options);
-
-        // binding.reviewsRecyclerView.setHasFixedSize();
         binding.reviewsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.reviewsRecyclerView.setAdapter(adapter);
     }
@@ -100,7 +101,7 @@ public class GameReviewsTabFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ViewGroup viewGroup = (ViewGroup) binding.gameReviewsLayout;
+        ViewGroup viewGroup = binding.gameReviewsLayout;
         viewGroup.getLayoutTransition().setAnimateParentHierarchy(false);
 
         materialRatingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
@@ -178,6 +179,18 @@ public class GameReviewsTabFragment extends Fragment {
 
 
     private void showCustomDialog(View view, float rating) {
+        if (auth.getCurrentUser() == null) {
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(LoginFragment.providers)
+                            .setLogo(R.drawable.logo)
+                            .setTheme(R.style.Theme_purple_firebase)
+                            .build(),
+                    LoginFragment.RC_SIGN_IN);
+            return;
+        }
+
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_add_review);
@@ -192,7 +205,7 @@ public class GameReviewsTabFragment extends Fragment {
                 .load(user.getPhotoUrl())
                 .error(R.drawable.outline_account_circle_24)
                 .into((ImageView) dialog.findViewById(R.id.profile_img_view));
-        TextView userName = (TextView) dialog.findViewById(R.id.user_name);
+        TextView userName = dialog.findViewById(R.id.user_name);
         String userNameTxt = user.getDisplayName() != null ? !user.getDisplayName().isEmpty() ? user.getDisplayName() : "anonymous" : "anonymous";
         userName.setText(userNameTxt);
         final EditText et_post = dialog.findViewById(R.id.et_post);

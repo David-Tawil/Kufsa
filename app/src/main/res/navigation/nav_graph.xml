@@ -36,6 +36,9 @@
         <argument
             android:name="GameTitle"
             app:argType="string" />
+        <action
+            android:id="@+id/action_gameDetailsTabsContainerFragment_to_dialogPublishNewListingFragment"
+            app:destination="@id/dialogPublishNewListingFragment" />
     </fragment>
     <fragment
         android:id="@+id/SignedInAccountFragment"
@@ -51,7 +54,11 @@
         <action
             android:id="@+id/action_SignedInAccountFragment_to_AccountSettingsFragment"
             app:destination="@id/account_setting_fragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left"
             app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/account_setting_fragment" />
     </fragment>
     <fragment
@@ -85,6 +92,10 @@
             app:destination="@id/marketplace_fragment" />
         <action
             android:id="@+id/action_AccountSettingsFragment_to_SendReportFragment"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
             app:destination="@id/send_report_fragment" />
     </fragment>
 
@@ -95,5 +106,13 @@
         tools:layout="@layout/fragment_send_report">
 
     </fragment>
+    <dialog
+        android:id="@+id/dialogPublishNewListingFragment"
+        android:name="com.example.kufsa.ui.game_details.DialogPublishNewListingFragment"
+        android:label="DialogPublishNewListingFragment">
+        <argument
+            android:name="gameID"
+            app:argType="string" />
+    </dialog>
 
 </navigation>

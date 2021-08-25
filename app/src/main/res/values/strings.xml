@@ -129,4 +129,23 @@
     <string name="nameZtoA"><![CDATA[Name Z->A]]></string>
     <string name="nameAtoZ"><![CDATA[Name A->Z]]></string>
     <string name="no_reviews_label">No reviews yet, be the first to review!</string>
+
+    <string-array name="trade_type_option">
+        <item>Sell</item>
+        <item>Rent</item>
+        <item>Exchange</item>
+    </string-array>
+
+    <string-array name="game_condition_option">
+        <item>New</item>
+        <item>Like New</item>
+        <item>Very Good</item>
+        <item>Good</item>
+        <item>Acceptable</item>
+    </string-array>
+    <string-array name="period_option">
+        <item>Per Day</item>
+        <item>Per Week</item>
+        <item>Per Month</item>
+    </string-array>
 </resources>

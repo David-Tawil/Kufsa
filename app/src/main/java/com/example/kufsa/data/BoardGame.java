@@ -34,10 +34,11 @@ public class BoardGame implements Parcelable {
     private int totalThreeStar;
     private int totalFourStar;
     private int totalFiveStar;
+    private String id;
+
 
     public BoardGame() {// Needed for Firebase
     }
-
 
     /**
      * Board game constructor
@@ -107,8 +108,9 @@ public class BoardGame implements Parcelable {
         return id;
     }
 
-
-    private String id;
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getImg() {
         return img;
@@ -172,10 +174,6 @@ public class BoardGame implements Parcelable {
 
     public void setMinAge(int minAge) {
         this.minAge = minAge;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
