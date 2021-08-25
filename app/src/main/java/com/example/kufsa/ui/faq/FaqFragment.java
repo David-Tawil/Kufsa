@@ -15,6 +15,13 @@ import com.example.kufsa.R;
  * This Fragment creates the app's page of Frequently asked questions by instantiating the created XML layout.
  */
 public class FaqFragment extends Fragment {
+
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

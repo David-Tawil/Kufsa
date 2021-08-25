@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.kufsa.R;
 import com.example.kufsa.databinding.FragmentSendReportBinding;
 
+
 /**
  * Fragment that initializes the Send report page in the app.
  */
@@ -69,8 +70,9 @@ public class SendReportFragment extends Fragment {
         btSend = binding.getRoot().findViewById(R.id.bt_Send);
 
         btSend.setOnClickListener(v -> {
+            // Insert all user content into the email about to be sent
             Intent intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(getString(R.string.mailto) + etTo.getText().toString()));
+                    Uri.parse("mailto:" + etTo.getText().toString()));
             intent.putExtra(Intent.EXTRA_SUBJECT, etSubject.getText().toString());
             intent.putExtra(Intent.EXTRA_TEXT, etMessage.getText().toString());
             startActivity(intent);

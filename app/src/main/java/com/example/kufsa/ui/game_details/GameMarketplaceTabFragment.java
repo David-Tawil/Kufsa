@@ -35,10 +35,19 @@ public class GameMarketplaceTabFragment extends Fragment {
     MarketAdapter adapter;
 
 
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public GameMarketplaceTabFragment() {
         super(R.layout.fragment_game_marketplace_tab);
     }
 
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

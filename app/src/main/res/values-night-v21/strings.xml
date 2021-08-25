@@ -15,4 +15,7 @@
     <string name="name">name</string>
     <string name="img">img</string>
     <string name="added_to_favorites">Added to favorites</string>
+    <string name="submit">SUBMIT</string>
+    <string name="cancel">CANCEL</string>
+    <string name="david_park">David Park</string>
 </resources>

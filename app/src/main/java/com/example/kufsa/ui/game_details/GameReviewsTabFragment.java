@@ -39,9 +39,13 @@ import com.taufiqrahman.reviewratings.RatingReviews;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Date;
+import java.util.Objects;
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
+/**
+ * This fragment instantiates the review fragment for each game
+ */
 public class GameReviewsTabFragment extends Fragment {
 
     RatingReviews ratingReviews;
@@ -55,8 +59,6 @@ public class GameReviewsTabFragment extends Fragment {
     };
     //int minValue = 30;
     int[] raters = new int[]{0, 0, 0, 0, 0};
-
-    private FragmentGameReviewsTabBinding binding;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -64,12 +66,21 @@ public class GameReviewsTabFragment extends Fragment {
     ReviewsAdapter adapter;
     String gameID;
     BoardGame game;
+    private FragmentGameReviewsTabBinding binding;
 
-
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public GameReviewsTabFragment() {
         super(R.layout.fragment_game_reviews_tab);
     }
 
+    /**
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,6 +94,9 @@ public class GameReviewsTabFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * This method creates the full recyclerview - the catalog of games.
+     */
     private void setUpRecyclerView() {
         Query query =
                 gameRef.collection("reviews").orderBy("date", Query.Direction.DESCENDING);
@@ -97,6 +111,12 @@ public class GameReviewsTabFragment extends Fragment {
         binding.reviewsRecyclerView.setAdapter(adapter);
     }
 
+    /**
+     * This method binds all buttons and fields
+     *
+     * @param view               the view we use for this fragment.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -114,7 +134,9 @@ public class GameReviewsTabFragment extends Fragment {
         binding.writeReviewButton.setOnClickListener(view1 -> showCustomDialog(view, 0));
     }
 
-
+    /**
+     * This method sets up the listening and starts all review functions
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -132,7 +154,9 @@ public class GameReviewsTabFragment extends Fragment {
         adapter.startListening();
     }
 
-
+    /**
+     * This method generates the rating bars
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -140,18 +164,27 @@ public class GameReviewsTabFragment extends Fragment {
 
     }
 
+    /**
+     * This method removes all retingrview objects
+     */
     @Override
     public void onPause() {
         super.onPause();
         ratingReviews.clearAll();
     }
 
+    /**
+     * This method stops the listening
+     */
     @Override
     public void onStop() {
         super.onStop();
         adapter.stopListening();
     }
 
+    /**
+     * This method sets up the proper GUI for the review tab
+     */
     private void setUi() {
         if (game.getAverageReviewScore() == 0) {
             return;
@@ -168,6 +201,9 @@ public class GameReviewsTabFragment extends Fragment {
         binding.noReviewsLabel.setVisibility(View.GONE);
     }
 
+    /**
+     * This method sets up the reviews bar
+     */
     private void setReviewsBar() {
         float totalReviews = game.getTotalReviews();
         if (totalReviews != 0)
@@ -177,7 +213,9 @@ public class GameReviewsTabFragment extends Fragment {
 
     }
 
-
+    /**
+     * This method sets up the custom review window for the user
+     */
     private void showCustomDialog(View view, float rating) {
         if (auth.getCurrentUser() == null) {
             startActivityForResult(
@@ -211,12 +249,7 @@ public class GameReviewsTabFragment extends Fragment {
         final EditText et_post = dialog.findViewById(R.id.et_post);
         final MaterialRatingBar rating_bar = dialog.findViewById(R.id.rating_bar);
         rating_bar.setRating(rating);
-        dialog.findViewById(R.id.bt_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        dialog.findViewById(R.id.bt_cancel).setOnClickListener(v -> dialog.dismiss());
         Button b = dialog.findViewById(R.id.bt_submit);
 
         rating_bar.setOnRatingBarChangeListener((ratingBar, rating2, fromUser) -> {
@@ -239,11 +272,14 @@ public class GameReviewsTabFragment extends Fragment {
         dialog.getWindow().setAttributes(lp);
     }
 
+    /**
+     * This method sets up the game's statistics
+     */
     private void setGameStatistics(int stars, Review review) {
         db.collection("games").document(gameID).collection("reviews").document(user.getUid())
                 .get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
-                int oldStars = documentSnapshot.getDouble("starNum").intValue();
+                int oldStars = Objects.requireNonNull(documentSnapshot.getDouble("starNum")).intValue();
                 removeFromTotalStars(oldStars);
                 float averageExcluding;
                 if ((game.getTotalReviews() - 1) == 0)
@@ -265,6 +301,9 @@ public class GameReviewsTabFragment extends Fragment {
         });
     }
 
+    /**
+     * This method removes review stars in the DB
+     */
     private void removeFromTotalStars(int oldStars) {
         switch (oldStars) {
             case 1:
@@ -285,6 +324,9 @@ public class GameReviewsTabFragment extends Fragment {
         }
     }
 
+    /**
+     * This method adds to stars in the DB
+     */
     private void addToTotalStars(int stars) {
         switch (stars) {
             case 1:

@@ -129,6 +129,9 @@
     <string name="nameZtoA"><![CDATA[Name Z->A]]></string>
     <string name="nameAtoZ"><![CDATA[Name A->Z]]></string>
     <string name="no_reviews_label">No reviews yet, be the first to review!</string>
+    <string name="submit">SUBMIT</string>
+    <string name="cancel">CANCEL</string>
+    <string name="david_park">David Park</string>
 
     <string-array name="trade_type_option">
         <item>Sell</item>

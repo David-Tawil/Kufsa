@@ -111,16 +111,30 @@ public class CatalogFragment extends Fragment {
         EditText searchBox = binding.getRoot().getRootView().findViewById(R.id.catalog_searchBox);
 
         searchBox.addTextChangedListener(new TextWatcher() {
+            /**
+             * @param s     text input
+             * @param start input at start
+             * @param count count of chars entered
+             * @param after count of chars after input
+             */
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
+            /**
+             * @param s     text input
+             * @param start input at start
+             * @param count count of chars entered
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
 
+            /**
+             * @param s text input
+             */
             // Query that draws from the database and shows the results of searching in the search box
             @Override
             public void afterTextChanged(Editable s) {

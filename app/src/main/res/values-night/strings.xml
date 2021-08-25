@@ -128,5 +128,8 @@
     <string name="diff_asc">Difficulty Asc.</string>
     <string name="nameZtoA"><![CDATA[Name Z->A]]></string>
     <string name="nameAtoZ"><![CDATA[Name A->Z]]></string>
+    <string name="submit">SUBMIT</string>
+    <string name="cancel">CANCEL</string>
+    <string name="david_park">David Park</string>
 
 </resources>
