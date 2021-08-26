@@ -14,7 +14,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.kufsa.ui.catalog.CatalogAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -23,7 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavController;
 
 /**
- * This fragment instantiates the main page of the app, including the navigation controller
+ * This fragment defines the main page of the app, including the navigation controller
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -32,9 +31,13 @@ public class MainActivity extends AppCompatActivity {
     String displayName;
     FirebaseAuth auth;
     private AppBarConfiguration appBarConfiguration;
-    private CatalogAdapter adapter;
     private NavController navController;
 
+    /**
+     * This method handles the graphics part of the fragment
+     *
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUpDisplayNameInSidebar() {
         // set up display name in side bar
         NavigationView navView = findViewById(R.id.nav_view);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         View headerView = navView.getHeaderView(0);
         TextView navDisplayName = headerView.findViewById(R.id.EmailView);
         if (auth.getCurrentUser() == null)

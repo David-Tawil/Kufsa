@@ -43,7 +43,6 @@ public class SignedInAccountFragment extends Fragment {
      * @return outermost view.
      */
     @Nullable
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentSignedInAccountBinding.inflate(inflater, container, false);

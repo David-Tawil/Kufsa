@@ -44,7 +44,7 @@ import java.util.Objects;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 /**
- * This fragment instantiates the review fragment for each game
+ * This fragment creates the review fragment for each game
  */
 public class GameReviewsTabFragment extends Fragment {
 
@@ -215,6 +215,9 @@ public class GameReviewsTabFragment extends Fragment {
 
     /**
      * This method sets up the custom review window for the user
+     *
+     * @param view   the view being used
+     * @param rating the rating assigned
      */
     private void showCustomDialog(View view, float rating) {
         if (auth.getCurrentUser() == null) {
@@ -274,6 +277,9 @@ public class GameReviewsTabFragment extends Fragment {
 
     /**
      * This method sets up the game's statistics
+     *
+     * @param stars  the amount of stars given in a review
+     * @param review the review object
      */
     private void setGameStatistics(int stars, Review review) {
         db.collection("games").document(gameID).collection("reviews").document(user.getUid())
@@ -303,6 +309,8 @@ public class GameReviewsTabFragment extends Fragment {
 
     /**
      * This method removes review stars in the DB
+     *
+     * @param oldStars the original amount of stars
      */
     private void removeFromTotalStars(int oldStars) {
         switch (oldStars) {
@@ -326,6 +334,8 @@ public class GameReviewsTabFragment extends Fragment {
 
     /**
      * This method adds to stars in the DB
+     *
+     * @param stars the original amount of stars
      */
     private void addToTotalStars(int stars) {
         switch (stars) {

@@ -37,7 +37,6 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
      * @param position view's position.
      * @param model    board game object.
      */
-
     @Override
     protected void onBindViewHolder(@NonNull BoardGameHolder holder, int position, @NonNull BoardGame model) {
         holder.binding.textViewGameName.setText(model.getName());
@@ -84,6 +83,11 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
     class BoardGameHolder extends RecyclerView.ViewHolder {
         ItemGameInCatalogBinding binding;
 
+        /**
+         * Constructor for boardgame holder
+         *
+         * @param itemView the item view being used
+         */
         public BoardGameHolder(View itemView) {
             super(itemView);
             binding = ItemGameInCatalogBinding.bind(itemView);

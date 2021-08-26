@@ -19,12 +19,48 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
+/**
+ * This class is an adapter for the market itself
+ */
 public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdapter.AdHolder> {
 
     public MarketAdapter(@NonNull FirestoreRecyclerOptions<MarketAd> options) {
         super(options);
     }
 
+    /**
+     * This class defines the toggle arrow foe the view
+     *
+     * @param show This is the boolean where the arrow shown
+     * @param view the view being used
+     * @return true if arrow is shown, false otherwise
+     */
+    public static boolean toggleArrow(boolean show, View view) {
+        return toggleArrow(show, view, true);
+    }
+
+    /**
+     * This class defines the toggle arrow foe the view
+     *
+     * @param show This is the boolean where the arrow shown
+     * @param view the view being used
+     * @return true if arrow is shown, false otherwise
+     */
+    public static boolean toggleArrow(boolean show, View view, boolean delay) {
+        if (show) {
+            view.animate().setDuration(delay ? 200 : 0).rotation(180);
+            return true;
+        } else {
+            view.animate().setDuration(delay ? 200 : 0).rotation(0);
+            return false;
+        }
+    }
+
+    /**
+     * @param holder   holder of the recycler view.
+     * @param position view's position.
+     * @param model    board game object.
+     */
     @Override
     protected void onBindViewHolder(@NonNull MarketAdapter.AdHolder holder, int position, @NonNull MarketAd model) {
 
@@ -41,21 +77,15 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
 
         if (model.isPhoneContact()) {
             binding.phoneIcon.setVisibility(View.VISIBLE);
-            binding.phoneIcon.setOnClickListener(view -> {
-                Tools.callFromDailer(holder.itemView.getContext(), model.getPhone());
-            });
+            binding.phoneIcon.setOnClickListener(view -> Tools.callFromDailer(holder.itemView.getContext(), model.getPhone()));
         }
         if (model.isEmailContact()) {
             binding.emailIcon.setVisibility(View.VISIBLE);
-            binding.emailIcon.setOnClickListener(view -> {
-                Tools.composeEmail(holder.itemView.getContext(), new String[]{model.getEmail()}, "Market add in Kufsa app");
-            });
+            binding.emailIcon.setOnClickListener(view -> Tools.composeEmail(holder.itemView.getContext(), new String[]{model.getEmail()}, "Market add in Kufsa app"));
         }
         if (model.isWhatsappContact()) {
             binding.whatsappIcon.setVisibility(View.VISIBLE);
-            binding.whatsappIcon.setOnClickListener(view -> {
-                Tools.sendWhatsAppMessage(holder.itemView.getContext(), model.getPhone(), "Hi, regarding your ad in Kufsa app");
-            });
+            binding.whatsappIcon.setOnClickListener(view -> Tools.sendWhatsAppMessage(holder.itemView.getContext(), model.getPhone(), "Hi, regarding your ad in Kufsa app"));
         }
         if (model.isCash())
             binding.cashIcon.setVisibility(View.VISIBLE);
@@ -80,9 +110,7 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
                 .into(holder.binding.profileImgView);
 
 
-        binding.btExpand.setOnClickListener(v -> {
-            holder.expanded = toggleLayoutExpand(!holder.expanded, v, binding.layoutExpand);
-        });
+        binding.btExpand.setOnClickListener(v -> holder.expanded = toggleLayoutExpand(!holder.expanded, v, binding.layoutExpand));
 
         // void recycling view
         if (holder.expanded) {
@@ -93,6 +121,11 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
         toggleArrow(holder.expanded, binding.btExpand, false);
     }
 
+    /**
+     * @param parent   parent view group for the review holder
+     * @param viewType which type of view it is
+     * @return the holder object
+     */
     @NonNull
     @Override
     public MarketAdapter.AdHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -101,30 +134,14 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
         return new MarketAdapter.AdHolder(v);
     }
 
-    class AdHolder extends RecyclerView.ViewHolder {
-        ItemListingInMarketBinding binding;
-        boolean expanded = false;
-
-        public AdHolder(View itemView) {
-            super(itemView);
-            binding = ItemListingInMarketBinding.bind(itemView);
-        }
-    }
-
-    public static boolean toggleArrow(boolean show, View view) {
-        return toggleArrow(show, view, true);
-    }
-
-    public static boolean toggleArrow(boolean show, View view, boolean delay) {
-        if (show) {
-            view.animate().setDuration(delay ? 200 : 0).rotation(180);
-            return true;
-        } else {
-            view.animate().setDuration(delay ? 200 : 0).rotation(0);
-            return false;
-        }
-    }
-
+    /**
+     * This method expands the layout when clicked
+     *
+     * @param show       parameter whther to expand layout and use the animation
+     * @param view       the view being used
+     * @param lyt_expand the view that we will expand to
+     * @return the view expanded
+     */
     private boolean toggleLayoutExpand(boolean show, View view, View lyt_expand) {
         toggleArrow(show, view);
         if (show) {
@@ -133,6 +150,24 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
             ViewAnimation.collapse(lyt_expand);
         }
         return show;
+    }
+
+    /**
+     * This Class defines a recyclerview object that is a ad holder for ads
+     */
+    class AdHolder extends RecyclerView.ViewHolder {
+        ItemListingInMarketBinding binding;
+        boolean expanded = false;
+
+        /**
+         * This method is a constructor for an adholder
+         *
+         * @param itemView the view of the item being used here
+         */
+        public AdHolder(View itemView) {
+            super(itemView);
+            binding = ItemListingInMarketBinding.bind(itemView);
+        }
     }
 
 }

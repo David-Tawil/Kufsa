@@ -48,6 +48,14 @@ public class GameDetailsTabFragment extends Fragment {
         super(R.layout.fragment_game_details_tab);
     }
 
+    /**
+     * This method handles the graphics part of the fragment
+     *
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,8 +65,10 @@ public class GameDetailsTabFragment extends Fragment {
     }
 
     /**
-     * @param view               the view used.
-     * @param savedInstanceState the savedinstance used in this case.
+     * This method sets up the various methods after UI is set
+     *
+     * @param view               The view used, in this case account settings.
+     * @param savedInstanceState mapping for parcel values.
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -105,6 +115,8 @@ public class GameDetailsTabFragment extends Fragment {
 
     /**
      * This method sets The UI for the game's details, from the boardgame object.
+     *
+     * @param view current view being defined with the game's details
      */
     private void setUI(View view) {
         String description = "Description";
