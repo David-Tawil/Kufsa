@@ -18,7 +18,7 @@ import com.example.kufsa.databinding.FragmentSendReportBinding;
 
 
 /**
- * Fragment that initializes the Send report page in the app.
+ * This fragment creates the Send report page in the app.
  */
 public class SendReportFragment extends Fragment {
 
@@ -34,7 +34,9 @@ public class SendReportFragment extends Fragment {
     }
 
     /**
-     * This method creates the view.
+     * This method defines what is shown when view is created
+     *
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,9 +44,11 @@ public class SendReportFragment extends Fragment {
     }
 
     /**
+     * This method handles the graphics part of the fragment
+     *
      * @param inflater           Instantiates a layout XML file into its corresponding View objects.
      * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
      * @return outermost view.
      */
     @Override

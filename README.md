@@ -1,10 +1,8 @@
 Project for 20503 course Android based app for managing Board games
 
-Task list 19/08
-
-1) Improve marketplace
-2) Remove uncecssary code
-3) Add comments to everything
+Task list 26/08
+1) finish doc
+2) Add comments to everything
 
 
 

@@ -46,6 +46,8 @@ public class LoginFragment extends Fragment {
     }
 
     /**
+     * This method handles the graphics part of the fragment
+     *
      * @param inflater           Instantiates a layout XML file into its corresponding View objects.
      * @param container          special view that can contain child views.
      * @param savedInstanceState A mapping from String keys to various Parcelable values.
@@ -70,7 +72,7 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     * /**
+     * This method sets up the various methods after UI is set
      *
      * @param view               The view used.
      * @param savedInstanceState mapping for parcel values.
@@ -105,6 +107,9 @@ public class LoginFragment extends Fragment {
         navDisplayName.setText(displayName);
     }
 
+    /**
+     * This method sets up the listener for logging in
+     */
     private void setAuthStateListener() {
         mAuthStateListener = firebaseAuth -> {
 

@@ -46,8 +46,15 @@ public class MyGamesFragment extends Fragment {
     }
 
 
+    /**
+     * This method handles the graphics part of the fragment
+     *
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Nullable
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMyGamesBinding.inflate(inflater, container, false);
@@ -97,16 +104,37 @@ public class MyGamesFragment extends Fragment {
         EditText searchBox = binding.getRoot().getRootView().findViewById(R.id.my_games_searchBox);
 
         searchBox.addTextChangedListener(new TextWatcher() {
+
+            /**
+             * This method defines what happens before text is entered
+             *
+             * @param s     text input
+             * @param start input at start
+             * @param count count of chars entered
+             * @param after count of chars after input
+             */
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
+            /**
+             * This method defines what happens when text is changed
+             *
+             * @param s     text input
+             * @param start input at start
+             * @param count count of chars entered
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
 
+            /**
+             * This method defines what happens after text is changed
+             *
+             * @param s text input
+             */
             // query that draws from the database and shows the results of searching in the search box
             @Override
             public void afterTextChanged(Editable s) {

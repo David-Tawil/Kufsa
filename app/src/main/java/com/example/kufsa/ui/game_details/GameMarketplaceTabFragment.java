@@ -42,11 +42,9 @@ public class GameMarketplaceTabFragment extends Fragment {
         super(R.layout.fragment_game_marketplace_tab);
     }
 
-    public static void showNoAdsText() {
-
-    }
-
     /**
+     * This method handles the graphics part of the fragment
+     *
      * @param inflater           Instantiates a layout XML file into its corresponding View objects.
      * @param container          special view that can contain child views.
      * @param savedInstanceState A mapping from String keys to various Parcelable values.
@@ -61,6 +59,9 @@ public class GameMarketplaceTabFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * This method creates the full recyclerview - the catalog of games.
+     */
     private void setUpRecyclerView() {
         Query query =
                 db.collection("games").document(gameID).collection("listing").orderBy("publishDate", Query.Direction.DESCENDING);
@@ -76,20 +77,17 @@ public class GameMarketplaceTabFragment extends Fragment {
                 .setLifecycleOwner(this.getViewLifecycleOwner())
                 .build();
         adapter = new MarketAdapter(options);
-
-        /*adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                int totalNumberOfItems = adapter.getItemCount();
-                if(totalNumberOfItems == 0) {
-                    binding.noAdsLabel.setVisibility(View.VISIBLE);
-                }
-            }
-        });*/
         binding.recyclerMarket.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerMarket.setAdapter(adapter);
     }
 
-
+    /**
+     * This method binds all buttons and fields so that they will create an email activity from the app user
+     * to an admin (in this case my email).
+     *
+     * @param view               the view we use for this fragment.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

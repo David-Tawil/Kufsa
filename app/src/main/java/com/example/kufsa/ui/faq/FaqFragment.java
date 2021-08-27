@@ -12,11 +12,13 @@ import androidx.fragment.app.Fragment;
 import com.example.kufsa.R;
 
 /**
- * This Fragment creates the app's page of Frequently asked questions by instantiating the created XML layout.
+ * This Fragment defines the app's page of Frequently asked questions by instantiating the created XML layout.
  */
 public class FaqFragment extends Fragment {
 
     /**
+     * This method handles the graphics part of the fragment
+     *
      * @param inflater           Instantiates a layout XML file into its corresponding View objects.
      * @param container          special view that can contain child views.
      * @param savedInstanceState A mapping from String keys to various Parcelable values.

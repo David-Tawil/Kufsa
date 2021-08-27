@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 /**
- * This fragment instantiates game details container
+ * This fragment creates the game details container
  */
 public class GameDetailsTabsContainerFragment extends Fragment {
     //FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -37,15 +37,15 @@ public class GameDetailsTabsContainerFragment extends Fragment {
         super(R.layout.fragment_game_details_tabs_container);
     }
 
-
     /**
+     * This method handles the graphics part of the fragment
+     *
      * @param inflater           Instantiates a layout XML file into its corresponding View objects.
      * @param container          special view that can contain child views.
      * @param savedInstanceState A mapping from String keys to various Parcelable values.
      * @return outermost view.
      */
     @Nullable
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         biding = FragmentGameDetailsTabsContainerBinding.inflate(inflater, container, false);
@@ -56,6 +56,8 @@ public class GameDetailsTabsContainerFragment extends Fragment {
     }
 
     /**
+     * This method sets up more GUI settings for the fragment
+     *
      * @param view               the view used.
      * @param savedInstanceState the savedinstance used in this case.
      */
@@ -90,6 +92,11 @@ public class GameDetailsTabsContainerFragment extends Fragment {
                 return new GameReviewsTabFragment();
             }
 
+            /**
+             * This method retuns the amount of items
+             *
+             * @return 3
+             */
             @Override
             public int getItemCount() {
                 return 3;

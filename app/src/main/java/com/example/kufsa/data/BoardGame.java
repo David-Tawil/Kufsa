@@ -108,7 +108,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's Firebase ID.
+     * Gets a game's Firebase ID.
      *
      * @return The game's ID in the form of a string.
      */
@@ -126,7 +126,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's image URL.
+     * Gets a game's image URL.
      *
      * @return The game's image URL as a string.
      */
@@ -144,7 +144,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's publisher.
+     * Gets a game's publisher.
      *
      * @return The game's publisher as a string.
      */
@@ -162,7 +162,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's difficulty.
+     * Gets a game's difficulty.
      *
      * @return The game's difficulty as a float.
      */
@@ -180,7 +180,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's maximal number of players.
+     * Gets a game's maximal number of players.
      *
      * @return The game's maximal number of players as an int.
      */
@@ -198,7 +198,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's minimal number of players.
+     * Gets a game's minimal number of players.
      *
      * @return The game's minimal number of players as an int.
      */
@@ -216,7 +216,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's playing time.
+     * Gets a game's playing time.
      *
      * @return The game's playing time as an int.
      */
@@ -234,7 +234,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's release year.
+     * Gets a game's release year.
      *
      * @return The game's release year as an int.
      */
@@ -252,7 +252,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's minimal age requirement.
+     * Gets a game's minimal age requirement.
      *
      * @return The game's minimal age requirement as an int.
      */
@@ -270,7 +270,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's name.
+     * Gets a game's name.
      *
      * @return The game's name as a string.
      */
@@ -288,7 +288,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's description.
+     * Gets a game's description.
      *
      * @return The game's description in the form of a String.
      */
@@ -306,7 +306,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's average review score.
+     * Gets a game's average review score.
      *
      * @return The game's average review score in the form of a float.
      */
@@ -324,7 +324,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's number of total reviews.
+     * Gets a game's number of total reviews.
      *
      * @return The game's total reviews in the form of an int.
      */
@@ -342,7 +342,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's number of one star reviews.
+     * Gets a game's number of one star reviews.
      *
      * @return The game's number of one star reviews in the form of an int.
      */
@@ -360,7 +360,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's number of two star reviews.
+     * Gets a game's number of two star reviews.
      *
      * @return The game's number of two star reviews in the form of an int.
      */
@@ -378,7 +378,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's number of three star reviews.
+     * Gets a game's number of three star reviews.
      *
      * @return The game's number of three star reviews in the form of an int.
      */
@@ -396,7 +396,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's number of four star reviews.
+     * Gets a game's number of four star reviews.
      *
      * @return The game's number of four star reviews in the form of an int.
      */
@@ -414,7 +414,7 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Retrieves a game's number of five star reviews.
+     * Gets a game's number of five star reviews.
      *
      * @return The game's number of five star reviews in the form of an int.
      */

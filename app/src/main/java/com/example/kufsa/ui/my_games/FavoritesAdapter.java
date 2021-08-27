@@ -44,6 +44,13 @@ public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, Favori
                 .into(holder.binding.gameImageView);
     }
 
+    /**
+     * Returns a holder for a board game
+     *
+     * @param parent   The parent view
+     * @param viewType the int of type of view
+     * @return a board game holder
+     */
     @NonNull
     @Override
     public BoardGameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

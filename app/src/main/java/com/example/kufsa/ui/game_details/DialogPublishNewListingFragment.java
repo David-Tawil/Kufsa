@@ -29,26 +29,44 @@ import org.apache.commons.text.WordUtils;
 
 import java.util.Date;
 
+/**
+ * This fragment creates the app page where you list a new game
+ */
 public class DialogPublishNewListingFragment extends DialogFragment {
 
 
-    private DialogPublishNewListingBinding binding;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private String gameID;
     CountryCodePicker ccp;// country code picker
+    private DialogPublishNewListingBinding binding;
+    private String gameID;
 
-
+    /**
+     * This method initializes the layout for the page from an XML file.
+     */
     public DialogPublishNewListingFragment() {
         super(R.layout.dialog_publish_new_listing);
     }
 
+    /**
+     * This method defines what is started when view is created
+     *
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NO_TITLE, R.style.FullScreenDialogStyle);
     }
 
+    /**
+     * This method handles the graphics part of the fragment
+     *
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param container          special view that can contain child views.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @return outermost view.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DialogPublishNewListingBinding.inflate(inflater, container, false);
@@ -59,6 +77,9 @@ public class DialogPublishNewListingFragment extends DialogFragment {
         return binding.getRoot();
     }
 
+    /**
+     * This method is for setting up UI and listeners to buttons
+     */
     private void setUIAndListeners() {
         //setting trade type option adapter
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(),
@@ -73,8 +94,16 @@ public class DialogPublishNewListingFragment extends DialogFragment {
                 R.array.period_option, android.R.layout.simple_spinner_dropdown_item);
         binding.periodTextViewSpinner.setAdapter(adapter);
 
-
+        // Settigns after text is added
         binding.tradeTypeTextViewSpinner.addTextChangedListener(new TextWatcher() {
+            /**
+             * This method defines what happens when text is changed
+             *
+             * @param charSequence the sequence of text entred
+             * @param i            index
+             * @param i1           index first
+             * @param i2           index second
+             */
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 binding.tradeTypeInputLayout.setError(null);
@@ -100,17 +129,29 @@ public class DialogPublishNewListingFragment extends DialogFragment {
                 }
             }
 
+            /**
+             * This method defines what happens before text is entered
+             *
+             * @param charSequence the sequence of text entred
+             * @param i            index
+             * @param i1           index first
+             * @param i2           index second
+             */
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
 
+            /**
+             * This method defines what happens after text is changed
+             * @param editable edittext
+             */
             @Override
             public void afterTextChanged(Editable editable) {
 
             }
         });
-
+        //Buttons and listeners for each listing detail
         if (user.getEmail() != null) binding.emailText.setText(user.getEmail());
         if (user.getPhoneNumber() != null) binding.phoneText.setText(user.getPhoneNumber());
 
@@ -145,7 +186,7 @@ public class DialogPublishNewListingFragment extends DialogFragment {
             if (notValidDataInForm())
                 return;
 
-
+            // ad details
             MarketAd ad = new MarketAd();
             ad.setUserID(user.getUid());
             ad.setUserName(user.getDisplayName());
@@ -187,8 +228,13 @@ public class DialogPublishNewListingFragment extends DialogFragment {
         });
     }
 
+    /**
+     * This method verifies if the data listed is valid
+     *
+     * @return true if data is not valid , false otherwise
+     */
     private boolean notValidDataInForm() {
-
+        // Checking empty text
         if (isEmptyEditText(binding.tradeTypeTextViewSpinner, binding.tradeTypeInputLayout) ||
                 isEmptyEditText(binding.conditionTextViewSpinner, binding.conditionInputLayout) ||
                 isEmptyEditText(binding.cityText, binding.cityInputLayout) ||
@@ -198,19 +244,40 @@ public class DialogPublishNewListingFragment extends DialogFragment {
                 isEmptyEditText(binding.emailText, binding.emailTextInputLayout) ||
                 isEmptyEditText(binding.phoneText, binding.phoneTextInputLayout))
             return true;
-
+        // Checking the email
         if (Tools.isVisible(binding.emailTextInputLayout) && !Tools.isValidEmail(binding.emailText.getText())) {
             binding.emailTextInputLayout.setError("invalid Email");
             binding.emailText.addTextChangedListener(new TextWatcher() {
+
+                /**
+                 * This method defines what happens before text is entered
+                 *
+                 * @param charSequence the sequence of text entred
+                 * @param i            index
+                 * @param i1           index first
+                 * @param i2           index second
+                 */
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 }
 
+                /**
+                 * This method defines what happens when text is changed
+                 *
+                 * @param charSequence the sequence of text entred
+                 * @param i            index
+                 * @param i1           index first
+                 * @param i2           index second
+                 */
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     binding.emailTextInputLayout.setError(null);
                 }
 
+                /**
+                 * This method defines what happens after text is changed
+                 * @param editable edittext
+                 */
                 @Override
                 public void afterTextChanged(Editable editable) {
 
@@ -219,6 +286,7 @@ public class DialogPublishNewListingFragment extends DialogFragment {
             return true;
 
         }
+        // Checking the phone number
         if (Tools.isVisible(binding.phoneTextInputLayout) && !ccp.isValidFullNumber()) {
             binding.phoneTextInputLayout.setError("invalid phone number");
             ccp.setPhoneNumberValidityChangeListener(isValidNumber -> {
@@ -229,7 +297,7 @@ public class DialogPublishNewListingFragment extends DialogFragment {
             });
             return true;
         }
-
+        //Request payment method
         if (Tools.isVisible(binding.paymentOptionsLayout) && !binding.cashCheckbox.isChecked() && !binding.creditCardCheckbox.isChecked() && !binding.bitcoinCheckbox.isChecked()) {
             Toast.makeText(requireContext(), "Select at least one payment method", Toast.LENGTH_LONG).show();
             return true;
@@ -241,19 +309,45 @@ public class DialogPublishNewListingFragment extends DialogFragment {
         return false;
     }
 
+    /**
+     * Ths method checks if the text field is empty
+     *
+     * @param editText the editText object that is the text field
+     * @param inputLyt the layout
+     * @return true if editText is empty, false otherwise
+     */
     private boolean isEmptyEditText(EditText editText, TextInputLayout inputLyt) {
         if (Tools.isVisible(inputLyt) && (editText.getText() == null || editText.getText().toString().isEmpty())) {
             inputLyt.setError("required");
             editText.addTextChangedListener(new TextWatcher() {
+
+                /**
+                 * This method defines what happens before text is entered
+                 * @param charSequence the sequence of text entred
+                 * @param i index
+                 * @param i1 index first
+                 * @param i2 index second
+                 */
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 }
 
+                /**
+                 *  This method defines what happens when text is entered
+                 * @param charSequence the sequence of text entred
+                 * @param i index
+                 * @param i1 index first
+                 * @param i2 index second
+                 */
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     inputLyt.setError(null);
                 }
 
+                /**
+                 * This method defines what happens after text is changed
+                 * @param editable edittext
+                 */
                 @Override
                 public void afterTextChanged(Editable editable) {
 
@@ -264,21 +358,31 @@ public class DialogPublishNewListingFragment extends DialogFragment {
         return false;
     }
 
-
+    /**
+     * This method Gets rental period for the game in the ad
+     *
+     * @param period rental time period for the game
+     * @return rental period as an int
+     */
     private MarketAd.RentalPeriod getPeriod(String period) {
-        switch (period.toLowerCase()) {
+        String s = period.toLowerCase();
+        switch (s) {
             case "per day":
                 return MarketAd.RentalPeriod.DAY;
             case "per week":
                 return MarketAd.RentalPeriod.WEEK;
             case "per month":
                 return MarketAd.RentalPeriod.MONTH;
-            default:
-                return MarketAd.RentalPeriod.MONTH;
-
         }
+        return MarketAd.RentalPeriod.MONTH;
     }
 
+    /**
+     * This method Gets the game in the ad's condition
+     *
+     * @param condition condition of the game
+     * @return condition of the game as text
+     */
     private MarketAd.Condition getCondition(String condition) {
         switch (condition.trim().toLowerCase()) {
             case "new":
@@ -297,6 +401,12 @@ public class DialogPublishNewListingFragment extends DialogFragment {
         }
     }
 
+    /**
+     * This method Gets the trade type for the game in the ad
+     *
+     * @param type the type of trade this ad is
+     * @return trade type
+     */
     private MarketAd.TradeType getTradeType(String type) {
         switch (type.toLowerCase()) {
             case "sell":

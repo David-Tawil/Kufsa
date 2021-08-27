@@ -17,7 +17,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import java.text.SimpleDateFormat;
 
 /**
- * This class is the adapted for each board game's reviews
+ * This class is the adapter for each board game's reviews
  */
 public class ReviewsAdapter extends FirestoreRecyclerAdapter<Review, ReviewsAdapter.ReviewHolder> {
 
@@ -70,6 +70,11 @@ public class ReviewsAdapter extends FirestoreRecyclerAdapter<Review, ReviewsAdap
     class ReviewHolder extends RecyclerView.ViewHolder {
         ItemReviewInRecyclerBinding binding;
 
+        /**
+         * Constructor for a review holder
+         *
+         * @param itemView the view of each item being used here
+         */
         public ReviewHolder(View itemView) {
             super(itemView);
             binding = ItemReviewInRecyclerBinding.bind(itemView);
