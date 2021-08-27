@@ -132,6 +132,7 @@
     <string name="submit">SUBMIT</string>
     <string name="cancel">CANCEL</string>
     <string name="david_park">David Park</string>
+    <string name="no_ads_text">No ads in market for this game.</string>
 
     <string-array name="trade_type_option">
         <item>Sell</item>

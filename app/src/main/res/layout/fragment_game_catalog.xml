@@ -20,8 +20,8 @@
         android:id="@+id/catalog_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="40dp"
         android:visibility="visible"
+        android:layout_below="@+id/catalog_searchBox"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_game_in_catalog" />

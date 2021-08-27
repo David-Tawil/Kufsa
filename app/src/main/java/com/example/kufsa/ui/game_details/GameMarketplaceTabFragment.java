@@ -42,6 +42,10 @@ public class GameMarketplaceTabFragment extends Fragment {
         super(R.layout.fragment_game_marketplace_tab);
     }
 
+    public static void showNoAdsText() {
+
+    }
+
     /**
      * @param inflater           Instantiates a layout XML file into its corresponding View objects.
      * @param container          special view that can contain child views.
@@ -60,6 +64,11 @@ public class GameMarketplaceTabFragment extends Fragment {
     private void setUpRecyclerView() {
         Query query =
                 db.collection("games").document(gameID).collection("listing").orderBy("publishDate", Query.Direction.DESCENDING);
+        query.addSnapshotListener((value, error) -> {
+            if (value != null && value.isEmpty()) {
+                binding.noAdsLabel.setVisibility(View.VISIBLE);
+            }
+        });
         // Configure recycler adapter options:
         //  options instructs the adapter to convert each DocumentSnapshot to a BoardGame object
         FirestoreRecyclerOptions<MarketAd> options = new FirestoreRecyclerOptions.Builder<MarketAd>()
@@ -67,9 +76,19 @@ public class GameMarketplaceTabFragment extends Fragment {
                 .setLifecycleOwner(this.getViewLifecycleOwner())
                 .build();
         adapter = new MarketAdapter(options);
+
+        /*adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                int totalNumberOfItems = adapter.getItemCount();
+                if(totalNumberOfItems == 0) {
+                    binding.noAdsLabel.setVisibility(View.VISIBLE);
+                }
+            }
+        });*/
         binding.recyclerMarket.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerMarket.setAdapter(adapter);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

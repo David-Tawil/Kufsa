@@ -24,4 +24,6 @@
         <item name="colorControlHighlight">@color/purple_500</item>
         <item name="android:windowBackground">@color/black</item>
     </style>
+
+    <style name="MaterialSearchBarCustomTheme" parent="MaterialSearchBarDark"></style>
 </resources>

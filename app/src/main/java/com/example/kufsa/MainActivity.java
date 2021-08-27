@@ -108,4 +108,5 @@ public class MainActivity extends AppCompatActivity {
                                     .MODE_NIGHT_NO);
         }
     }
+
 }
