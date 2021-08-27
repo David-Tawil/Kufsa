@@ -359,7 +359,7 @@ public class DialogPublishNewListingFragment extends DialogFragment {
     }
 
     /**
-     * This method retrieves rental period for the game in the ad
+     * This method Gets rental period for the game in the ad
      *
      * @param period rental time period for the game
      * @return rental period as an int
@@ -378,7 +378,7 @@ public class DialogPublishNewListingFragment extends DialogFragment {
     }
 
     /**
-     * This method retrieves the game in the ad's condition
+     * This method Gets the game in the ad's condition
      *
      * @param condition condition of the game
      * @return condition of the game as text
@@ -402,7 +402,7 @@ public class DialogPublishNewListingFragment extends DialogFragment {
     }
 
     /**
-     * This method retrieves the trade type for the game in the ad
+     * This method Gets the trade type for the game in the ad
      *
      * @param type the type of trade this ad is
      * @return trade type

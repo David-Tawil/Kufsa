@@ -59,7 +59,7 @@
     <string name="reset_password_button">Reset password button</string>
     <string name="toggle_dark_mode_button_desc">Toggle dark mode description</string>
     <string name="report_button">Report Button</string>
-    <string name="error_login_by_phone">You have logged in by phone! please login by email to retrieve password.</string>
+    <string name="error_login_by_phone">You have logged in by phone! please login by email to Get password.</string>
     <string name="password_reset_email_sent">Password reset email successfully sent!</string>
     <string name="shared_prefs">sharedPrefs</string>
     <string name="is_dark_mode_on">isDarkModeOn</string>
@@ -129,8 +129,8 @@
     <string name="nameZtoA"><![CDATA[Name Z->A]]></string>
     <string name="nameAtoZ"><![CDATA[Name A->Z]]></string>
     <string name="no_reviews_label">No reviews yet, be the first to review!</string>
-    <string name="submit">SUBMIT</string>
-    <string name="cancel">CANCEL</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
     <string name="david_park">David Park</string>
 
     <string-array name="trade_type_option">
