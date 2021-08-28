@@ -7,4 +7,4 @@ The user can view various board games, sort them and add them to his favorites.
 Also user can also review the games and post them for sale/rent!
 There are also some cool user settings applied.
 
-Feel free to contact us (the devs who uploaded the project) for any info.
+Feel free to contact us (The listed contributers) for any info.
