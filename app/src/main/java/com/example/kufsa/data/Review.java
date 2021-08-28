@@ -1,3 +1,7 @@
+/*
+  @authors Aaron David Tawil & Eldar Weiss
+*/
+
 package com.example.kufsa.data;
 
 import android.os.Parcel;
@@ -8,7 +12,7 @@ import com.google.firebase.firestore.ServerTimestamp;
 import java.util.Date;
 
 /**
- * This class sets up the review object for an
+ * This class sets up the review object for each game
  */
 public class Review implements Parcelable {
     public static final Creator<Review> CREATOR = new Creator<Review>() {
@@ -33,7 +37,15 @@ public class Review implements Parcelable {
     public Review() {
     }
 
-
+    /**
+     * This is a review constructor
+     *
+     * @param userName    reviewer's user name
+     * @param photoUrl    photo url
+     * @param starNum     number of stars given
+     * @param description desc used
+     * @param date        date of review
+     */
     public Review(String userName, String photoUrl, int starNum, String description, Date date) {
         this.userName = userName;
         this.photoUrl = photoUrl;
@@ -42,6 +54,11 @@ public class Review implements Parcelable {
         this.date = date;
     }
 
+    /**
+     * Review constructor from pacel
+     *
+     * @param in parcel object
+     */
     protected Review(Parcel in) {
         userId = in.readString();
         userName = in.readString();

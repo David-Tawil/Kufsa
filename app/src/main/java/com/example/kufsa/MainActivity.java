@@ -1,3 +1,7 @@
+/*
+  @authors Aaron David Tawil & Eldar Weiss
+*/
+
 package com.example.kufsa;
 
 import android.content.Context;
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavigationView navView = findViewById(R.id.nav_view);
 
-
+        //Setting up page functionality
         setupActionBarWithNavController(this, navController, appBarConfiguration);
         setUpDisplayNameInSidebar();
         setUpDarkModeAtStart();

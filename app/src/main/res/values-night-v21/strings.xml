@@ -15,7 +15,34 @@
     <string name="name">name</string>
     <string name="img">img</string>
     <string name="added_to_favorites">Added to favorites</string>
-    <string name="submit">SUBMIT</string>
-    <string name="cancel">CANCEL</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
     <string name="david_park">David Park</string>
+
+    <!-- Market Preferences -->
+    <string name="fifty_dollars">$50</string>
+    <string name="publish_date_text">Publishing date text</string>
+    <string name="example_date">3/12/21</string>
+    <string name="dot_divider">•</string>
+    <string name="city_text">Tel Aviv</string>
+    <string name="like_new">Like New</string>
+    <string name="sell">Sell</string>
+    <string name="payment_option">Payment option</string>
+    <string name="contact">Contact</string>
+    <string name="notes">Notes</string>
+    <string name="publish_your_game">Publish your game</string>
+    <string name="publish">Publish</string>
+    <string name="select_trade_type">Select trade type</string>
+    <string name="select_condition">Select Condition</string>
+    <string name="city">City</string>
+    <string name="price">Price</string>
+    <string name="rental_fee">Rental fee</string>
+    <string name="period">Period</string>
+    <string name="payment_method">Payment method</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="contact_option">Contact option</string>
+    <string name="phone">Phone</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="write_review_dots">Write review …</string>
 </resources>

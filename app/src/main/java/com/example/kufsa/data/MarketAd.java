@@ -1,3 +1,7 @@
+/*
+  @authors Aaron David Tawil & Eldar Weiss
+*/
+
 package com.example.kufsa.data;
 
 import android.os.Parcel;

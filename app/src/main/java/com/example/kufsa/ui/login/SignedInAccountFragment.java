@@ -1,3 +1,7 @@
+/*
+  @authors Aaron David Tawil & Eldar Weiss
+*/
+
 package com.example.kufsa.ui.login;
 
 import android.os.Bundle;
@@ -61,6 +65,7 @@ public class SignedInAccountFragment extends Fragment {
      * @param view the view used for entering login
      */
     private void setUpLogin(View view) {
+        //checked if not logged in
         if (auth.getCurrentUser() != null) {
             String helloText = getString(R.string.hi) + auth.getCurrentUser().getDisplayName();
             binding.welcomeTextView.setText(helloText);
@@ -91,6 +96,7 @@ public class SignedInAccountFragment extends Fragment {
         NavigationView navView = binding.getRoot().getRootView().findViewById(R.id.nav_view);
         View headerView = navView.getHeaderView(0);
         TextView navDisplayName = headerView.findViewById(R.id.EmailView);
+        // Show current displayname, empty otherwise
         if (auth.getCurrentUser() == null)
             displayName = "";
         else

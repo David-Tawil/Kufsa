@@ -1,3 +1,7 @@
+/*
+  @authors Aaron David Tawil & Eldar Weiss
+*/
+
 package com.example.kufsa.ui.account_settings;
 
 
@@ -84,7 +88,7 @@ public class AccountSettingsFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     // Updating password in case you logged in by gmail but don't have a password...then the reset will work
 
-                    if (!(task.isSuccessful()) && (auth.getCurrentUser().getPhoneNumber() != "")) {
+                    if (!(task.isSuccessful()) && (!auth.getCurrentUser().getPhoneNumber().equals(""))) {
                         Toast.makeText(getActivity(), getString(R.string.error_login_by_phone), Toast.LENGTH_SHORT).show();
                     }
                     if (task.isSuccessful()) {
@@ -143,7 +147,6 @@ public class AccountSettingsFragment extends Fragment {
                 // boolean to false
                 editor.putBoolean(
                         getString(R.string.is_dark_mode_on), false);
-                editor.apply();
             } else {
 
                 // if dark mode is off
@@ -157,8 +160,8 @@ public class AccountSettingsFragment extends Fragment {
                 // boolean to true
                 editor.putBoolean(
                         getString(R.string.is_dark_mode_on), true);
-                editor.apply();
             }
+            editor.apply();
         });
     }
 
