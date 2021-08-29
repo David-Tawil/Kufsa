@@ -28,6 +28,8 @@ import com.hbb20.CountryCodePicker;
 import org.apache.commons.text.WordUtils;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * This fragment creates the app page where you list a new game
@@ -152,6 +154,7 @@ public class DialogPublishNewListingFragment extends DialogFragment {
             }
         });
         //Buttons and listeners for each listing detail
+        assert user != null;
         if (user.getEmail() != null) binding.emailText.setText(user.getEmail());
         if (user.getPhoneNumber() != null) binding.phoneText.setText(user.getPhoneNumber());
 
@@ -193,7 +196,7 @@ public class DialogPublishNewListingFragment extends DialogFragment {
             ad.setGameID(gameID);
             ad.setTradeType(getTradeType(binding.tradeTypeTextViewSpinner.getText().toString()));
             ad.setCondition(getCondition(binding.conditionTextViewSpinner.getText().toString()));
-            ad.setCity(WordUtils.capitalize(binding.cityText.getText().toString()).trim());
+            ad.setCity(WordUtils.capitalize(Objects.requireNonNull(binding.cityText.getText()).toString()).trim());
             ad.setEmailContact(binding.emailCheckbox.isChecked());
             ad.setPhoneContact(binding.phoneCheckbox.isChecked());
             ad.setWhatsappContact(binding.whatsappCheckbox.isChecked());
@@ -201,22 +204,25 @@ public class DialogPublishNewListingFragment extends DialogFragment {
             ad.setCreditCard(binding.creditCardCheckbox.isChecked());
             ad.setBitcoin(binding.bitcoinCheckbox.isChecked());
             // ad.setOther(binding.otherCheckbox.isChecked());
-            ad.setNotes(binding.notesText.getText().toString().trim());
+            ad.setNotes(Objects.requireNonNull(binding.notesText.getText()).toString().trim());
             ad.setPublishDate(new Date());
             if (ad.getTradeType() == TradeType.SELL)
-                ad.setSellPrice(Double.parseDouble(binding.sellPriceText.getText().toString()));
+                ad.setSellPrice(Double.parseDouble(Objects.requireNonNull(binding.sellPriceText.getText()).toString()));
             if (ad.getTradeType() == TradeType.RENT) {
-                ad.setRentalFee(Double.parseDouble(binding.rentalFee.getText().toString()));
+                ad.setRentalFee(Double.parseDouble(Objects.requireNonNull(binding.rentalFee.getText()).toString()));
                 ad.setRentalPeriod(getPeriod(binding.periodTextViewSpinner.getText().toString()));
             }
             ad.setPhone(ccp.getFullNumber());
-            ad.setEmail(binding.emailText.getText().toString().trim());
+            ad.setEmail(Objects.requireNonNull(binding.emailText.getText()).toString().trim());
 
             String photoUrl = user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "";
             ad.setUserPhotoUrl(photoUrl);
             db.collection("users").document(user.getUid()).update("photoUrl", photoUrl);
             db.collection("games").document(gameID).collection("listing").add(ad)
-                    .addOnSuccessListener(runnable -> {
+                    .addOnSuccessListener(documentReference -> {
+                        documentReference.update("id", documentReference.getId());
+                        //save the listing id in the user owner collection, so we can later access it in my games screen and show all active ads for a user
+                        db.collection("users").document(user.getUid()).collection("userListing").document(documentReference.getId()).set(new HashMap<String, Object>());
                         Toast.makeText(requireContext(), "listing saved", Toast.LENGTH_LONG).show();
                         dismiss();
                     })

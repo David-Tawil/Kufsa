@@ -20,10 +20,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingTop="50dp"
+        android:layout_below="@+id/my_games_searchBox"
         android:text="@string/favorites_title"
         android:textColor="@color/purple_200"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/no_games_in_favorites_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/favorites_list_is_empty"
+        android:layout_below="@id/favorite_title"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favorites_recycler_view"
@@ -35,4 +45,35 @@
         android:scrollbars="horizontal"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         tools:listitem="@layout/item_game_in_favorite_list" />
+
+    <TextView
+        android:id="@+id/your_ads_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/favorites_recycler_view"
+        android:text="@string/my_ads_in_market"
+        android:textColor="@color/purple_200"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/no_ads_in_market_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_active_ads_in_market"
+        android:layout_below="@id/your_ads_title"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ads_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/your_ads_title"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_listing_in_user_ads" />
+
+
 </RelativeLayout>

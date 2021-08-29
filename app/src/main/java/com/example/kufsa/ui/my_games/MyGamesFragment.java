@@ -18,12 +18,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kufsa.R;
 import com.example.kufsa.data.BoardGame;
+import com.example.kufsa.data.MarketAd;
 import com.example.kufsa.databinding.FragmentMyGamesBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -60,8 +65,47 @@ public class MyGamesFragment extends Fragment {
         binding = FragmentMyGamesBinding.inflate(inflater, container, false);
         setUpRecyclerView();
         setUpSearchBar();
+        setUpAdsRecyclerView();
 
         return binding.getRoot();
+    }
+
+    /**
+     * Set up the recyclerview for user active ads in market
+     */
+    private void setUpAdsRecyclerView() {
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null) {
+            String userID = user.getUid();
+            List<String> listingsIds = new ArrayList<>();
+            listingsIds.add("");// firestore requires not empty list for query
+            db.collection("users").document(userID).collection("userListing").get().addOnSuccessListener(queryDocumentSnapshots -> {
+                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                    listingsIds.add(documentSnapshot.getId());
+                }
+
+                Query query = db.collectionGroup("listing").whereIn("id", listingsIds).orderBy("publishDate", Query.Direction.DESCENDING);
+                // check if user has no active ads in market and show info label accordingly
+                query.addSnapshotListener((value, error) -> {
+                    if (value != null && value.isEmpty())
+                        binding.noAdsInMarketText.setVisibility(View.VISIBLE);
+                    else
+                        binding.noAdsInMarketText.setVisibility(View.GONE);
+                });
+
+                FirestoreRecyclerOptions<MarketAd> options = new FirestoreRecyclerOptions.Builder<MarketAd>()
+                        .setQuery(query, MarketAd.class)
+                        .setLifecycleOwner(this.getViewLifecycleOwner())
+                        .build();
+                MyAdsAdapter AdsAdapter = new MyAdsAdapter(options);
+                // Recycler view preferences
+                binding.adsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+                binding.adsRecyclerView.setAdapter(AdsAdapter);
+            });
+        } else {
+            binding.noAdsInMarketText.setVisibility(View.VISIBLE);
+        }
+
     }
 
     /**
@@ -73,14 +117,19 @@ public class MyGamesFragment extends Fragment {
             String userID = auth.getUid();
             Query query =
                     db.collection("users").document(Objects.requireNonNull(userID)).collection("favorites").orderBy("name");
+            // check if user have no favorite games and show info label
+            query.addSnapshotListener((value, error) -> {
+                if (value != null && value.isEmpty()) {
+                    binding.noGamesInFavoritesText.setVisibility(View.VISIBLE);
+                }
+            });
             FirestoreRecyclerOptions<BoardGame> options = new FirestoreRecyclerOptions.Builder<BoardGame>()
                     .setQuery(query, BoardGame.class)
                     .setLifecycleOwner(this.getViewLifecycleOwner())
                     .build();
             adapter = new FavoritesAdapter(options);
-
+            // navigate to game details screen when item clicked
             adapter.setOnItemClickListener((documentSnapshot, position) -> {
-                // BoardGame game = documentSnapshot.toObject(BoardGame.class);
                 String id = documentSnapshot.getId();
                 String gameName = documentSnapshot.getString("name");
                 NavHostFragment.findNavController(this).navigate(MyGamesFragmentDirections.actionMyGamesFragmentToGameDetailsTabsContainerFragment(id, Objects.requireNonNull(gameName)));
@@ -90,6 +139,8 @@ public class MyGamesFragment extends Fragment {
             binding.favoritesRecyclerView.setHasFixedSize(true);
             binding.favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
             binding.favoritesRecyclerView.setAdapter(adapter);
+        } else {
+            binding.noGamesInFavoritesText.setVisibility(View.VISIBLE);
         }
     }
 

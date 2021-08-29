@@ -18,7 +18,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 /**
- * This fragment implements a favorites adapter. Similar to catalog adapter, buy only favorites games
+ * This fragment implements a favorites adapter. Similar to catalog adapter, but only favorites games
  */
 public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, FavoritesAdapter.BoardGameHolder> {
 

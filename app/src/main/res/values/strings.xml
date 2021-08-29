@@ -79,7 +79,7 @@
     <!-- favorite Preferences -->
     <string name="favorite_icon_title">favorite</string>
     <string name="hint_searchBox">Type the name of a game you want to play</string>
-    <string name="favorites_title">Favorites</string>
+    <string name="favorites_title">My favorites</string>
     <string name="marketplace">Market</string>
     <string name="reviews">Reviews</string>
     <string name="ratings_reviews">Ratings and  Reviews</string>
@@ -133,6 +133,11 @@
     <string name="cancel">Cancel</string>
     <string name="david_park">David Park</string>
     <string name="no_ads_text">No ads in market for this game.</string>
+    <string name="delete_button">Delete button</string>
+    <string name="game_image">Game image</string>
+    <string name="favorites_list_is_empty">Favorites list is empty.</string>
+    <string name="my_ads_in_market">My ads in market</string>
+    <string name="no_active_ads_in_market">No active ads in market</string>
 
     <string-array name="trade_type_option">
         <item>Sell</item>

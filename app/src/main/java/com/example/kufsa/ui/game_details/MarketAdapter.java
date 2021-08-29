@@ -66,7 +66,7 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
 
         ItemListingInMarketBinding binding = holder.binding;
         binding.userNameText.setText(model.getUserName());
-        binding.publishDateText.setText(new SimpleDateFormat("dd/MM/yy").format(model.getPublishDate()));
+        binding.publishDateText.setText(new SimpleDateFormat("dd/MM/yy", holder.itemView.getResources().getConfiguration().locale).format(model.getPublishDate()));
         binding.cityText.setText(model.getCity());
         binding.conditionText.setText(model.getCondition().toString());
         binding.tradeTypeText.setText(model.getTradeType().toString());
@@ -131,7 +131,7 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
     public MarketAdapter.AdHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_listing_in_market,
                 parent, false);
-        return new MarketAdapter.AdHolder(v);
+        return new AdHolder(v);
     }
 
     /**
@@ -155,7 +155,7 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
     /**
      * This Class defines a recyclerview object that is a ad holder for ads
      */
-    class AdHolder extends RecyclerView.ViewHolder {
+    static class AdHolder extends RecyclerView.ViewHolder {
         ItemListingInMarketBinding binding;
         boolean expanded = false;
 

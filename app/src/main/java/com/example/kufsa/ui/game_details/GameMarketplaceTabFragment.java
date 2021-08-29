@@ -65,10 +65,12 @@ public class GameMarketplaceTabFragment extends Fragment {
     private void setUpRecyclerView() {
         Query query =
                 db.collection("games").document(gameID).collection("listing").orderBy("publishDate", Query.Direction.DESCENDING);
+        // check if no ads in market and show info label
         query.addSnapshotListener((value, error) -> {
-            if (value != null && value.isEmpty()) {
+            if (value != null && value.isEmpty())
                 binding.noAdsLabel.setVisibility(View.VISIBLE);
-            }
+            else
+                binding.noAdsLabel.setVisibility(View.GONE);
         });
         // Configure recycler adapter options:
         //  options instructs the adapter to convert each DocumentSnapshot to a BoardGame object
