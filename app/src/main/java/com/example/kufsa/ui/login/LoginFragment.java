@@ -1,3 +1,7 @@
+/*
+  @authors Aaron David Tawil & Eldar Weiss
+*/
+
 package com.example.kufsa.ui.login;
 
 import android.os.Bundle;
@@ -120,7 +124,8 @@ public class LoginFragment extends Fragment {
                 // redirect our user to next screen which is our home screen.
                 // we are redirecting to new screen via an intent.
                 NavHostFragment.findNavController(this).navigate(LoginFragmentDirections.actionMyAccountFragmentToSignedInAccountFragment());
-            } else {
+            }
+            // else {
                 /*// this method is called when our
                 // user is not authenticated previously.
                 startActivityForResult(
@@ -157,7 +162,7 @@ public class LoginFragment extends Fragment {
                         // integer which is declared above.
                         RC_SIGN_IN
                 );*/
-            }
+            // }
         };
     }
 

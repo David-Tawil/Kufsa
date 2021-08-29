@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_parent"
@@ -38,8 +38,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="David Park"
             android:maxLength="18"
+            android:text="@string/david_park"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/image_card_view_container"
             app:layout_constraintStart_toEndOf="@+id/image_card_view_container"
@@ -49,28 +49,29 @@
             android:id="@+id/price_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$50"
+            android:text="@string/fifty_dollars"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@+id/publish_date_text"
-            app:layout_constraintTop_toTopOf="@+id/image_card_view_container"
-            app:layout_constraintEnd_toStartOf="@id/bt_expand" />
+            app:layout_constraintEnd_toStartOf="@id/bt_expand"
+            app:layout_constraintTop_toTopOf="@+id/image_card_view_container" />
 
         <ImageButton
             android:id="@+id/bt_expand"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
-            app:srcCompat="@drawable/ic_expand_arrow"
-            app:tint="@color/grey_60"
+            android:contentDescription="@string/publish_date_text"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/image_card_view_container"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:srcCompat="@drawable/ic_expand_arrow"
+            app:tint="@color/grey_60" />
 
         <TextView
             android:id="@+id/publish_date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
-            android:text="3/12/21"
+            android:text="@string/example_date"
             app:layout_constraintStart_toStartOf="@id/image_card_view_container"
             app:layout_constraintTop_toBottomOf="@id/image_card_view_container" />
 
@@ -79,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="•"
+            android:text="@string/dot_divider"
             app:layout_constraintStart_toEndOf="@id/publish_date_text"
             app:layout_constraintTop_toTopOf="@id/publish_date_text" />
 
@@ -88,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Tel Aviv"
+            android:text="@string/city_text"
             app:layout_constraintStart_toEndOf="@id/dot_divider"
             app:layout_constraintTop_toTopOf="@id/publish_date_text" />
 
@@ -96,17 +97,17 @@
             android:id="@+id/condition_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Like New"
-            app:layout_constraintTop_toTopOf="@id/publish_date_text"
-            app:layout_constraintEnd_toStartOf="@id/bt_expand" />
+            android:text="@string/like_new"
+            app:layout_constraintEnd_toStartOf="@id/bt_expand"
+            app:layout_constraintTop_toTopOf="@id/publish_date_text" />
 
         <TextView
             android:id="@+id/trade_type_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sell"
-            app:layout_constraintTop_toTopOf="@id/image_card_view_container"
-            app:layout_constraintEnd_toStartOf="@id/bt_expand" />
+            android:text="@string/sell"
+            app:layout_constraintEnd_toStartOf="@id/bt_expand"
+            app:layout_constraintTop_toTopOf="@id/image_card_view_container" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -122,8 +123,8 @@
             android:id="@+id/payment_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Payment option"
             android:layout_margin="@dimen/spacing_large"
+            android:text="@string/payment_option"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -173,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="36dp"
-            android:text="Contact"
+            android:text="@string/contact"
             app:layout_constraintBottom_toBottomOf="@id/payment_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/payment_label" />
@@ -182,11 +183,11 @@
             android:id="@+id/phone_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:tint="@color/colorPrimary"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/colorPrimary"
             android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/whatsapp_icon"
             app:layout_constraintTop_toBottomOf="@id/payment_label"
@@ -197,8 +198,8 @@
             android:id="@+id/whatsapp_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#25D366"
@@ -212,11 +213,11 @@
             android:id="@+id/email_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:tint="@color/red_500"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/red_500"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/payment_label"
@@ -239,8 +240,8 @@
             android:id="@+id/notes_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notes"
             android:layout_margin="@dimen/spacing_large"
+            android:text="@string/notes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 

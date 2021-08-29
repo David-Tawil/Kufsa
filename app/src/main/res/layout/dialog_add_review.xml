@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="David Park"
+            android:text="@string/david_park"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textStyle="bold" />
     </LinearLayout>
@@ -75,9 +75,11 @@
             android:id="@+id/et_post"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:autofillHints="@string/write_a_review"
             android:background="@drawable/bg_round"
             android:gravity="top"
-            android:hint="Write review ..."
+            android:hint="@string/write_review_dots"
+            android:inputType="text"
             android:lines="4"
             android:padding="@dimen/spacing_middle" />
 
@@ -100,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="CANCEL" />
+            android:text="@string/cancel" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_submit"
@@ -108,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="SUBMIT" />
+            android:text="@string/submit" />
 
     </LinearLayout>
 

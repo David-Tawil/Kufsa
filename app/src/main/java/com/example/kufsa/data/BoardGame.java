@@ -1,9 +1,15 @@
-package com.example.kufsa.data;
+/*
+  @authors Aaron David Tawil & Eldar Weiss
+*/
 
+package com.example.kufsa.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * This class defines the board game object used to depict a board game
+ */
 public class BoardGame implements Parcelable {
     public static final Creator<BoardGame> CREATOR = new Creator<BoardGame>() {
         @Override

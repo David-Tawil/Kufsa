@@ -3,7 +3,7 @@
 *.aar
 *.ap_
 *.aab
-# Files for the ART/Dalvik VM
+# Files for the ART/Dalvik VM 
 *.dex
 # Java class files
 *.class

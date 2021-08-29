@@ -21,6 +21,8 @@
                 android:id="@+id/bt_close"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
+                android:contentDescription="@string/action_button"
+
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_close" />
 
@@ -28,8 +30,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:contentDescription="@string/new_listing"
                 android:gravity="center_vertical"
-                android:text="New listing"
+                android:text="@string/new_listing"
                 android:textColor="@color/white" />
 
             <Button
@@ -40,8 +43,8 @@
                 android:gravity="center"
                 android:paddingLeft="@dimen/spacing_xsmall"
                 android:paddingRight="@dimen/spacing_xsmall"
-                android:textColor="@color/white"
-                android:text="Publish" />
+                android:text="@string/publish"
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -58,16 +61,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:padding="@dimen/spacing_large"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/trade_type_input_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:errorEnabled="true"
-                android:hint="Select trade type">
+                android:hint="@string/select_trade_type"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/trade_type_text_view_spinner"
@@ -87,8 +90,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:errorEnabled="true"
-                android:hint="Select Condition">
+                android:hint="@string/select_condition"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/condition_text_view_spinner"
@@ -104,12 +107,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/city_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="City"
-                app:errorEnabled="true"
+                android:hint="@string/city"
 
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/city_text"
@@ -133,11 +136,11 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/price_input_lyt"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Price"
-                    app:errorEnabled="true"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    android:hint="@string/price"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/sell_price_text"
@@ -163,13 +166,13 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/rental_fee_input_lyt"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Rental fee"
                     android:layout_weight="1"
-                    app:errorEnabled="true"
+                    android:hint="@string/rental_fee"
 
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/rental_fee"
@@ -188,10 +191,10 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Period"
-                    app:errorEnabled="true"
+                    android:layout_weight="1"
+                    android:hint="@string/period"
 
-                    android:layout_weight="1">
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
                         android:id="@+id/period_text_view_spinner"
@@ -213,10 +216,10 @@
                 android:id="@+id/payment_method_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/payment_method"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:visibility="gone"
-                android:text="Payment method"
                 tools:visibility="visible" />
 
             <LinearLayout
@@ -231,19 +234,19 @@
                     android:id="@+id/cash_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cash" />
+                    android:text="@string/cash" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/credit_card_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Credit Card" />
+                    android:text="@string/credit_card" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/bitcoin_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bitcoin" />
+                    android:text="@string/bitcoin" />
                 <!-- <com.google.android.material.checkbox.MaterialCheckBox
                      android:id="@+id/other_checkbox"
                      android:layout_width="wrap_content"
@@ -254,9 +257,9 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/contact_option"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="Contact option" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -268,7 +271,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Email" />
+                    android:text="@string/email" />
 
                 <View
                     android:layout_width="@dimen/spacing_large"
@@ -276,12 +279,12 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:hint="Email"
-                    app:errorEnabled="true"
+                    android:hint="@string/email"
                     android:visibility="gone"
+                    app:errorEnabled="true"
                     tools:visibility="visible">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -303,7 +306,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Phone" />
+                    android:text="@string/phone" />
 
                 <View
                     android:layout_width="@dimen/spacing_large"
@@ -313,7 +316,7 @@
                     android:id="@+id/whatsapp_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="WhatsApp" />
+                    android:text="@string/whatsapp" />
 
 
             </LinearLayout>
@@ -329,28 +332,28 @@
                     android:id="@+id/ccp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:ccp_contentColor="?android:textColorPrimary"
                     app:ccpDialog_textColor="?android:textColorPrimary"
-                    app:ccp_countryPreference="IL,US"
                     app:ccp_autoDetectCountry="true"
-                    app:ccp_rememberLastSelection="true"
+                    app:ccp_contentColor="?android:textColorPrimary"
                     app:ccp_countryAutoDetectionPref="SIM_NETWORK_LOCALE"
+                    app:ccp_countryPreference="IL,US"
+                    app:ccp_rememberLastSelection="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     tools:visibility="visible" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/phone_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:hint="Phone"
+                    android:hint="@string/phone"
                     app:errorEnabled="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ccp"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:visibility="visible">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -368,21 +371,21 @@
                 android:layout_height="@dimen/spacing_large" />
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:hint="@string/notes"
                 app:counterEnabled="true"
                 app:counterMaxLength="200"
-                android:hint="Notes"
-                app:helperText="Optional"
                 app:errorEnabled="true"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:helperText="Optional">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/notes_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
                     android:gravity="top"
+                    android:inputType="textMultiLine"
                     android:lines="4" />
             </com.google.android.material.textfield.TextInputLayout>
 

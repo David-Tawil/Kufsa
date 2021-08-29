@@ -1,16 +1,10 @@
-Project for 20503 course Android based app for managing Board games
+Kufsa
 
-Task list 26/08
-1) finish doc
-2) Add comments to everything
+Android app for Advanced Java course 20503 - OUI.
 
+This project is an android app for managing a board game Database.
+The user can view various board games, sort them and add them to his favorites.
+Also user can also review the games and post them for sale/rent!
+There are also some cool user settings applied.
 
-
-
-Quick links:
-
-https://miro.com/app/board/o9J_lBDH3yA=/
-
-https://console.firebase.google.com/u/0/project/kufsa-5b808/settings/general/android:kufsa.app
-
-https://docs.google.com/document/d/17sk7cJSAfGbC4F_QTDo5Bwthc3JqmZ-JyGQqYQ2vYD4/edit
+Feel free to contact us (The listed contributers) for any info.
