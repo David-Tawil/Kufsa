@@ -12,14 +12,15 @@ import com.google.firebase.firestore.ServerTimestamp;
 import java.util.Date;
 
 /**
- * This class defines the marketAd object used as an ad for sale for each game
+ * This class defines the marketAd object used as an ad for sale for each game.
  */
 public class MarketAd implements Parcelable {
 
 
     public static final Creator<MarketAd> CREATOR = new Creator<MarketAd>() {
         /**
-         * This method creates an ad from a parcel object
+         * This method creates an ad from a parcel object.
+         *
          * @param in parcel project
          * @return the market ad object created
          */
@@ -29,7 +30,7 @@ public class MarketAd implements Parcelable {
         }
 
         /**
-         * This method sets up an array of ads
+         * This method sets up an array of ads.
          * @param size length of the array
          * @return a new, empty array of ads
          */
@@ -63,7 +64,7 @@ public class MarketAd implements Parcelable {
     private String userPhotoUrl;
 
     /**
-     * This method sets up the market ad
+     * This method sets up the market ad.
      *
      * @param in parcel object being used
      */
@@ -97,8 +98,8 @@ public class MarketAd implements Parcelable {
     /**
      * Write all market Ad info into a parcel obj.
      *
-     * @param dest  destionation parcel.
-     * @param flags flags meant to initialize.
+     * @param dest  destionation parcel
+     * @param flags flags meant to initialize
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -123,7 +124,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Show contents of object
+     * Show contents of object.
      *
      * @return 0
      */
@@ -133,7 +134,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get market ad photo url
+     * Get market ad photo url.
      *
      * @return photoUrl as a string
      */
@@ -142,7 +143,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * set review photo url
+     * Set review photo url.
      *
      * @param userPhotoUrl as a string that you wish to set
      */
@@ -151,7 +152,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get ad ID
+     * Get ad ID.
      *
      * @return id as a string
      */
@@ -160,7 +161,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * set ad ID
+     * Set ad ID.
      *
      * @param id as a string
      */
@@ -169,7 +170,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get user ID
+     * Get user ID.
      *
      * @return userID as a string
      */
@@ -178,7 +179,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * set user ID
+     * Set user ID.
      *
      * @param userID the user id string that you wish to set
      */
@@ -187,7 +188,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get game ID
+     * Get game ID.
      *
      * @return gameID as a string
      */
@@ -196,7 +197,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * set game ID
+     * Set game ID.
      *
      * @param gameID the user id string that you wish to set
      */
@@ -205,7 +206,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get user name
+     * Get user name.
      *
      * @return userName as a string
      */
@@ -214,7 +215,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * set user name
+     * Set user name.
      *
      * @param userName the user name string that you wish to set
      */
@@ -223,7 +224,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get an ad's publishing date
+     * Get an ad's publishing date.
      *
      * @return publishDate as a date object
      */
@@ -232,7 +233,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set an ad's publishing date
+     * Set an ad's publishing date.
      *
      * @param publishDate as a date object you wish to set
      */
@@ -241,7 +242,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get an ad's trade type
+     * Get an ad's trade type.
      *
      * @return tradeType as a trade type enum
      */
@@ -250,7 +251,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * set ad's trade type
+     * Set ad's trade type.
      *
      * @param tradeType the type of trade you wish to set
      */
@@ -259,7 +260,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get the game in the ads's condition
+     * Get the game in the ads's condition.
      *
      * @return the game's condition enum
      */
@@ -268,7 +269,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set the game in the ads's condition
+     * Set the game in the ads's condition.
      *
      * @param condition game's condition enum
      */
@@ -277,7 +278,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get the city's name in the ad
+     * Get the city's name in the ad.
      *
      * @return the game's city as a string
      */
@@ -286,7 +287,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set the city's name in the ad
+     * Set the city's name in the ad.
      *
      * @param city game's city as a string
      */
@@ -295,7 +296,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get the game's price in the ad
+     * Get the game's price in the ad.
      *
      * @return the game's price as a double
      */
@@ -304,7 +305,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set the game's price in the ad
+     * Set the game's price in the ad.
      *
      * @param sellPrice game's price as a double
      */
@@ -313,7 +314,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get the game's rental fee in the ad
+     * Get the game's rental fee in the ad.
      *
      * @return the game's rental fee as a double
      */
@@ -322,7 +323,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set the game's rental fee in the ad
+     * Set the game's rental fee in the ad.
      *
      * @param rentalFee game's rental fee as a double
      */
@@ -331,7 +332,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get the game's rental period in the ad
+     * Get the game's rental period in the ad.
      *
      * @return rentalPeriod game's rental fee as a rentalPeriod object
      */
@@ -340,7 +341,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set the game's rental period in the ad
+     * Set the game's rental period in the ad.
      *
      * @param rentalPeriod game's rental fee as a rentalPeriod object
      */
@@ -349,7 +350,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get the email posted in the ad
+     * Get the email posted in the ad.
      *
      * @return email string
      */
@@ -358,7 +359,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set the email to be posted in the ad
+     * Set the email to be posted in the ad.
      *
      * @param email string
      */
@@ -367,7 +368,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get the phone posted in the ad
+     * Get the phone posted in the ad.
      *
      * @return phone string
      */
@@ -376,7 +377,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set the phone to be posted in the ad
+     * Set the phone to be posted in the ad.
      *
      * @param phone string
      */
@@ -385,7 +386,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Check if payment method is cash
+     * Check if payment method is cash.
      *
      * @return cash enum
      */
@@ -394,7 +395,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set payment method as cash
+     * Set payment method as cash.
      *
      * @param cash enum
      */
@@ -403,7 +404,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Check if payment method is creditCard
+     * Check if payment method is creditCard.
      *
      * @return creditCard enum
      */
@@ -412,7 +413,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set payment method as creditCard
+     * Set payment method as creditCard.
      *
      * @param creditCard enum
      */
@@ -421,7 +422,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Check if payment method is bitcoin
+     * Check if payment method is bitcoin.
      *
      * @return bitcoin enum
      */
@@ -430,7 +431,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set payment method as creditCard
+     * Set payment method as creditCard.
      *
      * @param bitcoin enum
      */
@@ -439,7 +440,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Check if payment method is other
+     * Check if payment method is other.
      *
      * @return other enum
      */
@@ -448,7 +449,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set payment method as other
+     * Set payment method as other.
      *
      * @param other enum
      */
@@ -457,7 +458,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Check if contact for ad is by phone
+     * Check if contact for ad is by phone.
      *
      * @return phoneContact enum
      */
@@ -466,7 +467,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set contact for ad As by phone
+     * Set contact for ad As by phone.
      *
      * @param phoneContact enum
      */
@@ -475,7 +476,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Check if contact for ad is by email
+     * Check if contact for ad is by email.
      *
      * @return emailContact enum
      */
@@ -484,7 +485,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set contact for ad As by email
+     * Set contact for ad As by email.
      *
      * @param emailContact enum
      */
@@ -493,7 +494,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Check if contact for ad is by whatsapp
+     * Check if contact for ad is by whatsapp.
      *
      * @return whatsappContact enum
      */
@@ -502,7 +503,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set contact for ad As by whatsapp
+     * Set contact for ad As by whatsapp.
      *
      * @param whatsappContact enum
      */
@@ -511,7 +512,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Get the notes written for an ad
+     * Get the notes written for an ad.
      *
      * @return notes as a string
      */
@@ -520,7 +521,7 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * Set the notes for an ad
+     * Set the notes for an ad.
      *
      * @param notes as a string
      */
@@ -529,18 +530,18 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * This is all possible results for tradeType
+     * This is all possible results for tradeType.
      */
     public enum TradeType {SELL, RENT, EXCHANGE}
 
     /**
-     * This is all possible results for Condition
+     * This is all possible results for Condition.
      */
     public enum Condition {
         NEW, LIKE_NEW, VERY_GOOD, GOOD, ACCEPTABLE;
 
         /**
-         * Conert condition to string
+         * Conert condition to string.
          *
          * @return condition set in string form
          */
@@ -564,13 +565,13 @@ public class MarketAd implements Parcelable {
     }
 
     /**
-     * This is all possible results for Rental Period
+     * This is all possible results for Rental Period.
      */
     public enum RentalPeriod {
         DAY, WEEK, MONTH;
 
         /**
-         * Conert Rental Period to string
+         * Convert Rental Period to string.
          *
          * @return RentalPeriod set in string form
          */

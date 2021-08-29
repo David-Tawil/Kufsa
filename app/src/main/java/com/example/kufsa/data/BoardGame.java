@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * This class defines the board game object used to depict a board game
+ * This class defines the board game object used to depict a board game.
  */
 public class BoardGame implements Parcelable {
     public static final Creator<BoardGame> CREATOR = new Creator<BoardGame>() {
@@ -47,18 +47,18 @@ public class BoardGame implements Parcelable {
     }
 
     /**
-     * Board game constructor
+     * Board game constructor.
      *
-     * @param name            The name of the board game.
-     * @param img             The URL of the game's image.
-     * @param description     The game's description text.
-     * @param publisher       The name of the game's publisher.
-     * @param difficulty      The game's level of difficulty.
-     * @param maxNumOfPlayers Maximal number of players in the game.
-     * @param minNumOfPlayers Minimal number of players in the game.
-     * @param playingTime     The amount of minimal time required for playing.
-     * @param releaseYear     The year the game was released in.
-     * @param minAge          The minimal age requirement for players of the game.
+     * @param name            The name of the board game
+     * @param img             The URL of the game's image
+     * @param description     The game's description text
+     * @param publisher       The name of the game's publisher
+     * @param difficulty      The game's level of difficulty
+     * @param maxNumOfPlayers Maximal number of players in the game
+     * @param minNumOfPlayers Minimal number of players in the game
+     * @param playingTime     The amount of minimal time required for playing
+     * @param releaseYear     The year the game was released in
+     * @param minAge          The minimal age requirement for players of the game
      */
     public BoardGame(String id, String name, String description, String img, String publisher, Float difficulty, int maxNumOfPlayers, int minNumOfPlayers, int playingTime, int releaseYear, int minAge, float averageReviewScore, int totalReviews, int totalOneStar, int totalTwoStar, int totalThreeStar, int totalFourStar, int totalFiveStar) {
         this.id = id;
@@ -82,6 +82,8 @@ public class BoardGame implements Parcelable {
     }
 
     /**
+     * Constructor
+     *
      * @param in parcel object that contains all board game info
      */
     protected BoardGame(Parcel in) {
@@ -116,7 +118,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's Firebase ID.
      *
-     * @return The game's ID in the form of a string.
+     * @return The game's ID in the form of a string
      */
     public String getId() {
         return id;
@@ -125,7 +127,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's Firebase ID.
      *
-     * @param id The ID you wish to set.
+     * @param id The ID you wish to set
      */
     public void setId(String id) {
         this.id = id;
@@ -134,7 +136,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's image URL.
      *
-     * @return The game's image URL as a string.
+     * @return The game's image URL as a string
      */
     public String getImg() {
         return img;
@@ -152,7 +154,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's publisher.
      *
-     * @return The game's publisher as a string.
+     * @return The game's publisher as a string
      */
     public String getPublisher() {
         return publisher;
@@ -161,7 +163,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's publisher name.
      *
-     * @param publisher The name of the publisher you wish to set.
+     * @param publisher The name of the publisher you wish to set
      */
     public void setPublisher(String publisher) {
         this.publisher = publisher;
@@ -170,7 +172,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's difficulty.
      *
-     * @return The game's difficulty as a float.
+     * @return The game's difficulty as a float
      */
     public Float getDifficulty() {
         return difficulty;
@@ -179,7 +181,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's difficulty level in the form of a float.
      *
-     * @param difficulty The game's difficulty level you wish to set.
+     * @param difficulty The game's difficulty level you wish to set
      */
     public void setDifficulty(Float difficulty) {
         this.difficulty = difficulty;
@@ -188,7 +190,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's maximal number of players.
      *
-     * @return The game's maximal number of players as an int.
+     * @return The game's maximal number of players as an int
      */
     public int getMaxNumOfPlayers() {
         return maxNumOfPlayers;
@@ -197,7 +199,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's maximal numbeer of players.
      *
-     * @param maxNumOfPlayers The game's number of players you wish to set.
+     * @param maxNumOfPlayers The game's number of players you wish to set
      */
     public void setMaxNumOfPlayers(int maxNumOfPlayers) {
         this.maxNumOfPlayers = maxNumOfPlayers;
@@ -206,7 +208,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's minimal number of players.
      *
-     * @return The game's minimal number of players as an int.
+     * @return The game's minimal number of players as an int
      */
     public int getMinNumOfPlayers() {
         return minNumOfPlayers;
@@ -215,7 +217,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's minimal numbeer of players.
      *
-     * @param minNumOfPlayers The game's number of players you wish to set.
+     * @param minNumOfPlayers The game's number of players you wish to set
      */
     public void setMinNumOfPlayers(int minNumOfPlayers) {
         this.minNumOfPlayers = minNumOfPlayers;
@@ -224,7 +226,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's playing time.
      *
-     * @return The game's playing time as an int.
+     * @return The game's playing time as an int
      */
     public int getPlayingTime() {
         return playingTime;
@@ -233,7 +235,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's playing time.
      *
-     * @param playingTime The game's playing time you wish to set.
+     * @param playingTime The game's playing time you wish to set
      */
     public void setPlayingTime(int playingTime) {
         this.playingTime = playingTime;
@@ -242,7 +244,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's release year.
      *
-     * @return The game's release year as an int.
+     * @return The game's release year as an int
      */
     public int getReleaseYear() {
         return releaseYear;
@@ -251,7 +253,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's release year.
      *
-     * @param releaseYear The game's release year you wish to set.
+     * @param releaseYear The game's release year you wish to set
      */
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
@@ -260,7 +262,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's minimal age requirement.
      *
-     * @return The game's minimal age requirement as an int.
+     * @return The game's minimal age requirement as an int
      */
     public int getMinAge() {
         return minAge;
@@ -269,7 +271,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's minimal age requirement.
      *
-     * @param minAge The game's minimal playing age you wish to set.
+     * @param minAge The game's minimal playing age you wish to set
      */
     public void setMinAge(int minAge) {
         this.minAge = minAge;
@@ -278,7 +280,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's name.
      *
-     * @return The game's name as a string.
+     * @return The game's name as a string
      */
     public String getName() {
         return name;
@@ -296,7 +298,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's description.
      *
-     * @return The game's description in the form of a String.
+     * @return The game's description in the form of a String
      */
     public String getDescription() {
         return description;
@@ -305,7 +307,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's description.
      *
-     * @param description The description you wish to set for the game.
+     * @param description The description you wish to set for the game
      */
     public void setDescription(String description) {
         this.description = description;
@@ -314,7 +316,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's average review score.
      *
-     * @return The game's average review score in the form of a float.
+     * @return The game's average review score in the form of a float
      */
     public float getAverageReviewScore() {
         return averageReviewScore;
@@ -323,7 +325,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's average review score.
      *
-     * @param averageReviewScore The score you wish to set for the game.
+     * @param averageReviewScore The score you wish to set for the game
      */
     public void setAverageReviewScore(float averageReviewScore) {
         this.averageReviewScore = averageReviewScore;
@@ -332,7 +334,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's number of total reviews.
      *
-     * @return The game's total reviews in the form of an int.
+     * @return The game's total reviews in the form of an int
      */
     public int getTotalReviews() {
         return totalReviews;
@@ -341,7 +343,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's num of total reviews.
      *
-     * @param totalReviews The number of reviews you wish to set for the game.
+     * @param totalReviews The number of reviews you wish to set for the game
      */
     public void setTotalReviews(int totalReviews) {
         this.totalReviews = totalReviews;
@@ -350,7 +352,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's number of one star reviews.
      *
-     * @return The game's number of one star reviews in the form of an int.
+     * @return The game's number of one star reviews in the form of an int
      */
     public int getTotalOneStar() {
         return totalOneStar;
@@ -359,7 +361,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's num of one star reviews.
      *
-     * @param totalOneStar The number of one star reviews you wish to set for the game.
+     * @param totalOneStar The number of one star reviews you wish to set for the game
      */
     public void setTotalOneStar(int totalOneStar) {
         this.totalOneStar = totalOneStar;
@@ -368,7 +370,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's number of two star reviews.
      *
-     * @return The game's number of two star reviews in the form of an int.
+     * @return The game's number of two star reviews in the form of an int
      */
     public int getTotalTwoStar() {
         return totalTwoStar;
@@ -377,7 +379,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's num of total two star reviews.
      *
-     * @param totalTwoStar The number of two star reviews you wish to set for the game.
+     * @param totalTwoStar The number of two star reviews you wish to set for the game
      */
     public void setTotalTwoStar(int totalTwoStar) {
         this.totalTwoStar = totalTwoStar;
@@ -386,7 +388,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's number of three star reviews.
      *
-     * @return The game's number of three star reviews in the form of an int.
+     * @return The game's number of three star reviews in the form of an int
      */
     public int getTotalThreeStar() {
         return totalThreeStar;
@@ -395,7 +397,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's number of three star reviews.
      *
-     * @param totalThreeStar The number of three star reviews you wish to set for the game.
+     * @param totalThreeStar The number of three star reviews you wish to set for the game
      */
     public void setTotalThreeStar(int totalThreeStar) {
         this.totalThreeStar = totalThreeStar;
@@ -404,7 +406,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's number of four star reviews.
      *
-     * @return The game's number of four star reviews in the form of an int.
+     * @return The game's number of four star reviews in the form of an int
      */
     public int getTotalFourStar() {
         return totalFourStar;
@@ -413,7 +415,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's number of four star reviews.
      *
-     * @param totalFourStar The number of four star reviews you wish to set for the game.
+     * @param totalFourStar The number of four star reviews you wish to set for the game
      */
     public void setTotalFourStar(int totalFourStar) {
         this.totalFourStar = totalFourStar;
@@ -422,7 +424,7 @@ public class BoardGame implements Parcelable {
     /**
      * Gets a game's number of five star reviews.
      *
-     * @return The game's number of five star reviews in the form of an int.
+     * @return The game's number of five star reviews in the form of an int
      */
     public int getTotalFiveStar() {
         return totalFiveStar;
@@ -431,7 +433,7 @@ public class BoardGame implements Parcelable {
     /**
      * Set a game's number of five star reviews.
      *
-     * @param totalFiveStar The number of five star reviews you wish to set for the game.
+     * @param totalFiveStar The number of five star reviews you wish to set for the game
      */
     public void setTotalFiveStar(int totalFiveStar) {
         this.totalFiveStar = totalFiveStar;
@@ -440,8 +442,8 @@ public class BoardGame implements Parcelable {
     /**
      * Write all board game info into a parcel obj.
      *
-     * @param dest  destionation parcel.
-     * @param flags flags meant to initialize.
+     * @param dest  destionation parcel
+     * @param flags flags meant to initialize
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {

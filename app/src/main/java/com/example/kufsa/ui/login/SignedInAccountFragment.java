@@ -25,7 +25,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
- * This fragment instantiates the signed in fragment used in the app
+ * This fragment instantiates the signed in fragment used in the app.
  */
 public class SignedInAccountFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -41,9 +41,11 @@ public class SignedInAccountFragment extends Fragment {
 
 
     /**
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     * This method handles the graphics part of the fragment.
+     *
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Nullable
@@ -60,7 +62,7 @@ public class SignedInAccountFragment extends Fragment {
     }
 
     /**
-     * This method sets up the funcionality of all the buttons shown in the signed in page
+     * This method sets up the funcionality of all the buttons shown in the signed in page.
      *
      * @param view the view used for entering login
      */
@@ -89,7 +91,7 @@ public class SignedInAccountFragment extends Fragment {
     }
 
     /**
-     * This method makes sure the user's name will be display in the nav bar after logging in
+     * This method makes sure the user's name will be display in the nav bar after logging in.
      */
     private void setUpDisplayNameInSidebar() {
         // set up display name in side bar

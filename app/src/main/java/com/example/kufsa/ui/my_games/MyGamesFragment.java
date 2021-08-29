@@ -58,9 +58,9 @@ public class MyGamesFragment extends Fragment {
     /**
      * This method handles the graphics part of the fragment
      *
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Nullable
@@ -75,7 +75,7 @@ public class MyGamesFragment extends Fragment {
     }
 
     /**
-     * Set up the recyclerview for user active ads in market
+     * Set up the recyclerview for user active ads in market.
      */
     private void setUpAdsRecyclerView() {
         FirebaseUser user = auth.getCurrentUser();
@@ -113,7 +113,7 @@ public class MyGamesFragment extends Fragment {
     }
 
     /**
-     * Set up the recyclerview for favorite games
+     * Set up the recyclerview for favorite games.
      */
     private void setUpRecyclerView() {
 
@@ -161,7 +161,7 @@ public class MyGamesFragment extends Fragment {
         searchBox.addTextChangedListener(new TextWatcher() {
 
             /**
-             * This method defines what happens before text is entered
+             * This method defines what happens before text is entered.
              *
              * @param s     text input
              * @param start input at start
@@ -186,7 +186,7 @@ public class MyGamesFragment extends Fragment {
             }
 
             /**
-             * This method defines what happens after text is changed
+             * This method defines what happens after text is changed.
              *
              * @param s text input
              */

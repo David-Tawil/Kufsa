@@ -22,7 +22,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 /**
- * This fragment implements a favorites adapter. Similar to catalog adapter, but only favorites games
+ * This fragment implements a favorites adapter. Similar to catalog adapter, but only favorites games.
  */
 public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, FavoritesAdapter.BoardGameHolder> {
 
@@ -33,9 +33,9 @@ public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, Favori
     }
 
     /**
-     * @param holder   holder of the recycler view.
-     * @param position view's position.
-     * @param model    board game object.
+     * @param holder   holder of the recycler view
+     * @param position view's position
+     * @param model    board game object
      */
     @Override
     protected void onBindViewHolder(@NonNull BoardGameHolder holder, int position, @NonNull BoardGame model) {
@@ -49,7 +49,7 @@ public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, Favori
     }
 
     /**
-     * Returns a holder for a board game
+     * Returns a holder for a board game.
      *
      * @param parent   The parent view
      * @param viewType the int of type of view
@@ -64,7 +64,7 @@ public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, Favori
     }
 
     /**
-     * Set up a listener for clicking any item in the view
+     * Set up a listener for clicking any item in the view.
      *
      * @param listener the listener we use for cliking on item
      */
@@ -73,14 +73,14 @@ public class FavoritesAdapter extends FirestoreRecyclerAdapter<BoardGame, Favori
     }
 
     /**
-     * Activate the listener when item in the view is clicked
+     * Activate the listener when item in the view is clicked.
      */
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
     /**
-     * Define the boardgame holder for a favorites recyclerview
+     * Define the boardgame holder for a favorites recyclerview.
      */
     class BoardGameHolder extends RecyclerView.ViewHolder {
         ItemGameInFavoriteListBinding binding;

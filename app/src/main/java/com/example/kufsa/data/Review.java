@@ -12,7 +12,7 @@ import com.google.firebase.firestore.ServerTimestamp;
 import java.util.Date;
 
 /**
- * This class sets up the review object for each game
+ * This class sets up the review object for each game.
  */
 public class Review implements Parcelable {
     public static final Creator<Review> CREATOR = new Creator<Review>() {
@@ -38,7 +38,7 @@ public class Review implements Parcelable {
     }
 
     /**
-     * This is a review constructor
+     * This is a review constructor.
      *
      * @param userName    reviewer's user name
      * @param photoUrl    photo url
@@ -55,7 +55,7 @@ public class Review implements Parcelable {
     }
 
     /**
-     * Review constructor from pacel
+     * Review constructor from a parcel.
      *
      * @param in parcel object
      */
@@ -70,8 +70,8 @@ public class Review implements Parcelable {
     /**
      * Write all board game info into a marketAd obj.
      *
-     * @param dest  destionation parcel.
-     * @param flags flags meant to initialize.
+     * @param dest  destionation parcel
+     * @param flags flags meant to initialize
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -83,7 +83,7 @@ public class Review implements Parcelable {
     }
 
     /**
-     * Show contents of object
+     * Show contents of object.
      *
      * @return 0
      */
@@ -93,7 +93,7 @@ public class Review implements Parcelable {
     }
 
     /**
-     * Get user ID
+     * Get user ID.
      *
      * @return userID as a string
      */
@@ -102,7 +102,7 @@ public class Review implements Parcelable {
     }
 
     /**
-     * set user ID
+     * Set user ID
      *
      * @param userId the user id string that you wish to set
      */
@@ -113,14 +113,14 @@ public class Review implements Parcelable {
     /**
      * Get user name
      *
-     * @return userName as a string
+     * @return userName as a string.
      */
     public String getUserName() {
         return userName;
     }
 
     /**
-     * set user name
+     * Set user name.
      *
      * @param userName the user name string that you wish to set
      */
@@ -129,16 +129,16 @@ public class Review implements Parcelable {
     }
 
     /**
-     * Get market ad photo RUL
+     * Get market ad photo URL.
      *
-     * @return photoUrl as a string
+     * @return photoUrl as a string.
      */
     public String getPhotoUrl() {
         return photoUrl;
     }
 
     /**
-     * set market ad photo
+     * set market ad photo.
      *
      * @param photoUrl as a string that you wish to set
      */
@@ -147,16 +147,16 @@ public class Review implements Parcelable {
     }
 
     /**
-     * Get number of stars (reviewed) for the game
+     * Get number of stars (reviewed) for the game.
      *
-     * @return starNum as an int
+     * @return starNum as an int.
      */
     public int getStarNum() {
         return starNum;
     }
 
     /**
-     * Set number of stars (reviewed) for the game
+     * Set number of stars (reviewed) for the game.
      *
      * @param starNum as an int
      */
@@ -183,7 +183,7 @@ public class Review implements Parcelable {
     }
 
     /**
-     * Get the date the ad was made on
+     * Get the date the ad was made on.
      *
      * @return Date object
      */
@@ -192,7 +192,7 @@ public class Review implements Parcelable {
     }
 
     /**
-     * Set the date the ad was made on
+     * Set the date the ad was made on.
      *
      * @param date object
      */

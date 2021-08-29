@@ -48,7 +48,7 @@ import java.util.Objects;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 /**
- * This fragment creates the review fragment for each game
+ * This fragment creates the review fragment for each game.
  */
 public class GameReviewsTabFragment extends Fragment {
 
@@ -80,9 +80,9 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Override
@@ -116,10 +116,10 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method binds all buttons and fields
+     * This method binds all buttons and fields.
      *
-     * @param view               the view we use for this fragment.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     * @param view               the view we use for this fragment
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -139,7 +139,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method sets up the listening and starts all review functions
+     * This method sets up the listening and starts all review functions.
      */
     @Override
     public void onStart() {
@@ -159,7 +159,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method generates the rating bars
+     * This method generates the rating bars.
      */
     @Override
     public void onResume() {
@@ -169,7 +169,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method removes all retingrview objects
+     * This method removes all retingrview objects.
      */
     @Override
     public void onPause() {
@@ -178,7 +178,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method stops the listening
+     * This method stops the listening.
      */
     @Override
     public void onStop() {
@@ -187,7 +187,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method sets up the proper GUI for the review tab
+     * This method sets up the proper GUI for the review tab.
      */
     private void setUi() {
         if (game.getAverageReviewScore() == 0) {
@@ -206,7 +206,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method sets up the reviews bar
+     * This method sets up the reviews bar.
      */
     private void setReviewsBar() {
         float totalReviews = game.getTotalReviews();
@@ -218,7 +218,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method sets up the custom review window for the user
+     * This method sets up the custom review window for the user.
      *
      * @param view   the view being used
      * @param rating the rating assigned
@@ -280,7 +280,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method sets up the game's statistics
+     * This method sets up the game's statistics.
      *
      * @param stars  the amount of stars given in a review
      * @param review the review object
@@ -312,7 +312,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method removes review stars in the DB
+     * This method removes review stars in the DB.
      *
      * @param oldStars the original amount of stars
      */
@@ -337,7 +337,7 @@ public class GameReviewsTabFragment extends Fragment {
     }
 
     /**
-     * This method adds to stars in the DB
+     * This method adds to stars in the DB.
      *
      * @param stars the original amount of stars
      */

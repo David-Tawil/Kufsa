@@ -78,7 +78,7 @@ public class MyAdsAdapter extends FirestoreRecyclerAdapter<MarketAd, MyAdsAdapte
     }
 
     /**
-     * shows alert dialog to confirm the user wants to delete an ad
+     * shows alert dialog to confirm the user wants to delete an ad.
      *
      * @param context context
      * @param model   ad data class
@@ -99,7 +99,7 @@ public class MyAdsAdapter extends FirestoreRecyclerAdapter<MarketAd, MyAdsAdapte
     }
 
     /**
-     * Returns a holder for a user ad
+     * Returns a holder for a user ad.
      *
      * @param parent   The parent view
      * @param viewType the int of type of view

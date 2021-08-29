@@ -55,9 +55,9 @@ public class GameDetailsTabFragment extends Fragment {
     /**
      * This method handles the graphics part of the fragment
      *
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Override
@@ -69,10 +69,10 @@ public class GameDetailsTabFragment extends Fragment {
     }
 
     /**
-     * This method sets up the various methods after UI is set
+     * This method sets up the various methods after UI is set.
      *
-     * @param view               The view used, in this case account settings.
-     * @param savedInstanceState mapping for parcel values.
+     * @param view               The view used, in this case account settings
+     * @param savedInstanceState mapping for parcel values
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class GameDetailsTabFragment extends Fragment {
     }
 
     /**
-     * This method sets up a favorite button that adds a game to a user's favorites list
+     * This method sets up a favorite button that adds a game to a user's favorites list.
      */
     private void setFavoriteButton() {
         if (auth.getCurrentUser() != null) {

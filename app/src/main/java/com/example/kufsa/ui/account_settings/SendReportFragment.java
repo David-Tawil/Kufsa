@@ -38,9 +38,9 @@ public class SendReportFragment extends Fragment {
     }
 
     /**
-     * This method defines what is shown when view is created
+     * This method defines what is shown when view is created.
      *
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,9 +50,9 @@ public class SendReportFragment extends Fragment {
     /**
      * This method handles the graphics part of the fragment
      *
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Override
@@ -67,8 +67,8 @@ public class SendReportFragment extends Fragment {
      * This method binds all buttons and fields so that they will create an email activity from the app user
      * to an admin (in this case my email).
      *
-     * @param view               the view we use for this fragment.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     * @param view               the view we use for this fragment
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

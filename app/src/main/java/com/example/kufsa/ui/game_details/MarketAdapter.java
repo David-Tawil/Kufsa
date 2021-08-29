@@ -24,7 +24,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 /**
- * This class is an adapter for the market itself
+ * This class is an adapter for the market itself.
  */
 public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdapter.AdHolder> {
 
@@ -33,7 +33,7 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
     }
 
     /**
-     * This class defines the toggle arrow foe the view
+     * This class defines the toggle arrow foe the view.
      *
      * @param show This is the boolean where the arrow shown
      * @param view the view being used
@@ -44,7 +44,7 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
     }
 
     /**
-     * This class defines the toggle arrow foe the view
+     * This class defines the toggle arrow foe the view.
      *
      * @param show This is the boolean where the arrow shown
      * @param view the view being used
@@ -61,9 +61,9 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
     }
 
     /**
-     * @param holder   holder of the recycler view.
-     * @param position view's position.
-     * @param model    board game object.
+     * @param holder   holder of the recycler view
+     * @param position view's position
+     * @param model    board game object
      */
     @Override
     protected void onBindViewHolder(@NonNull MarketAdapter.AdHolder holder, int position, @NonNull MarketAd model) {
@@ -139,7 +139,7 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
     }
 
     /**
-     * This method expands the layout when clicked
+     * This method expands the layout when clicked.
      *
      * @param show       parameter whther to expand layout and use the animation
      * @param view       the view being used
@@ -157,14 +157,14 @@ public class MarketAdapter extends FirestoreRecyclerAdapter<MarketAd, MarketAdap
     }
 
     /**
-     * This Class defines a recyclerview object that is a ad holder for ads
+     * This Class defines a recyclerview object that is a ad holder for ads.
      */
     static class AdHolder extends RecyclerView.ViewHolder {
         ItemListingInMarketBinding binding;
         boolean expanded = false;
 
         /**
-         * This method is a constructor for an adholder
+         * This method is a constructor for an adholder.
          *
          * @param itemView the view of the item being used here
          */

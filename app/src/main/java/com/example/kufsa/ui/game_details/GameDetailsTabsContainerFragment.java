@@ -42,11 +42,11 @@ public class GameDetailsTabsContainerFragment extends Fragment {
     }
 
     /**
-     * This method handles the graphics part of the fragment
+     * This method handles the graphics part of the fragment.
      *
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Nullable
@@ -54,16 +54,14 @@ public class GameDetailsTabsContainerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         biding = FragmentGameDetailsTabsContainerBinding.inflate(inflater, container, false);
         gameID = GameDetailsTabsContainerFragmentArgs.fromBundle(getArguments()).getGameID();
-        //  gameName = GameDetailsTabsContainerFragmentArgs.fromBundle(getArguments()).getGameTitle();
-        //setHasOptionsMenu(true);
         return biding.getRoot();
     }
 
     /**
-     * This method sets up more GUI settings for the fragment
+     * This method sets up more GUI settings for the fragment.
      *
-     * @param view               the view used.
-     * @param savedInstanceState the savedinstance used in this case.
+     * @param view               the view used
+     * @param savedInstanceState the savedinstance used in this case
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -97,7 +95,7 @@ public class GameDetailsTabsContainerFragment extends Fragment {
             }
 
             /**
-             * This method retuns the amount of items
+             * This method retuns the amount of items.
              *
              * @return 3
              */

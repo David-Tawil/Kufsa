@@ -14,7 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 /**
- * This class defines the view animation for the reviews
+ * This class defines the view animation for the reviews.
  */
 public class ViewAnimation {
 
@@ -39,7 +39,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method starts the animation in the view
+     * This method starts the animation in the view.
      *
      * @param v the view being used
      */
@@ -49,7 +49,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines the animation settings
+     * This method defines the animation settings.
      *
      * @param v the view being used
      */
@@ -61,9 +61,10 @@ public class ViewAnimation {
         v.setVisibility(View.VISIBLE);
         Animation a = new Animation() {
             /**
-             * This method applies the animation's transformation
+             * This method applies the animation's transformation.
+             *
              * @param interpolatedTime amount of seconds for transformation
-             * @param t the transformation object
+             * @param t                the transformation object
              */
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
@@ -74,7 +75,8 @@ public class ViewAnimation {
             }
 
             /**
-             * This method defines bounds
+             * This method defines bounds.
+             *
              * @return true if bounds changed, false otherwise
              */
             @Override
@@ -89,7 +91,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method collapses the animation settings
+     * This method collapses the animation settings.
      *
      * @param v the view being used
      */
@@ -127,7 +129,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method sets up part of the שnimation
+     * This method sets up part of the שnimation.
      *
      * @param v            view being used
      * @param animListener animation listener
@@ -153,7 +155,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method sets up part of the animation
+     * This method sets up part of the animation.
      *
      * @param v            view being used
      * @param animListener animation listener
@@ -178,7 +180,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines the animation fading in
+     * This method defines the animation fading in.
      *
      * @param v the view being used
      */
@@ -187,7 +189,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines the fade in of the animation
+     * This method defines the fade in of the animation.
      *
      * @param v the view being used
      */
@@ -209,7 +211,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines the fade out of the animation
+     * This method defines the fade out of the animation.
      *
      * @param v the view being used
      */
@@ -218,7 +220,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines the fade out of the animation
+     * This method defines the fade out of the animation.
      *
      * @param v            the view being used
      * @param animListener the listener for the animation to fade out
@@ -239,7 +241,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines the show in of the animation
+     * This method defines the show in of the animation.
      *
      * @param v the view being used
      */
@@ -261,7 +263,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method helps defines the show out of the animation
+     * This method helps defines the show out of the animation.
      *
      * @param v the view being used
      */
@@ -272,7 +274,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines the show out of the animation
+     * This method defines the show out of the animation.
      *
      * @param v the view being used
      */
@@ -294,7 +296,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines sets the rotation for the animation
+     * This method defines sets the rotation for the animation.
      *
      * @param v      the view being used
      * @param rotate bollean for rotation
@@ -313,7 +315,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines the fade out in
+     * This method defines the fade out in.
      *
      * @param view the view being used
      */
@@ -328,7 +330,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method shows the scale
+     * This method shows the scale.
      *
      * @param v the view being sued
      */
@@ -337,7 +339,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method runs the scale definitions
+     * This method runs the scale definitions.
      *
      * @param v            the view being used
      * @param animListener the listener for the animation
@@ -358,7 +360,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method hides the scale
+     * This method hides the scale.
      *
      * @param v the view being sued
      */
@@ -367,7 +369,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method defines hiding the scale
+     * This method defines hiding the scale.
      *
      * @param v            the view being used
      * @param animListener the listener for the animation
@@ -388,7 +390,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method hides the fab
+     * This method hides the fab.
      *
      * @param fab the view being sued
      */
@@ -401,7 +403,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method showes the fab
+     * This method showes the fab.
      *
      * @param fab the view being sued
      */
@@ -413,7 +415,7 @@ public class ViewAnimation {
     }
 
     /**
-     * This method is the interface for the animation listener
+     * This method is the interface for the animation listener.
      */
     public interface AnimListener {
         void onFinish();

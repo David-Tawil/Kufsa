@@ -68,9 +68,9 @@ public class DialogPublishNewListingFragment extends DialogFragment {
     /**
      * This method handles the graphics part of the fragment
      *
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
+     * @param inflater           Instantiates a layout XML file into its correspondin View objects
      * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Override

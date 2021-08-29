@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavController;
 
 /**
- * This fragment defines the main page of the app, including the navigation controller
+ * This fragment defines the main page of the app, including the navigation controller.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
 
     /**
-     * This method handles the graphics part of the fragment
+     * This method handles the graphics part of the fragment.
      *
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method makes sure the user's name will be display in the nav bar after logging in
+     * This method makes sure the user's name will be display in the nav bar after logging in.
      */
     private void setUpDisplayNameInSidebar() {
         // set up display name in side bar
@@ -115,5 +115,4 @@ public class MainActivity extends AppCompatActivity {
                                     .MODE_NIGHT_NO);
         }
     }
-
 }

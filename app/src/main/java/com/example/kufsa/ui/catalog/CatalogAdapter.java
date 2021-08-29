@@ -30,16 +30,16 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
     /**
      * We call settings for the recycler view's adapter.
      *
-     * @param options the settings for this recycler view.
+     * @param options the settings for this recycler view
      */
     public CatalogAdapter(@NonNull FirestoreRecyclerOptions<BoardGame> options) {
         super(options);
     }
 
     /**
-     * @param holder   holder of the recycler view.
-     * @param position view's position.
-     * @param model    board game object.
+     * @param holder   holder of the recycler view
+     * @param position view's position
+     * @param model    board game object
      */
     @Override
     protected void onBindViewHolder(@NonNull BoardGameHolder holder, int position, @NonNull BoardGame model) {
@@ -53,9 +53,9 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
     }
 
     /**
-     * @param parent   view that holds the recyclverview children views.
-     * @param viewType id for view type.
-     * @return board game holder object.
+     * @param parent   view that holds the recyclverview children views
+     * @param viewType id for view type
+     * @return board game holder object
      */
     @NonNull
     @Override
@@ -66,16 +66,16 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
     }
 
     /**
-     * Set up a listener for clicking any item in the view
+     * Set up a listener for clicking any item in the view.
      *
-     * @param listener The listener used when clicking on an item.
+     * @param listener The listener used when clicking on an item
      */
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
     /**
-     * Activate the listener when item in the view is clicked
+     * Activate the listener when item in the view is clicked.
      */
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
@@ -88,7 +88,7 @@ public class CatalogAdapter extends FirestoreRecyclerAdapter<BoardGame, CatalogA
         ItemGameInCatalogBinding binding;
 
         /**
-         * Constructor for boardgame holder
+         * Constructor for boardgame holder.
          *
          * @param itemView the item view being used
          */

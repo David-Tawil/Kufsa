@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 /**
- * This fragment creates the game catalog screen
+ * This fragment creates the game catalog screen.
  */
 public class CatalogFragment extends Fragment {
 
@@ -49,7 +49,7 @@ public class CatalogFragment extends Fragment {
     /**
      * This method defines what is shown when view is created
      *
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,11 +59,11 @@ public class CatalogFragment extends Fragment {
     }
 
     /**
-     * This method handles the graphics part of the fragment
+     * This method handles the graphics part of the fragment.
      *
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Nullable
@@ -121,7 +121,7 @@ public class CatalogFragment extends Fragment {
 
         searchBox.addTextChangedListener(new TextWatcher() {
             /**
-             * This method defines what happens before text is entered into the searchbox
+             * This method defines what happens before text is entered into the searchbox.
              *
              * @param s     text input
              * @param start input at start
@@ -134,7 +134,7 @@ public class CatalogFragment extends Fragment {
             }
 
             /**
-             * This method defines what happens when text is entered into the searchbox
+             * This method defines what happens when text is entered into the searchbox.
              *  @param s     text input
              * @param start input at start
              * @param count count of chars entered
@@ -145,7 +145,7 @@ public class CatalogFragment extends Fragment {
             }
 
             /**
-             * This method defines what happens after text is changed in the searchbox
+             * This method defines what happens after text is changed in the searchbox.
              * @param s text input
              */
             // Query that draws from the database and shows the results of searching in the search box
@@ -175,10 +175,10 @@ public class CatalogFragment extends Fragment {
     }
 
     /**
-     * This method initializes the sort menu
+     * This method initializes the sort menu.
      *
      * @param menu     Object that initializes the sort menu
-     * @param inflater instantiates menu items as a menu.
+     * @param inflater instantiates menu items as a menu
      */
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
@@ -220,10 +220,10 @@ public class CatalogFragment extends Fragment {
     }
 
     /**
-     * This method calls a query to the db
+     * This method calls a query to the db.
      *
      * @param field     category to sort the catalog as
-     * @param direction ascending or descending - which way to sort.
+     * @param direction ascending or descending - which way to sort
      */
     private void boardGameQueryCall(String field, Query.Direction direction) {
         Query query = gamesCollection.orderBy(field, direction);

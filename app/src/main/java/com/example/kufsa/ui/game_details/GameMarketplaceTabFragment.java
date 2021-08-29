@@ -27,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 /**
- * This fragment instantiates the game marketplace tab
+ * This fragment instantiates the game marketplace tab.
  */
 public class GameMarketplaceTabFragment extends Fragment {
 
@@ -49,9 +49,9 @@ public class GameMarketplaceTabFragment extends Fragment {
     /**
      * This method handles the graphics part of the fragment
      *
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Override
@@ -91,8 +91,8 @@ public class GameMarketplaceTabFragment extends Fragment {
      * This method binds all buttons and fields so that they will create an email activity from the app user
      * to an admin (in this case my email).
      *
-     * @param view               the view we use for this fragment.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values..
+     * @param view               the view we use for this fragment
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

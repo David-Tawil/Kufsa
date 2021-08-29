@@ -21,7 +21,7 @@ import com.example.kufsa.R;
 public class FaqFragment extends Fragment {
 
     /**
-     * This method handles the graphics part of the fragment
+     * This method handles the graphics part of the fragment.
      *
      * @param inflater           Instantiates a layout XML file into its corresponding View objects.
      * @param container          special view that can contain child views.

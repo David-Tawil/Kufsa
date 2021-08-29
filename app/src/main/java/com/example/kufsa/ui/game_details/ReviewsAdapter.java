@@ -21,12 +21,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import java.text.SimpleDateFormat;
 
 /**
- * This class is the adapter for each board game's reviews
+ * This class is the adapter for each board game's reviews.
  */
 public class ReviewsAdapter extends FirestoreRecyclerAdapter<Review, ReviewsAdapter.ReviewHolder> {
 
     /**
-     * This method is a constructer
+     * This method is a constructer.
      *
      * @param options - recycler view options for reviews
      */
@@ -35,7 +35,7 @@ public class ReviewsAdapter extends FirestoreRecyclerAdapter<Review, ReviewsAdap
     }
 
     /**
-     * This method sets the info for each review from the database, binding to the text
+     * This method sets the info for each review from the database, binding to the text.
      *
      * @param holder   - holder for a specific review
      * @param position - poisition for file
@@ -69,13 +69,13 @@ public class ReviewsAdapter extends FirestoreRecyclerAdapter<Review, ReviewsAdap
     }
 
     /**
-     * Consructor for a review
+     * Consructor for a review.
      */
     class ReviewHolder extends RecyclerView.ViewHolder {
         ItemReviewInRecyclerBinding binding;
 
         /**
-         * Constructor for a review holder
+         * Constructor for a review holder.
          *
          * @param itemView the view of each item being used here
          */

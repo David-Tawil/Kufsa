@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * This fragment instantiates the login fragment used in the app
+ * This fragment instantiates the login fragment used in the app.
  */
 public class LoginFragment extends Fragment {
 
@@ -52,9 +52,9 @@ public class LoginFragment extends Fragment {
     /**
      * This method handles the graphics part of the fragment
      *
-     * @param inflater           Instantiates a layout XML file into its corresponding View objects.
-     * @param container          special view that can contain child views.
-     * @param savedInstanceState A mapping from String keys to various Parcelable values.
+     * @param inflater           Instantiates a layout XML file into its corresponding View objects
+     * @param container          special view that can contain child views
+     * @param savedInstanceState A mapping from String keys to various Parcelable values
      * @return outermost view.
      */
     @Nullable
@@ -76,10 +76,10 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     * This method sets up the various methods after UI is set
+     * This method sets up the various methods after UI is set.
      *
-     * @param view               The view used.
-     * @param savedInstanceState mapping for parcel values.
+     * @param view               The view used
+     * @param savedInstanceState mapping for parcel values
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -97,7 +97,7 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     * This method makes sure the user's name will be display in the nav bar after logging in
+     * This method makes sure the user's name will be display in the nav bar after logging in.
      */
     private void setUpDisplayNameInSidebar() {
         // set up display name in side bar
@@ -112,7 +112,7 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     * This method sets up the listener for logging in
+     * This method sets up the listener for logging in.
      */
     private void setAuthStateListener() {
         mAuthStateListener = firebaseAuth -> {
@@ -167,7 +167,7 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     * This method calls the listener method on app resume
+     * This method calls the listener method on app resume.
      */
     @Override
     public void onResume() {
@@ -178,7 +178,7 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     * This method removes the listener method on app resume
+     * This method removes the listener method on app resume.
      */
     @Override
     public void onPause() {
